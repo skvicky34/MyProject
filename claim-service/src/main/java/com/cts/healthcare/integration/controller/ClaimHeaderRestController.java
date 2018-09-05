@@ -46,7 +46,7 @@ public class ClaimHeaderRestController {
 	}
 
 	@RequestMapping("/claims/{claimid}")
-	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") Integer id, @RequestParam(name="parts", required=false) String parts) {		
+	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) {		
 		ObjectMapper mapper = new ObjectMapper();
 		Claim claim = new Claim();
 		try {
@@ -54,7 +54,7 @@ public class ClaimHeaderRestController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}		
-		return new ResponseEntity<Claim>(claim, HttpStatus.OK);
+		return new ResponseEntity<Claim>(headerService.getClaim(id), HttpStatus.OK);
 	}
 	
 	@RequestMapping("/claims/{claimid}/header")

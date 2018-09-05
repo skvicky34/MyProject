@@ -1,11 +1,12 @@
 package com.cts.healthcare.integration.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClaimHeader {
 	private String claimId;
 	private String type;
-	private String totalClaimChargeAmount;
+	private BigDecimal totalClaimChargeAmount;
 	private Date statementFromDate;
 	private Date statementToDate;
 	private Date admissionDate;
@@ -38,10 +39,10 @@ public class ClaimHeader {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getTotalClaimChargeAmount() {
+	public BigDecimal getTotalClaimChargeAmount() {
 		return totalClaimChargeAmount;
 	}
-	public void setTotalClaimChargeAmount(String totalClaimChargeAmount) {
+	public void setTotalClaimChargeAmount(BigDecimal totalClaimChargeAmount) {
 		this.totalClaimChargeAmount = totalClaimChargeAmount;
 	}
 	public Date getStatementFromDate() {

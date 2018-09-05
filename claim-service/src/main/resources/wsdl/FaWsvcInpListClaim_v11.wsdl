@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://trizetto.com/fxi/isl" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11">
+      <s:element name="ListClaim_v11_ClaimId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Config">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FacetsIdentity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemTransactionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RequestedColumns" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RecordBase" />
+      <s:complexType name="REC_CLRN">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CLRN_MCTR_VALUE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLRN_IDENTIFIER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="USUS_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_CLID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_TYPE" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLID_SEQ_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLID_VALUE_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLID_VALUE_INT" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_VALUE_STRING" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLID_VALUE_DATE" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA_1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA_2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA_3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA_4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_ADDL_DATA_5" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_CLHC">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CLHC_SEQ_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHC_COND_CD" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_CLCL">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEME_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="GRGR_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBSB_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="SGSG_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSPD_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PAY_PR_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_SUB_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CUR_STS" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_RECD_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_ID_ADJ_FROM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_ID_ADJ_TO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_TOT_CHG" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_TOT_PAYABLE" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_PA_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PA_ACCT_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CAP_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLST_MCTR_REAS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLST_MCTR_REAS_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NPI" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEME_SFX" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_FIRST_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_LAST_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_MID_INIT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_REL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSPD_CAT_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBSB_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBIH_SBSB_ID_ORIG" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GRGR_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GRGR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SGSG_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSPI_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PLDS_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PAY_PR_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_SUB_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CUR_STS_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CAP_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_REL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCB_COB_TYPE" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCB_COB_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCB_COB_DISALLOW" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCB_COB_ALLOW" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCB_COB_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_LAST_ACT_DTM" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_INPUT_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLCL_PAID_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSCS_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWNW_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWNW_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AGAG_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PAYEE_PR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_NTWK_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PCP_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_EXT_AUTH_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_AIAI_EOB_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_MICRO_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLST_STS_DTM" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ENTITY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_EOB_EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSPI_ITS_PREFIX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_HSA_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_REL_CLCL_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_HSA_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHS_TOT_CONSIDER" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHS_TOT_PAID" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="HSAI_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HSAI_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HSAI_ACC_SFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HSAI_HSA_FSA_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HSAI_HSA_FSA_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_DED_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_ME_DED_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_DED_ACCUM_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEHS_DED_ACCUM_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHS_SB_ALLOC_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHS_ME_ALLOC_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEHS_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_PAID_CUR" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_DED2_ACCM_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_DED2_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SBHS_ME_DED2_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEHS_DED2_ACCM_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBHS_DED_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBHS_DED_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBHS_DED2_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBHS_DED2_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDMF_EXPNS_AMT_SUM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDMF_PAID_AMT_SUM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDDF_EXPNS_AMT_SUM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDDF_PAID_AMT_SUM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="MCRL_MEME_CREL_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MCRL_CREL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDPD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_ID_FAC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_INPUT_TXNM_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRFA_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMI_ITS_SCCF_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_PRE_PRICE_IND" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TOT_PA_LIAB_CLAIM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="DIS_PA_LIAB_CLAIM" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHP_ADM_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_ADM_SOURCE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_ADM_TYP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_BILL_CLASS" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHP_DC_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_DC_HOUR_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_DC_STAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_FAC_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_FREQUENCY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_ICD_QUAL_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_INPUT_AGRG_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_IPCD_METH" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_MED_REC_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_ID_ADM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_ID_OPER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_ID_OTH1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_ID_OTH2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHP_STAMENT_FR_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLHP_STAMENT_TO_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_INPUT_SBSB_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_FA_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_FA_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_RF_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_RF_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_SE_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_PRPR_SE_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_AD_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_AD_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_OP_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_OP_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_O1_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_O1_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_O2_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHP_PRPR_O2_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_INPUT_HLTH_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_ICD_IND_PROC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_ICD_IND_PROC_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_ICD_QUAL_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_ICD_QUAL_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_EXT_PREATH_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLMF_EXT_REFRAL_NO" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSD_PRPR_ID_REND_NVL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSD_PRPR_RE_NPI_NVL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSD_PRPR_RE_TAX_NVL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWPE_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWPE_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWPR_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWPR_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWCR_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NWCR_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDBC_PFX_NPPR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NPPR_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDBC_PFX_SPPR" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SPPR_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDBC_PFX_SEDF" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SEDF_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSP_NTWK_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDPD_ACC_SFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AGRG_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSP_AG_SOURCE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSP_AG_SOURCE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDDS_PROD_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDDS_PROD_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDDS_MCTR_BCAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDDS_MCTR_BCAT_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLSP_TOT_AMT_APLY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLHC_COLL" type="tns:ArrayOfREC_CLHC" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLID_COLL" type="tns:ArrayOfREC_CLID" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLRN_COLL" type="tns:ArrayOfREC_CLRN" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CLHC">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CLHC" nillable="true" type="tns:REC_CLHC" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CLID">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CLID" nillable="true" type="tns:REC_CLID" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CLRN">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CLRN" nillable="true" type="tns:REC_CLRN" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="REC_RESP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PITM_TICKET_NO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PITM_STS" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_SERVICE" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_ERR">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CODE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CONTEXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_USER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_SYS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_PROG" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="AppReturnCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="AppErrors" type="tns:ArrayOfREC_ERR" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_COLL" type="tns:ArrayOfREC_RESP" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_ERR">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_ERR" nillable="true" type="tns:REC_ERR" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_RESP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_RESP" nillable="true" type="tns:REC_RESP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListClaim_v11Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_COLL" type="tns:ArrayOfREC_CLCL" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CLCL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CLCL" nillable="true" type="tns:REC_CLCL" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListClaim_v11_ClaimIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaim_v11_ClaimIdResult" type="tns:ListClaim_v11Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_MemberKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMEME_CK" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_TYPE" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMAX_NUM_RECS" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_MemberKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaim_v11_MemberKeyResult" type="tns:ListClaim_v11Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_MemberKeyorMedicaidNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMEME_CK" nillable="true" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="pMEME_MEDCD_NO" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCICI_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMAX_NUM_RECS" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_MemberKeyorMedicaidNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaim_v11_MemberKeyorMedicaidNumberResult" type="tns:ListClaim_v11Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_ProviderId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPRPR_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCICI_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMAX_NUM_RECS" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_ProviderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaim_v11_ProviderIdResult" type="tns:ListClaim_v11Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_SubscriberKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSBSB_CK" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_TYPE" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMAX_NUM_RECS" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaim_v11_SubscriberKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaim_v11_SubscriberKeyResult" type="tns:ListClaim_v11Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl">
+      <s:element name="FxiIslHeader" type="s1:FxiIslHeader" />
+      <s:complexType name="FxiIslHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Partner" type="s1:PartnerType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Data" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="PartnerType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerName" type="s1:PartnerNameType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PartnerNameType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Facets" />
+          <s:enumeration value="HealthWeb" />
+          <s:enumeration value="NetworX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HdrCollection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="s1:HdrColumn" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubCollection" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:attribute name="type" type="s1:CollectionTypeList" use="required" />
+        <s:attribute name="name" type="s:string" />
+      </s:complexType>
+      <s:complexType name="HdrColumn">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="name" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="CollectionTypeList">
+        <s:restriction base="s:string">
+          <s:enumeration value="SoapHeader" />
+          <s:enumeration value="Input" />
+          <s:enumeration value="Row" />
+          <s:enumeration value="Group" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListClaim_v11_ClaimIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_ClaimId" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_ClaimIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_ClaimIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_ClaimIdFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_MemberKey" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_MemberKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeyFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeyorMedicaidNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_MemberKeyorMedicaidNumber" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeyorMedicaidNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_MemberKeyorMedicaidNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_MemberKeyorMedicaidNumberFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_ProviderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_ProviderId" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_ProviderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_ProviderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_ProviderIdFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_SubscriberKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_SubscriberKey" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_SubscriberKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaim_v11_SubscriberKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaim_v11_SubscriberKeyFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:portType name="WebSvcListClaim_v11Soap">
+    <wsdl:operation name="ListClaim_v11_ClaimId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Claim information by Claim Identifier.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaim_v11_ClaimIdSoapIn" />
+      <wsdl:output message="tns:ListClaim_v11_ClaimIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Claim information by Member Contrived Key.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaim_v11_MemberKeySoapIn" />
+      <wsdl:output message="tns:ListClaim_v11_MemberKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKeyorMedicaidNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Claim information by Member Contrived Key or Medicaid Number.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaim_v11_MemberKeyorMedicaidNumberSoapIn" />
+      <wsdl:output message="tns:ListClaim_v11_MemberKeyorMedicaidNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_ProviderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Claim information by Servicing Provider.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaim_v11_ProviderIdSoapIn" />
+      <wsdl:output message="tns:ListClaim_v11_ProviderIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_SubscriberKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Claim information by Subscriber Contrived Key.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaim_v11_SubscriberKeySoapIn" />
+      <wsdl:output message="tns:ListClaim_v11_SubscriberKeySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebSvcListClaim_v11Soap" type="tns:WebSvcListClaim_v11Soap">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListClaim_v11_ClaimId">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ClaimId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaim_v11_ClaimIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKey">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_MemberKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaim_v11_MemberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKeyorMedicaidNumber">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_MemberKeyorMedicaidNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaim_v11_MemberKeyorMedicaidNumberFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_ProviderId">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ProviderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaim_v11_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_SubscriberKey">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_SubscriberKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaim_v11_SubscriberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebSvcListClaim_v11Soap12" type="tns:WebSvcListClaim_v11Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListClaim_v11_ClaimId">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ClaimId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaim_v11_ClaimIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKey">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_MemberKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaim_v11_MemberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_MemberKeyorMedicaidNumber">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_MemberKeyorMedicaidNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaim_v11_MemberKeyorMedicaidNumberFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_ProviderId">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ProviderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaim_v11_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaim_v11_SubscriberKey">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_SubscriberKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaim_v11_SubscriberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebSvcListClaim_v11">
+    <wsdl:port name="WebSvcListClaim_v11Soap" binding="tns:WebSvcListClaim_v11Soap">
+      <soap:address location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebSvcListClaim_v11Soap12" binding="tns:WebSvcListClaim_v11Soap12">
+      <soap12:address location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
