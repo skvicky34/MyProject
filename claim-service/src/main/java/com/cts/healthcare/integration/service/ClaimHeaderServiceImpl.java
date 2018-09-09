@@ -1,20 +1,22 @@
 package com.cts.healthcare.integration.service;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import javax.xml.transform.TransformerException;
 
-import com.cts.healthcare.integration.client.WebServiceConnector;
+import org.springframework.stereotype.Service;
+import org.springframework.ws.WebServiceMessage;
+import org.springframework.ws.client.core.WebServiceMessageCallback;
+import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
+import org.springframework.ws.soap.SoapMessage;
+import org.springframework.ws.soap.client.core.SoapActionCallback;
+
 import com.cts.healthcare.integration.domain.Claim;
 import com.cts.healthcare.integration.domain.ClaimCob;
 import com.cts.healthcare.integration.domain.ClaimDiagnosis;
 import com.cts.healthcare.integration.domain.ClaimHeader;
-import com.cts.healthcare.integration.domain.ClaimMembers;
-import com.cts.healthcare.integration.domain.ClaimProvider;
 import com.cts.healthcare.integration.domain.ClaimServiceLine;
 import com.trizetto.fxi.isl.fawsvcinplistclaim_v11.ArrayOfRECCLCL;
 import com.trizetto.fxi.isl.fawsvcinplistclaim_v11.Config;
@@ -22,68 +24,50 @@ import com.trizetto.fxi.isl.fawsvcinplistclaim_v11.ListClaimV11ClaimId;
 import com.trizetto.fxi.isl.fawsvcinplistclaim_v11.ListClaimV11ClaimIdResponse;
 import com.trizetto.fxi.isl.fawsvcinplistclaim_v11.RECCLCL;
 
-@Service("HeaderService")
-public class ClaimHeaderServiceImpl implements ClaimService 
+//@Service("HeaderService")
+public class ClaimHeaderServiceImpl extends WebServiceGatewaySupport implements ClaimService 
 {
-	
-	@Autowired
-	@Qualifier("WebServiceConnector")
-	private WebServiceConnector webServiceConnector;
-	
-	@Value("${facet.service.claim.header.wsdl}")
-	private String facetHeaderWsdlUrl;
-	
-	@Value("${facet.service.claim.serviceLine.wsdl}")
-	private String facetServLineWsdlUrl;
-	
-	@Value("${facet.service.claim.header.nameSpace}")
-	private String facetHeaderNameSpace;
-	
-	@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;
-	
-	@Value("${facet.config.identity}")
-	private String facetIdentity;
-	
-	@Value("${facet.config.region}")
-	private String facetRegion;
-	
-	@Value("${facet.claimId.page}")
-	private int pages;
-	
-	@Value("${facet.claimId.size}")
-	private int pageSize;
-	
-	@Value("${facet.claimId.skipRows}")
-	private int skipRows;
-	
-
+		
+	@Override
 	public String getInfo() {
 		return "Claim Header Service.";
 	}
 	
 	@Override
-	public Claim getClaim(String id, String partArray)
+	public Claim getClaim(String id)
 	{
 		ListClaimV11ClaimId request = new ListClaimV11ClaimId();
-		Config config = new Config();
+		 Config config = new Config();
+		    config.setFacetsIdentity("SVCAGENT");
+		    config.setRegion("Facets550");
 		Claim claim = new Claim();
 		ClaimHeader claimHeader = new ClaimHeader();
-		ClaimMembers claimMember = new ClaimMembers();
-		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPCLCLID(id);
-		request.setPPAGE(pages);
-		request.setPPAGESIZE(pageSize);
-		request.setPSKIPROWS(skipRows);
-		request.setPConfig(config);
+		    request.setPCLCLID(id);
+		    request.setPPAGE(1);
+		    request.setPPAGESIZE(10);
+		    request.setPSKIPROWS(0);
+		    request.setPConfig(config);
+		   
 		    
-		ListClaimV11ClaimIdResponse  response = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(facetHeaderWsdlUrl, request, facetHeaderNameSpace);
+		    
+		    /*ListClaimV11ClaimIdResponse response = (ListClaimV11ClaimIdResponse) getWebServiceTemplate().
+		    		marshalSendAndReceive(request);*/
+		   
+		    
+		   ListClaimV11ClaimIdResponse response = (ListClaimV11ClaimIdResponse) getWebServiceTemplate().
+		    		marshalSendAndReceive("http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx", request,	new WebServiceMessageCallback() {
+								
+								@Override
+								public void doWithMessage(WebServiceMessage message) throws IOException, TransformerException {
+									
+									((SoapMessage)message).setSoapAction("http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ClaimId");
+									
+								}
+							});
 		    if(response != null) {
 		    	ArrayOfRECCLCL recclclArray = response.getListClaimV11ClaimIdResult().getCLCLCOLL();
 		    	List<RECCLCL> recclclList = recclclArray.getRECCLCL();
-		    	Iterator<RECCLCL> it =  recclclList.iterator();
+		    	Iterator it =  recclclList.iterator();
 		    	while(it.hasNext()) {
 		    		RECCLCL rr = (RECCLCL) it.next();
 		    	
@@ -92,28 +76,8 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		    	claimHeader.setType(rr.getCLCLCLTYPE());
 		    	claimHeader.setTotalClaimChargeAmount(rr.getCLCLTOTCHG());
 		    	claimHeader.setClaimSubmissionType(rr.getCLCLCLSUBTYPE());
-		    	claimHeader.setReceivedDate(rr.getCLCLRECDDT());
-		    	claimHeader.setTotalClaimChargeAmount(rr.getCLCLTOTCHG());
-		    	claimHeader.setCarrier(rr.getCSCSID());
-		    	claimHeader.setAdmissionDate(rr.getCLHPADMDT());
-		    	claimHeader.setDischargedDate(rr.getCLHPDCDT());
-		    	claimHeader.setStatementFromDate(rr.getCLHPSTAMENTFRDT());
-		    	claimHeader.setStatementToDate(rr.getCLHPSTAMENTTODT());
-		    	claimMember.setMemberId(rr.getMEMECK());
-		    	claimMember.setGroupId(rr.getGRGRCK());
-		    	claimMember.setSubscriberId(rr.getSBSBCK());
-		    	claimMember.setMemberSuffix(rr.getMEMESFX());
-		    	ClaimProvider claimProvider = new ClaimProvider();
-		    	claimProvider.setBillingProviderId(rr.getCLCLPAYPRIND());
-		    	claimProvider.setRenderingProviderId(rr.getPRPRID());
-		    	
-		    	ClaimCob claimCob = new ClaimCob();
-		    	claimCob.setOtherPayerPaid(rr.getCLCBCOBAMT());
-		    	claimCob.setOtherPayerAllowable(rr.getCLCBCOBALLOW());
 		    	claim.setClaimHeader(claimHeader);
-		    	claim.setClaimMembers(claimMember);
-		    	claim.setClaimCob(claimCob);
-		    	claim.setClaimProvider(claimProvider);
+		    	 
 		    	
 		    	}
 		    }else {
@@ -125,42 +89,25 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	}
 	
 	@Override
-	public ClaimHeader getClaimHeader(String id) {
+	public ClaimHeader getClaimHeader(int id) {
 		return null;
 	}
 
 
 	@Override
-	public ClaimServiceLine getClaimServiceLine(String id) {
-
-		ListClaimV11ClaimId request = new ListClaimV11ClaimId();
-		Config config = new Config();
-		Claim claim = new Claim();
-		ClaimHeader claimHeader = new ClaimHeader();
-		ClaimMembers claimMember = new ClaimMembers();
-		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPCLCLID(id);
-		request.setPPAGE(pages);
-		request.setPPAGESIZE(pageSize);
-		request.setPSKIPROWS(skipRows);
-		request.setPConfig(config);
-		    
-		ListClaimV11ClaimIdResponse  response = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(facetHeaderWsdlUrl, request, facetServLineNameSpace);
-		    
-		
-		return null;
-	}
-
-	@Override
-	public ClaimDiagnosis getClaimDiagnosis(String id) {
+	public ClaimServiceLine getClaimServiceLine(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ClaimCob getClaimCob(String id) {
+	public ClaimDiagnosis getClaimDiagnosis(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ClaimCob getClaimCob(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

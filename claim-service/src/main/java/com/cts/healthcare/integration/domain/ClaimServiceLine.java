@@ -49,8 +49,6 @@ public class ClaimServiceLine {
 	private String serviceNotes;
 	private String feeSchedule;
 	
-	private ClaimDiagnosis claimDiagnosis;
-	
 	public String getLineNumber() {
 		return lineNumber;
 	}
@@ -290,12 +288,6 @@ public class ClaimServiceLine {
 	}
 	public void setPrescriptionNumber(String prescriptionNumber) {
 		this.prescriptionNumber = prescriptionNumber;
-	}
-	public ClaimDiagnosis getClaimDiagnosis() {
-		return claimDiagnosis;
-	}
-	public void setClaimDiagnosis(ClaimDiagnosis claimDiagnosis) {
-		this.claimDiagnosis = claimDiagnosis;
 	}
 	public Date getPrescriptionDate() {
 		return prescriptionDate;
