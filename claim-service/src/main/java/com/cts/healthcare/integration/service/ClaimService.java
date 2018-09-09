@@ -9,14 +9,14 @@ import com.cts.healthcare.integration.domain.ClaimServiceLine;
 public interface ClaimService {
 	public String getInfo();
 	
-	public Claim getClaim(String id);
+	public Claim getClaim(String id, String partArray);
 	
-	public ClaimHeader getClaimHeader(int id) ;
+	public ClaimHeader getClaimHeader(String id) ;
 	
-	public ClaimServiceLine getClaimServiceLine(int id);
+	public ClaimServiceLine getClaimServiceLine(String id);
 
-	public ClaimDiagnosis getClaimDiagnosis(int id);
+	public ClaimDiagnosis getClaimDiagnosis(String id);
 
-	public ClaimCob getClaimCob(int id);	
+	public ClaimCob getClaimCob(String id);	
 		
 }
