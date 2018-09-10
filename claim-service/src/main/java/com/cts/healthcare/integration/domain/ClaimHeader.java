@@ -3,14 +3,16 @@ package com.cts.healthcare.integration.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.xml.datatype.XMLGregorianCalendar;
+
 public class ClaimHeader {
 	private String claimId;
 	private String type;
 	private BigDecimal totalClaimChargeAmount;
-	private Date statementFromDate;
-	private Date statementToDate;
-	private Date admissionDate;
-	private Date receivedDate;
+	private XMLGregorianCalendar statementFromDate;
+	private XMLGregorianCalendar statementToDate;
+	private XMLGregorianCalendar admissionDate;
+	private XMLGregorianCalendar receivedDate;
 	private String crossReferenceClaimNumber;
 	private String businessType;
 	private String carrier;
@@ -22,11 +24,10 @@ public class ClaimHeader {
 	private String admissionSourceCode;
 	private String admissionTypeCode;
 	private String admissionTime;
-	private Date dischargedDate;
+	private XMLGregorianCalendar dischargedDate;
 	private String dischargeHour;
 	private String patientDischargeFacilityTypeCode;
 	private String claimSubmissionType;
-	
 	public String getClaimId() {
 		return claimId;
 	}
@@ -45,28 +46,28 @@ public class ClaimHeader {
 	public void setTotalClaimChargeAmount(BigDecimal totalClaimChargeAmount) {
 		this.totalClaimChargeAmount = totalClaimChargeAmount;
 	}
-	public Date getStatementFromDate() {
+	public XMLGregorianCalendar getStatementFromDate() {
 		return statementFromDate;
 	}
-	public void setStatementFromDate(Date statementFromDate) {
+	public void setStatementFromDate(XMLGregorianCalendar statementFromDate) {
 		this.statementFromDate = statementFromDate;
 	}
-	public Date getStatementToDate() {
+	public XMLGregorianCalendar getStatementToDate() {
 		return statementToDate;
 	}
-	public void setStatementToDate(Date statementToDate) {
+	public void setStatementToDate(XMLGregorianCalendar statementToDate) {
 		this.statementToDate = statementToDate;
 	}
-	public Date getAdmissionDate() {
+	public XMLGregorianCalendar getAdmissionDate() {
 		return admissionDate;
 	}
-	public void setAdmissionDate(Date admissionDate) {
+	public void setAdmissionDate(XMLGregorianCalendar admissionDate) {
 		this.admissionDate = admissionDate;
 	}
-	public Date getReceivedDate() {
+	public XMLGregorianCalendar getReceivedDate() {
 		return receivedDate;
 	}
-	public void setReceivedDate(Date receivedDate) {
+	public void setReceivedDate(XMLGregorianCalendar receivedDate) {
 		this.receivedDate = receivedDate;
 	}
 	public String getCrossReferenceClaimNumber() {
@@ -135,10 +136,10 @@ public class ClaimHeader {
 	public void setAdmissionTime(String admissionTime) {
 		this.admissionTime = admissionTime;
 	}
-	public Date getDischargedDate() {
+	public XMLGregorianCalendar getDischargedDate() {
 		return dischargedDate;
 	}
-	public void setDischargedDate(Date dischargedDate) {
+	public void setDischargedDate(XMLGregorianCalendar dischargedDate) {
 		this.dischargedDate = dischargedDate;
 	}
 	public String getDischargeHour() {
@@ -160,7 +161,7 @@ public class ClaimHeader {
 		this.claimSubmissionType = claimSubmissionType;
 	}
 	
-		
-	
+	 
+
 
 }

@@ -1,9 +1,11 @@
 package com.cts.healthcare.integration.domain;
 
+import java.math.BigDecimal;
+
 public class ClaimCob {
 	
-	private String otherPayerAllowable;
-	private String otherPayerPaid;
+	private BigDecimal otherPayerAllowable;
+	private BigDecimal otherPayerPaid;
 	private String serviceLine;
 	private String otherPayerId;
 	private String otherPayerCoinInsurance;
@@ -12,16 +14,16 @@ public class ClaimCob {
 	private String medicarePay;
 	private String medicareApplied;
 	
-	public String getOtherPayerAllowable() {
+	public BigDecimal getOtherPayerAllowable() {
 		return otherPayerAllowable;
 	}
-	public void setOtherPayerAllowable(String otherPayerAllowable) {
+	public void setOtherPayerAllowable(BigDecimal otherPayerAllowable) {
 		this.otherPayerAllowable = otherPayerAllowable;
 	}
-	public String getOtherPayerPaid() {
+	public BigDecimal getOtherPayerPaid() {
 		return otherPayerPaid;
 	}
-	public void setOtherPayerPaid(String otherPayerPaid) {
+	public void setOtherPayerPaid(BigDecimal otherPayerPaid) {
 		this.otherPayerPaid = otherPayerPaid;
 	}
 	public String getServiceLine() {

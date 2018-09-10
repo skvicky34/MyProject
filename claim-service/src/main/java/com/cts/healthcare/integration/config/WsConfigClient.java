@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
-import com.cts.healthcare.integration.service.ClaimHeaderServiceImpl;
+import com.cts.healthcare.integration.client.WebServiceConnector;
 
 @Configuration
 public class WsConfigClient {
@@ -17,10 +17,10 @@ public class WsConfigClient {
 	  }
 	
 	
-	  @Bean("HeaderService")
-	  public ClaimHeaderServiceImpl claimHeaderServiceImpl(Jaxb2Marshaller marshaller) {
-		  ClaimHeaderServiceImpl client = new ClaimHeaderServiceImpl();
-	    client.setDefaultUri("http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx");
+	  @Bean("WebServiceConnector")
+	  public WebServiceConnector webServiceConnector(Jaxb2Marshaller marshaller) {
+		  WebServiceConnector client = new WebServiceConnector();
+	    ///client.setDefaultUri("http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx");
 	    client.setMarshaller(marshaller);
 	    client.setUnmarshaller(marshaller);
 	    return client;
