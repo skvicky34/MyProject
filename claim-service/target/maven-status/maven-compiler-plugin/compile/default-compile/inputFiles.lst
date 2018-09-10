@@ -13,6 +13,7 @@ C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLHC.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyResponse.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\WsConfigClient.java
+C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\client\WebServiceConnector.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\service\ClaimService.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\PartnerType.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumberResponse.java
@@ -47,4 +48,5 @@ C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderIdResponse.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ObjectFactory.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated-sources\xjc\com\trizetto\fxi\isl\HdrColumn.java
+C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\AppProperty.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimDiagnosis.java

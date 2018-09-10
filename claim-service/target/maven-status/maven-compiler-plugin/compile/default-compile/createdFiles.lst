@@ -17,7 +17,6 @@ com\trizetto\fxi\isl\PartnerNameType.class
 com\cts\healthcare\integration\domain\ClaimDiagnosis.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ObjectFactory.class
 com\trizetto\fxi\isl\package-info.class
-com\cts\healthcare\integration\service\ClaimHeaderServiceImpl$1.class
 com\cts\healthcare\integration\domain\Claim.class
 com\trizetto\fxi\isl\CollectionTypeList.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyResponse.class
@@ -33,11 +32,13 @@ com\trizetto\fxi\isl\HdrColumn.class
 com\trizetto\fxi\isl\ObjectFactory.class
 com\cts\healthcare\integration\ClaimServiceApplication.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfString.class
+com\cts\healthcare\integration\client\WebServiceConnector$1.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLCL.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKey.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLCL.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKeyResponse.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RecordBase.class
+com\cts\healthcare\integration\client\WebServiceConnector.class
 com\cts\healthcare\integration\config\WsConfigClient.class
 com\cts\healthcare\integration\domain\ClaimHeader.class
 com\cts\healthcare\integration\config\SpringFoxConfig.class
