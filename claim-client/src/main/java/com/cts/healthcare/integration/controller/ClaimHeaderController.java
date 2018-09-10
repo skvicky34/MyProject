@@ -1,6 +1,7 @@
 package com.cts.healthcare.integration.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.hateoas.Resource;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -33,10 +33,10 @@ import com.cts.healthcare.integration.service.ClaimService;
 @RequestMapping("/")
 public class ClaimHeaderController {
 
-	private RestTemplate restTemplate = new RestTemplate();
+	private RestTemplate restTemplate;
 	private String URL_SERVICEINFO;
 	private String URL_HEADERINFO;
-	private String URL_CLAIMNFO;
+	private String URL_CLAIMINFO;
 	private String URL_CLAIMHEADER;
 	private String URL_CLAIMSERVICELINE;
 	private String URL_CLAIMDIAGNOSIS;
@@ -50,7 +50,7 @@ public class ClaimHeaderController {
 
 	ClaimHeaderController(@Value("${claim.header.service.endpoint.serviceinfo}") String URL_SERVICEINFO,
 			@Value("${claim.header.service.endpoint.headerinfo}") String URL_HEADERINFO,
-			@Value("${claim.header.service.endpoint.claiminfo}") String URL_CLAIMNFO,
+			@Value("${claim.header.service.endpoint.claiminfo}") String URL_CLAIMINFO,
 			@Value("${claim.header.service.endpoint.claimheader}") String URL_CLAIMHEADER,
 			@Value("${claim.header.service.endpoint.claimserviceline}") String URL_CLAIMSERVICELINE,
 			@Value("${claim.header.service.endpoint.claimdiagnosis}") String URL_CLAIMDIAGNOSIS,
@@ -59,12 +59,14 @@ public class ClaimHeaderController {
 			@Value("${claim.header.service.endpoint.claimprovider}") String URL_CLAIMPROVIDER) {
 		this.URL_SERVICEINFO = URL_SERVICEINFO;
 		this.URL_HEADERINFO = URL_HEADERINFO;
+		this.URL_CLAIMINFO = URL_CLAIMINFO;
 		this.URL_CLAIMHEADER= URL_CLAIMHEADER;
 		this.URL_CLAIMSERVICELINE= URL_CLAIMSERVICELINE;
 		this.URL_CLAIMDIAGNOSIS= URL_CLAIMDIAGNOSIS;
 		this.URL_CLAIMCOB= URL_CLAIMCOB;
 		this.URL_CLAIMMEMBER=URL_CLAIMMEMBER;
 		this.URL_CLAIMPROVIDER=URL_CLAIMPROVIDER;
+		this.restTemplate = new RestTemplate();
 	}
 
 	@RequestMapping(value = "/headerserviceinfo", method = RequestMethod.GET)
@@ -74,10 +76,10 @@ public class ClaimHeaderController {
 
 	@RequestMapping(value = "/claim", method = RequestMethod.GET)
 	public ClaimHeader getClaim() {
-		ParameterizedTypeReference<Resource<ClaimHeader>> inHeader = new ParameterizedTypeReference<Resource<ClaimHeader>>() {
+		ParameterizedTypeReference<Resource<ClaimHeader>> responseType = new ParameterizedTypeReference<Resource<ClaimHeader>>() {
 		};
 		ResponseEntity<Resource<ClaimHeader>> response = restTemplate.exchange(
-				RequestEntity.get(URI.create(this.URL_HEADERINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);
+				RequestEntity.get(URI.create(this.URL_HEADERINFO)).accept(MediaTypes.HAL_JSON).build(), responseType);
 		assert response != null;
 		if (response.getStatusCode() == HttpStatus.OK) {
 			ClaimHeader outHeader = response.getBody().getContent();
@@ -89,27 +91,62 @@ public class ClaimHeaderController {
 
 	@RequestMapping(value = "/claims/{claimId}", method = RequestMethod.GET)
 	public Claim getClaimInfo(@PathVariable("claimId") String claimId,
-			@RequestParam(name = "parts", required = false) List<String> parts) {
-		//return claimService.getClaimInfo(claimId, parts);
-		//Map<String, String> params = new HashMap<String, String>();
-		//params.put("claimId",claimId);
-		//HttpEntity<String> entity = new HttpEntity<String>();
-	//	ResponseEntity<Claim> response = restTemplate.exchange(URL_CLAIMNFO, HttpMethod.GET, Claim.class, claimId);
+			@RequestParam(name = "parts", required = false) String[] partsArray) {
+		 
 		
-		return restTemplate.getForObject(URL_CLAIMNFO, Claim.class, claimId);
+		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
+		};
+		
+		List<String> partList = new ArrayList<String>();
+		if(partsArray != null) {
+		for(String part: partsArray)
+			partList.add(part);
+		}
+		//params.put("claimId", claimId);
+	    
+		ResponseEntity<Resource<Claim>> response = restTemplate.exchange(
+				this.URL_CLAIMINFO, HttpMethod.GET, null,responseType, claimId, partList);
+				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);
+		assert response != null;
+		if (response.getStatusCode() == HttpStatus.OK) {
+			Claim outHeader = response.getBody().getContent();
+			assert outHeader != null;
+			return outHeader;
+		}
+		return new Claim();
 
 	}
 
 	@RequestMapping(value = "/claims/{claimId}/header", method = RequestMethod.GET)
-	public ClaimHeader getClaimHeader(@PathVariable("claimId") String claimId) {
-		//return claimService.getClaimHeader(claimId);
-		return restTemplate.getForObject(URL_CLAIMHEADER, ClaimHeader.class, claimId);
+	public Claim getClaimHeader(@PathVariable("claimId") String claimId) {
+		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
+		};
+		ResponseEntity<Resource<Claim>> response = restTemplate.exchange(
+				this.URL_CLAIMHEADER, HttpMethod.GET, null,responseType,claimId);
+		assert response != null;
+		if (response.getStatusCode() == HttpStatus.OK) {
+			Claim outHeader = response.getBody().getContent();
+			assert outHeader != null;
+			return outHeader;
+		}
+		return new Claim();
 	}
 
 	@RequestMapping(value = "/claims/{claimId}/serviceline", method = RequestMethod.GET)
 	public ClaimServiceLine getClaimServiceLine(@PathVariable("claimId") String claimId) {
-		//return claimService.getClaimServiceLine(claimId);
-		return restTemplate.getForObject(URL_CLAIMSERVICELINE, ClaimServiceLine.class, claimId);
+		 
+		ParameterizedTypeReference<Resource<ClaimServiceLine>> responseType = new ParameterizedTypeReference<Resource<ClaimServiceLine>>() {
+		};
+		ResponseEntity<Resource<ClaimServiceLine>> response = restTemplate.exchange(
+				this.URL_CLAIMSERVICELINE, HttpMethod.GET, null,responseType,claimId);
+		assert response != null;
+		if (response.getStatusCode() == HttpStatus.OK) {
+			ClaimServiceLine outHeader = response.getBody().getContent();
+			assert outHeader != null;
+			return outHeader;
+		}
+		return new ClaimServiceLine();
+		
 	}
 	
 	@RequestMapping(value = "/claims/{claimId}/diagnosis", method = RequestMethod.GET)
