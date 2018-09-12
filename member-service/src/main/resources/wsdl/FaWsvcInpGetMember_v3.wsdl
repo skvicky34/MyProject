@@ -1,0 +1,639 @@
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:tns="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://trizetto.com/fxi/isl"
+	xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3">
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified"
+			targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3">
+			<s:element name="GetMember_v3_MemberKey">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="pConfig"
+							type="tns:Config" />
+						<s:element minOccurs="1" maxOccurs="1" name="pMEME_CK"
+							nillable="true" type="s:long" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="Config">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RecordBase">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="FacetsIdentity"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="CallingSystemName"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="CallingSystemUserId" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="CallingSystemUserName" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="CallingSystemTransactionId" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="RequestedColumns"
+								type="tns:ArrayOfString" />
+							<s:element minOccurs="0" maxOccurs="1" name="Region"
+								type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="RecordBase" />
+			<s:complexType name="REC_MEME">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RecordBase">
+						<s:sequence>
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_CK"
+								nillable="true" type="s:long" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_SFX"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_REL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MCTR_REL_DESC"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_ID_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_LAST_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_FIRST_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MID_INIT"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_TITLE"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_ORIG_EFF_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_SSN"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_SEX"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_GENDER_DESC"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_GENP_NVL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MCTR_GENP_NVL_DESC" type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_BIRTH_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_STS"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_STS_DESC"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_LANG"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MCTR_LANG_DESC" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_RECORD_NO"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MARITAL_STATUS" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MARITAL_STATUS_DESC" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_HICN"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MEDCD_NO"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_FAM_LINK_ID"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_WRK_PHONE"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_WRK_PHONE_EXT"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_CELL_PHONE"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_HEALTH_ID"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_TYPE_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_TYPE_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_TYPE_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR1_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR2_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR3_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_CITY_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_STATE_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ZIP_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_COUNTY_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_PHONE_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="SBAD_PHONE_EXT_HOME" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_EXT_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_EMAIL_HOME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR1_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR2_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR3_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_CITY_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_STATE_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ZIP_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_COUNTY_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_PHONE_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="SBAD_PHONE_EXT_MAIL" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_EXT_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_EMAIL_MAIL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR1_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR2_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ADDR3_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_CITY_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_STATE_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_ZIP_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_COUNTY_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_PHONE_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="SBAD_PHONE_EXT_WORK" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_FAX_EXT_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBAD_EMAIL_WORK"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBSB_ID"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBIH_SBSB_ID_ORIG"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBSB_FIRST_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBSB_MID_INIT"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBSB_LAST_NAME"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="SBSB_CK"
+								nillable="true" type="s:long" />
+							<s:element minOccurs="1" maxOccurs="1" name="GRGR_CK"
+								nillable="true" type="s:long" />
+							<s:element minOccurs="0" maxOccurs="1" name="GRGR_ID"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="GRGR_NAME"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="SBSB_MEME_BIRTH_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="SBSB_MEME_SEX"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEST_EFF_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEST_TERM_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEST_MCTR_TRSN"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEST_SCHOOL_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEST_TYPE"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEST_LAST_VER_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEST_LAST_VER_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEST_MCTR_VMTH"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEHD_EFF_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEHD_TERM_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEHD_MCTR_TRSN"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEHD_DESC"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEHD_LAST_VER_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEHD_LAST_VER_NAME"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEHD_MCTR_VMTH"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEHD_TYPE"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="CSPD_CAT"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="CSPI_ITS_PREFIX"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_ATYP"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MCTR_ATYP_DESC" type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_ELIG_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_QUALIFY_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_NEW_SIG_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_PRBL_IND"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_PRBL_EFF_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_EOI_TERM_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEME_PREX_TERM_DT"
+								nillable="true" type="s:dateTime" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_PREX_LIMIT1"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_PREX_LIMIT2"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_PREX_LIMIT3"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MCRL_MEME_CREL_CD"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MCRL_CREL_DESC"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_RACE_NVL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MCTR_RACE_NVL_DESC" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_MCTR_ETHN_NVL"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_MCTR_ETHN_NVL_DESC" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_EDI_RE_CODE_NVL" type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1"
+								name="MEME_EDI_RE_SOURCE_NVL" type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="MEMM_ROW_ID"
+								nillable="true" type="s:long" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="REC_RESP">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RecordBase">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="PITM_TICKET_NO"
+								type="s:string" />
+							<s:element minOccurs="1" maxOccurs="1" name="PITM_STS"
+								type="s:int" />
+							<s:element minOccurs="0" maxOccurs="1" name="RESP_SERVICE"
+								type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="REC_ERR">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RecordBase">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_ID"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_CODE"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_CONTEXT"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_USER"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_SYS"
+								type="s:string" />
+							<s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_PROG"
+								type="s:string" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="Response">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:RecordBase">
+						<s:sequence>
+							<s:element minOccurs="1" maxOccurs="1" name="AppReturnCode"
+								type="s:int" />
+							<s:element minOccurs="0" maxOccurs="1" name="AppErrors"
+								type="tns:ArrayOfREC_ERR" />
+							<s:element minOccurs="0" maxOccurs="1" name="RESP_COLL"
+								type="tns:ArrayOfREC_RESP" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="ArrayOfREC_ERR">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="REC_ERR"
+						nillable="true" type="tns:REC_ERR" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfREC_RESP">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="REC_RESP"
+						nillable="true" type="tns:REC_RESP" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetMember_v3Response">
+				<s:complexContent mixed="false">
+					<s:extension base="tns:Response">
+						<s:sequence>
+							<s:element minOccurs="0" maxOccurs="1" name="MEME_COLL"
+								type="tns:ArrayOfREC_MEME" />
+						</s:sequence>
+					</s:extension>
+				</s:complexContent>
+			</s:complexType>
+			<s:complexType name="ArrayOfREC_MEME">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="REC_MEME"
+						nillable="true" type="tns:REC_MEME" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ArrayOfString">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="string"
+						nillable="true" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:element name="GetMember_v3_MemberKeyResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="GetMember_v3_MemberKeyResult" type="tns:GetMember_v3Response" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetMember_v3_SubscriberId">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="pConfig"
+							type="tns:Config" />
+						<s:element minOccurs="1" maxOccurs="1" name="pAS_OF_DT"
+							nillable="true" type="s:dateTime" />
+						<s:element minOccurs="0" maxOccurs="1" name="pGRGR_ID"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pSBSB_ID"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pMEME_SFX"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetMember_v3_SubscriberIdResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="GetMember_v3_SubscriberIdResult" type="tns:GetMember_v3Response" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetMember_v3_SubscriberId_RelName">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="pConfig"
+							type="tns:Config" />
+						<s:element minOccurs="1" maxOccurs="1" name="pAS_OF_DT"
+							nillable="true" type="s:dateTime" />
+						<s:element minOccurs="0" maxOccurs="1" name="pGRGR_ID"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pSBSB_ID"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pMEME_ID_NAME"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pMEME_REL"
+							type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="pMCRL_MEME_CREL_CD"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="GetMember_v3_SubscriberId_RelNameResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1"
+							name="GetMember_v3_SubscriberId_RelNameResult" type="tns:GetMember_v3Response" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+		</s:schema>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl">
+			<s:element name="FxiIslHeader" type="s1:FxiIslHeader" />
+			<s:complexType name="FxiIslHeader">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="Partner"
+						type="s1:PartnerType" />
+					<s:element minOccurs="1" maxOccurs="1" name="Data"
+						nillable="true" type="s1:HdrCollection" />
+				</s:sequence>
+				<s:anyAttribute />
+			</s:complexType>
+			<s:complexType name="PartnerType">
+				<s:sequence>
+					<s:element minOccurs="1" maxOccurs="1" name="PartnerName"
+						type="s1:PartnerNameType" />
+					<s:element minOccurs="0" maxOccurs="1" name="PartnerId"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="PartnerTime"
+						type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:simpleType name="PartnerNameType">
+				<s:restriction base="s:string">
+					<s:enumeration value="Facets" />
+					<s:enumeration value="HealthWeb" />
+					<s:enumeration value="NetworX" />
+				</s:restriction>
+			</s:simpleType>
+			<s:complexType name="HdrCollection">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="Column"
+						nillable="true" type="s1:HdrColumn" />
+					<s:element minOccurs="0" maxOccurs="unbounded" name="SubCollection"
+						nillable="true" type="s1:HdrCollection" />
+				</s:sequence>
+				<s:attribute name="type" type="s1:CollectionTypeList"
+					use="required" />
+				<s:attribute name="name" type="s:string" />
+			</s:complexType>
+			<s:complexType name="HdrColumn">
+				<s:simpleContent>
+					<s:extension base="s:string">
+						<s:attribute name="name" type="s:string" />
+					</s:extension>
+				</s:simpleContent>
+			</s:complexType>
+			<s:simpleType name="CollectionTypeList">
+				<s:restriction base="s:string">
+					<s:enumeration value="SoapHeader" />
+					<s:enumeration value="Input" />
+					<s:enumeration value="Row" />
+					<s:enumeration value="Group" />
+				</s:restriction>
+			</s:simpleType>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="GetMember_v3_MemberKeySoapIn">
+		<wsdl:part name="parameters" element="tns:GetMember_v3_MemberKey" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_MemberKeySoapOut">
+		<wsdl:part name="parameters" element="tns:GetMember_v3_MemberKeyResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_MemberKeyFxiIslHeader">
+		<wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberIdSoapIn">
+		<wsdl:part name="parameters" element="tns:GetMember_v3_SubscriberId" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberIdSoapOut">
+		<wsdl:part name="parameters" element="tns:GetMember_v3_SubscriberIdResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberIdFxiIslHeader">
+		<wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberId_RelNameSoapIn">
+		<wsdl:part name="parameters" element="tns:GetMember_v3_SubscriberId_RelName" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberId_RelNameSoapOut">
+		<wsdl:part name="parameters"
+			element="tns:GetMember_v3_SubscriberId_RelNameResponse" />
+	</wsdl:message>
+	<wsdl:message name="GetMember_v3_SubscriberId_RelNameFxiIslHeader">
+		<wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+	</wsdl:message>
+	<wsdl:portType name="WebSvcGetMember_v3Soap">
+		<wsdl:operation name="GetMember_v3_MemberKey">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+				This service retrieves Member information by Member Contrived Key.
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetMember_v3_MemberKeySoapIn" />
+			<wsdl:output message="tns:GetMember_v3_MemberKeySoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+				This service retrieves Member information by Subscriber Identifier.
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetMember_v3_SubscriberIdSoapIn" />
+			<wsdl:output message="tns:GetMember_v3_SubscriberIdSoapOut" />
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId_RelName">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+				This service retrieves Member information by SubscriberID and
+				Relationship.
+			</wsdl:documentation>
+			<wsdl:input message="tns:GetMember_v3_SubscriberId_RelNameSoapIn" />
+			<wsdl:output message="tns:GetMember_v3_SubscriberId_RelNameSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WebSvcGetMember_v3Soap" type="tns:WebSvcGetMember_v3Soap">
+		<wsdl:documentation>
+			<wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+				conformsTo="http://ws-i.org/profiles/basic/1.1" />
+		</wsdl:documentation>
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetMember_v3_MemberKey">
+			<soap:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_MemberKey"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+				<soap:header message="tns:GetMember_v3_MemberKeyFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId">
+			<soap:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+				<soap:header message="tns:GetMember_v3_SubscriberIdFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId_RelName">
+			<soap:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId_RelName"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+				<soap:header message="tns:GetMember_v3_SubscriberId_RelNameFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="WebSvcGetMember_v3Soap12" type="tns:WebSvcGetMember_v3Soap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetMember_v3_MemberKey">
+			<soap12:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_MemberKey"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+				<soap12:header message="tns:GetMember_v3_MemberKeyFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId">
+			<soap12:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+				<soap12:header message="tns:GetMember_v3_SubscriberIdFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetMember_v3_SubscriberId_RelName">
+			<soap12:operation
+				soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId_RelName"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+				<soap12:header message="tns:GetMember_v3_SubscriberId_RelNameFxiIslHeader"
+					part="FxiIslHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="WebSvcGetMember_v3">
+		<wsdl:port name="WebSvcGetMember_v3Soap" binding="tns:WebSvcGetMember_v3Soap">
+			<soap:address
+				location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetMember_v3.asmx" />
+		</wsdl:port>
+		<wsdl:port name="WebSvcGetMember_v3Soap12" binding="tns:WebSvcGetMember_v3Soap12">
+			<soap12:address
+				location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetMember_v3.asmx" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

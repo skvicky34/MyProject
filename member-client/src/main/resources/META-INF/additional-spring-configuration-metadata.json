@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "member.header.service.endpoint.serviceinfo",
+    "type": "java.lang.String",
+    "description": "A description for 'member.header.service.endpoint.serviceinfo'"
+  },
+  {
+    "name": "member.header.service.endpoint.headerinfo",
+    "type": "java.lang.String",
+    "description": "A description for 'member.header.service.endpoint.headerinfo'"
+  },
+  {
+    "name": "member.id",
+    "type": "java.lang.String",
+    "description": "A description for 'member.id'"
+  },
+  {
+    "name": "member.header.service.endpoint.memberinfo",
+    "type": "java.lang.String",
+    "description": "A description for 'member.header.service.endpoint.memberinfo'"
+  },
+  {
+    "name": "member.header.service.endpoint.subscriberinfo",
+    "type": "java.lang.String",
+    "description": "A description for 'member.header.service.endpoint.subscriberinfo'"
+  }
+]}
