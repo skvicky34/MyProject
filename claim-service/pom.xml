@@ -94,29 +94,91 @@
 
 	<build>
 		<plugins>
-			<plugin>
+			 <!-- <plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				 <groupId>org.jvnet.jaxb2.maven2</groupId>
 				<artifactId>maven-jaxb2-plugin</artifactId>
 				<version>${maven-jaxb2-plugin.version}</version>
 				<executions>
 					<execution>
+						<id>schema1-generate</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
-					</execution>
-				</executions>
 				<configuration>
+					<keep>true</keep>
+	                <extension>true</extension>
+	                <forceRegenerate>true</forceRegenerate>
+	                <args>
+	                <arg> -XautoNameResolution
+	                </arg></args>
 					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
-					<schemaIncludes>
-						<include>*.wsdl</include>
-					</schemaIncludes>
+						<schemaIncludes>
+				          <include>FaWsvcInpListClaim_v11.wsdl</include>
+				        </schemaIncludes>
+				     <generatePackage>com.trizetto.header</generatePackage>
+				        <generateDirectory>${project.build.directory}/generated-sources/xjc1</generateDirectory>
+				        
 				</configuration>
-			</plugin>
-		</plugins>
+				</execution>
+				<execution>
+					<id>schema2-generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+				<configuration>
+					<keep>true</keep>
+	                <extension>true</extension>
+	                <forceRegenerate>true</forceRegenerate>
+	                <args>
+	                <arg> -XautoNameResolution
+	                </arg></args>
+					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
+						<schemaIncludes>
+					          <include>FaWsvcInpListClaimCDML_v9.wsdl</include>
+					        </schemaIncludes>
+					        <generatePackage>com.trizetto.servLine</generatePackage>
+					        <generateDirectory>${project.build.directory}/generated-sources/xjc2</generateDirectory>
+				</configuration>
+				</execution>
+				</executions> 
+				</plugin>  -->
+				
+				<plugin>
+    <groupId>org.apache.cxf</groupId>
+    <artifactId>cxf-codegen-plugin</artifactId>
+    <version>3.1.9</version>
+    <executions>
+        <execution>
+            <id>generate-sources</id>
+            <phase>generate-sources</phase>
+            <configuration>
+                <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+                <wsdlOptions>
+                    <!-- for myService1.wsdl -->
+                    <wsdlOption>
+                        <wsdl>${basedir}/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl</wsdl>
+                    </wsdlOption>
+                    <!-- for myService2.wsdl -->
+                    <wsdlOption>
+                        <wsdl>${basedir}/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl</wsdl>
+                    </wsdlOption>
+                </wsdlOptions>
+            </configuration>
+            <goals>
+                <goal>wsdl2java</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+			
+			 
+		</plugins> 
+		
+		 
 	</build>
 
 

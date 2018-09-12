@@ -1,5 +1,7 @@
 package com.cts.healthcare.integration.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cts.healthcare.integration.domain.Claim;
 import com.cts.healthcare.integration.domain.ClaimCob;
 import com.cts.healthcare.integration.domain.ClaimDiagnosis;
-import com.cts.healthcare.integration.domain.ClaimHeader;
 import com.cts.healthcare.integration.domain.ClaimServiceLine;
 import com.cts.healthcare.integration.service.ClaimService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -48,13 +49,13 @@ public class ClaimHeaderRestController {
 	}
 	
 	@RequestMapping("/claims/{claimid}/header")
-	public ResponseEntity<ClaimHeader> getClaimHeader(@PathVariable("claimid") String id) {				
-		return new ResponseEntity<ClaimHeader>(headerService.getClaimHeader(id), HttpStatus.OK);
+	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {				
+		return new ResponseEntity<Claim>(headerService.getClaim(id, ""), HttpStatus.OK);
 	}
 	
-	@RequestMapping("/claims/{claimid}/serviceline")
-	public ResponseEntity<ClaimServiceLine> getServiceLine(@PathVariable("claimid") String id) {			
-		return new ResponseEntity<ClaimServiceLine>(headerService.getClaimServiceLine(id), HttpStatus.OK);
+	@RequestMapping("/claims/{claimid}/servicelines")
+	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {			
+		return new ResponseEntity<List<ClaimServiceLine>>(headerService.getClaimServiceLine(id), HttpStatus.OK);
 	}
 	
 	@RequestMapping("/claims/{claimid}/diagnosis")

@@ -1,29 +1,32 @@
 package com.cts.healthcare.integration.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClaimServiceLine {
 	
-	private String lineNumber;
+	private String claimId;
+	private int lineNumber;
 	private Date serviceToDate;
 	private Date serviceFromDate;
 	private String placeOfService;
 	private String conditionCode;
 	private String procedureCodes;
 	private String serviceLineRevenueCode;
+	private String status;
 	private String allPendCodes;
 	private Date paidDate;
 	private String operator;
 	private Date transactionDate;
-	private String chargeAmount;
-	private String totalClaimAllowedAmount;
-	private String nonCoveredChargeAmount;
-	private String patientPaidAmount;
-	private String deductibleAmount;
-	private String coinsuranceAmount;
-	private String CopayAmount;
-	private String discountAmount;
-	private String riskAmt;
+	private BigDecimal chargeAmount;
+	private BigDecimal totalClaimAllowedAmount;
+	private int nonCoveredChargeAmount;
+	private BigDecimal patientPaidAmount;
+	private BigDecimal deductibleAmount;
+	private BigDecimal coinsuranceAmount;
+	private BigDecimal CopayAmount;
+	private BigDecimal discountAmount;
+	private BigDecimal riskAmt;
 	private String fundAmt;
 	private String promptPay;
 	private String interestAmount;
@@ -37,7 +40,7 @@ public class ClaimServiceLine {
 	private String causeOfillness;
 	private String anesthesiaUnitCount;
 	private String minutes;
-	private String units;
+	private int units;
 	private String DRGCode;
 	private String nationalDrugUnitCount;
 	private String NDCBaseMeasure;
@@ -48,11 +51,22 @@ public class ClaimServiceLine {
 	private String suppNote;
 	private String serviceNotes;
 	private String feeSchedule;
+	private ClaimDiagnosis claimDiagnosis;
 	
-	public String getLineNumber() {
+	
+	
+	
+	
+	public String getClaimId() {
+		return claimId;
+	}
+	public void setClaimId(String claimId) {
+		this.claimId = claimId;
+	}
+	public int getLineNumber() {
 		return lineNumber;
 	}
-	public void setLineNumber(String lineNumber) {
+	public void setLineNumber(int lineNumber) {
 		this.lineNumber = lineNumber;
 	}
 	public Date getServiceToDate() {
@@ -91,6 +105,12 @@ public class ClaimServiceLine {
 	public void setServiceLineRevenueCode(String serviceLineRevenueCode) {
 		this.serviceLineRevenueCode = serviceLineRevenueCode;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getAllPendCodes() {
 		return allPendCodes;
 	}
@@ -115,58 +135,58 @@ public class ClaimServiceLine {
 	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;
 	}
-	public String getChargeAmount() {
+	public BigDecimal getChargeAmount() {
 		return chargeAmount;
 	}
-	public void setChargeAmount(String chargeAmount) {
+	public void setChargeAmount(BigDecimal chargeAmount) {
 		this.chargeAmount = chargeAmount;
 	}
-	public String getTotalClaimAllowedAmount() {
+	public BigDecimal getTotalClaimAllowedAmount() {
 		return totalClaimAllowedAmount;
 	}
-	public void setTotalClaimAllowedAmount(String totalClaimAllowedAmount) {
+	public void setTotalClaimAllowedAmount(BigDecimal totalClaimAllowedAmount) {
 		this.totalClaimAllowedAmount = totalClaimAllowedAmount;
 	}
-	public String getNonCoveredChargeAmount() {
+	public int getNonCoveredChargeAmount() {
 		return nonCoveredChargeAmount;
 	}
-	public void setNonCoveredChargeAmount(String nonCoveredChargeAmount) {
+	public void setNonCoveredChargeAmount(int nonCoveredChargeAmount) {
 		this.nonCoveredChargeAmount = nonCoveredChargeAmount;
 	}
-	public String getPatientPaidAmount() {
+	public BigDecimal getPatientPaidAmount() {
 		return patientPaidAmount;
 	}
-	public void setPatientPaidAmount(String patientPaidAmount) {
+	public void setPatientPaidAmount(BigDecimal patientPaidAmount) {
 		this.patientPaidAmount = patientPaidAmount;
 	}
-	public String getDeductibleAmount() {
+	public BigDecimal getDeductibleAmount() {
 		return deductibleAmount;
 	}
-	public void setDeductibleAmount(String deductibleAmount) {
+	public void setDeductibleAmount(BigDecimal deductibleAmount) {
 		this.deductibleAmount = deductibleAmount;
 	}
-	public String getCoinsuranceAmount() {
+	public BigDecimal getCoinsuranceAmount() {
 		return coinsuranceAmount;
 	}
-	public void setCoinsuranceAmount(String coinsuranceAmount) {
+	public void setCoinsuranceAmount(BigDecimal coinsuranceAmount) {
 		this.coinsuranceAmount = coinsuranceAmount;
 	}
-	public String getCopayAmount() {
+	public BigDecimal getCopayAmount() {
 		return CopayAmount;
 	}
-	public void setCopayAmount(String copayAmount) {
+	public void setCopayAmount(BigDecimal copayAmount) {
 		CopayAmount = copayAmount;
 	}
-	public String getDiscountAmount() {
+	public BigDecimal getDiscountAmount() {
 		return discountAmount;
 	}
-	public void setDiscountAmount(String discountAmount) {
+	public void setDiscountAmount(BigDecimal discountAmount) {
 		this.discountAmount = discountAmount;
 	}
-	public String getRiskAmt() {
+	public BigDecimal getRiskAmt() {
 		return riskAmt;
 	}
-	public void setRiskAmt(String riskAmt) {
+	public void setRiskAmt(BigDecimal riskAmt) {
 		this.riskAmt = riskAmt;
 	}
 	public String getFundAmt() {
@@ -247,10 +267,10 @@ public class ClaimServiceLine {
 	public void setMinutes(String minutes) {
 		this.minutes = minutes;
 	}
-	public String getUnits() {
+	public int getUnits() {
 		return units;
 	}
-	public void setUnits(String units) {
+	public void setUnits(int units) {
 		this.units = units;
 	}
 	public String getDRGCode() {
@@ -313,7 +333,11 @@ public class ClaimServiceLine {
 	public void setFeeSchedule(String feeSchedule) {
 		this.feeSchedule = feeSchedule;
 	}
-	
-	
-
+	public ClaimDiagnosis getClaimDiagnosis() {
+		return claimDiagnosis;
+	}
+	public void setClaimDiagnosis(ClaimDiagnosis claimDiagnosis) {
+		this.claimDiagnosis = claimDiagnosis;
+	}
+		
 }

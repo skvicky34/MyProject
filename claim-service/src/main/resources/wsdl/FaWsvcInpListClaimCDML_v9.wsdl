@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://trizetto.com/fxi/isl" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9">
+      <s:element name="ListClaimCDML_v9_ClaimId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Config">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FacetsIdentity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemTransactionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RequestedColumns" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RecordBase" />
+      <s:complexType name="REC_CDLM">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ACAC_ACC_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ACDE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PDPD_ACC_SFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_CL_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDLM_ACC_BEG_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDLM_ACC_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDLM_ACC_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDLM_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDLM_CTR" nillable="true" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_CDNP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CDNP_IDCD_IND_PROC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDNP_IDCD_IND_PROC_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDNP_IDCD_IND_EXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDNP_IDCD_IND_EXT_DESC" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_CDML">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CLCL_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_SEQ_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEME_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="RCRC_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SESE_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SESE_RULE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PSCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IPCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID_REL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_ROOM_TYPE" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_FROM_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_TO_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_CHG_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_OOP_CALC_BASE" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_CONSIDER_CHG" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_ALLOW" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_UNITS" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_UNITS_ALLOW" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CAP_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_REF_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_PC_IND" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_DED_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_COPAY_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_COINS_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PN_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SE_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LT_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RW_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UM_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CE_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DS_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SP_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PI_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PC_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SD_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_EOB_EXCD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IPCD_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RCRC_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SEDS_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PSCD_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_ROOM_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_REF_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_PC_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CAP_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PN_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SE_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LT_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RW_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UM_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CE_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DS_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SP_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PC_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PI_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SD_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EOB_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EOB_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EOB_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EOB_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EOB_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NPI" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_RISK_WH_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_PR_PYMT_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_SB_PYMT_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_UMREF_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_REFSV_SEQ_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_UMAUTH_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_AUTHSV_SEQ_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="GRGR_CK" nillable="true" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBSB_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SBIH_SBSB_ID_ORIG" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="MEME_SFX" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_LAST_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_FIRST_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_MID_INIT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_REL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MEME_REL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ENTITY" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_TOT_PA_LIAB" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_DIS_PA_LIAB" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_CONSIDER_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_NONCONSDR_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_DISALL_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EXCD_ID_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_SB_PYMT_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDHL_PR_PYMT_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="LOBD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LOBD_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDHL_HSA_PCS_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDHL_HSA_PCS_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDMF_EXPNS_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDMF_PAID_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD_HC_STAT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD_HC_STAT_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDMF_DISALL_EXCD_HC_ADJ_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SESE_FSA_REIMB_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SESE_FSA_REIMB_IND_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CLST_STS_DTM" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="MCRL_MEME_CREL_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MCRL_CREL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PRPR_ID_REND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PRPR_ID_REND_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PRPR_RE_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PRPR_RE_TAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_SVC_AREA_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_SVC_AREA_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_MED_AMB_ZIP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DFSC_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DFSC_ID_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_RISK_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_RISK_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_RISK_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_RISK_ID_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_DELG_CL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_DELG_CL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_CL_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_CL_ID_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_DELG_UM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_DELG_UM_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_UM_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_DOFR_UM_ID_NAME" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_LINE_GRP_PTR" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_HIER_VALUE" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_VALUE_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_STOPLOSS_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_NET_VALUE_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDPE_PRPR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDPE_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDPE_TAX_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EAPG_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EAPG_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EAPM_PAY_METH_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EAPM_PAY_METH_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_SURCH_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="SCPA_SURCH_PCT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_MCTR_REAS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_MCTR_REAS_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VBBD_RULE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VBBD_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_VBB_EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_VBB_EXCD_ID_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID_SUB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID_SUB_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID_TRANS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IDCD_ID_TRANS_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDML_DISC_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SCPA_EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SCPA_EXCD_ID_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SCPA_EXCD_ID_TEXT2" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSD_FAM_IND" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_FAM_IND_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_IPCD_MOD2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_IPCD_MOD3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_IPCD_MOD4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE4" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE5" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE6" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE7" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_CLMD_TYPE8" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PBA_BUND_IND_NVL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSD_PBA_BUND_TYPE_NVL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_CL_NTWK_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_CL_NET_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LTLT_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LTLT_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_LTLT_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_LTLT_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DEDE_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DEDE_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_DEDE_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_DEDE_PFX_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_PRICE_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_PRICE_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="SEPY_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SEPY_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_SEPY_PFX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_SEPY_PFX_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_SESE_RULE" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_ALLOW_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_ALLOW_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_DED_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_DED_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_DED_ACCUM_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_DED_ACC_NO" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_COPAY_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_COPAY_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_COINS_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_COINS_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_UNITS_ALLOW" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_UNITS_ALLOW" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_PAID_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_PAID_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_DISALL_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_DISALL_AMT" nillable="true" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_DISALL_EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_DIS_EXCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_DISALL_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SEPY_EXP_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_SP_EXP_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SEPY_ACCT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_SP_ACT_CAT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_EOB_EXCD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_EOB_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_EOB_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_EOB_EXCD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_EOB_EXCD_TEXT1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_EOB_DISALL_EXCD_TEXT2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_APCD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="APSI_STS_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDSP_SC_APSI_STS" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_UNITS_APLY" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_UNITS_APLY" nillable="true" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_AMT_APLY" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="CDSP_SC_AMT_APLY" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="EHBD_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EHBD_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDNP_COLL" type="tns:ArrayOfREC_CDNP" />
+              <s:element minOccurs="0" maxOccurs="1" name="CDLM_COLL" type="tns:ArrayOfREC_CDLM" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CDNP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CDNP" nillable="true" type="tns:REC_CDNP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CDLM">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CDLM" nillable="true" type="tns:REC_CDLM" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="REC_RESP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PITM_TICKET_NO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PITM_STS" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_SERVICE" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_ERR">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CODE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CONTEXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_USER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_SYS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_PROG" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="AppReturnCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="AppErrors" type="tns:ArrayOfREC_ERR" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_COLL" type="tns:ArrayOfREC_RESP" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_ERR">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_ERR" nillable="true" type="tns:REC_ERR" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_RESP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_RESP" nillable="true" type="tns:REC_RESP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ListClaimCDML_v9Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CDML_COLL" type="tns:ArrayOfREC_CDML" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_CDML">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_CDML" nillable="true" type="tns:REC_CDML" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ListClaimCDML_v9_ClaimIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_ClaimIdResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_MemberKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="1" maxOccurs="1" name="pMEME_CK" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_SUB_TYPE" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_MemberKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_MemberKeyResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_ProviderId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPRPR_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_SUB_TYPE" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_ProviderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_ProviderIdResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_PreAuthId_UMSV">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCDML_UMAUTH_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCDML_AUTHSV_SEQ_NO" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_PreAuthId_UMSVResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_PreAuthId_UMSVResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_PreAuthId_UMIN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCDML_UMAUTH_ID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_PreAuthId_UMINResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_PreAuthId_UMINResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_SubscriberKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSBSB_CK" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_LOW_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="pCLCL_HIGH_SVC_DT" nillable="true" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="pCLCL_CL_SUB_TYPE" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pPAGESIZE" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pSKIPROWS" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListClaimCDML_v9_SubscriberKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListClaimCDML_v9_SubscriberKeyResult" type="tns:ListClaimCDML_v9Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl">
+      <s:element name="FxiIslHeader" type="s1:FxiIslHeader" />
+      <s:complexType name="FxiIslHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Partner" type="s1:PartnerType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Data" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="PartnerType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerName" type="s1:PartnerNameType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PartnerNameType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Facets" />
+          <s:enumeration value="HealthWeb" />
+          <s:enumeration value="NetworX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HdrCollection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="s1:HdrColumn" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubCollection" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:attribute name="type" type="s1:CollectionTypeList" use="required" />
+        <s:attribute name="name" type="s:string" />
+      </s:complexType>
+      <s:complexType name="HdrColumn">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="name" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="CollectionTypeList">
+        <s:restriction base="s:string">
+          <s:enumeration value="SoapHeader" />
+          <s:enumeration value="Input" />
+          <s:enumeration value="Row" />
+          <s:enumeration value="Group" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ListClaimCDML_v9_ClaimIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_ClaimId" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_ClaimIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_ClaimIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_ClaimIdFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_MemberKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_MemberKey" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_MemberKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_MemberKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_MemberKeyFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_ProviderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_ProviderId" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_ProviderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_ProviderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_ProviderIdFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMSVSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_PreAuthId_UMSV" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMSVSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_PreAuthId_UMSVResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMSVFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMINSoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_PreAuthId_UMIN" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMINSoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_PreAuthId_UMINResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_PreAuthId_UMINFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_SubscriberKeySoapIn">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_SubscriberKey" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_SubscriberKeySoapOut">
+    <wsdl:part name="parameters" element="tns:ListClaimCDML_v9_SubscriberKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListClaimCDML_v9_SubscriberKeyFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:portType name="WebSvcListClaimCDML_v9Soap">
+    <wsdl:operation name="ListClaimCDML_v9_ClaimId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists medical and hospital claim line item information for the specified Claim ID.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_ClaimIdSoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_ClaimIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_MemberKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists medical and hospital claim line item information for the specified Member key.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_MemberKeySoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_MemberKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_ProviderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists medical and hospital claim line item information for the specified Provider ID.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_ProviderIdSoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_ProviderIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMSV">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists medical and hospital claim line items for UM Pre-Authorization/Referral Services.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_PreAuthId_UMSVSoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_PreAuthId_UMSVSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMIN">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists hospital room and board line item data for UM Inpatient Confinements.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_PreAuthId_UMINSoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_PreAuthId_UMINSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_SubscriberKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service lists medical and hospital claim line item information for the specified Subscriber key.</wsdl:documentation>
+      <wsdl:input message="tns:ListClaimCDML_v9_SubscriberKeySoapIn" />
+      <wsdl:output message="tns:ListClaimCDML_v9_SubscriberKeySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebSvcListClaimCDML_v9Soap" type="tns:WebSvcListClaimCDML_v9Soap">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListClaimCDML_v9_ClaimId">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_ClaimId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_ClaimIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_MemberKey">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_MemberKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_MemberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_ProviderId">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_ProviderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMSV">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_PreAuthId_UMSV" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_PreAuthId_UMSVFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMIN">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_PreAuthId_UMIN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_PreAuthId_UMINFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_SubscriberKey">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_SubscriberKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ListClaimCDML_v9_SubscriberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebSvcListClaimCDML_v9Soap12" type="tns:WebSvcListClaimCDML_v9Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ListClaimCDML_v9_ClaimId">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_ClaimId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_ClaimIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_MemberKey">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_MemberKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_MemberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_ProviderId">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_ProviderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMSV">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_PreAuthId_UMSV" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_PreAuthId_UMSVFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_PreAuthId_UMIN">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_PreAuthId_UMIN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_PreAuthId_UMINFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListClaimCDML_v9_SubscriberKey">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_SubscriberKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ListClaimCDML_v9_SubscriberKeyFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebSvcListClaimCDML_v9">
+    <wsdl:port name="WebSvcListClaimCDML_v9Soap" binding="tns:WebSvcListClaimCDML_v9Soap">
+      <soap:address location="http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaimCDML_v9.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebSvcListClaimCDML_v9Soap12" binding="tns:WebSvcListClaimCDML_v9Soap12">
+      <soap12:address location="http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaimCDML_v9.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

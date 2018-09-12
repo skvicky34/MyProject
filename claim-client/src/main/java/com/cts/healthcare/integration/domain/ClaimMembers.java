@@ -6,6 +6,8 @@ public class ClaimMembers {
 	private long subscriberId;
 	private long groupId;
 	private int memberSuffix;
+	
+	
 	public long getMemberId() {
 		return memberId;
 	}

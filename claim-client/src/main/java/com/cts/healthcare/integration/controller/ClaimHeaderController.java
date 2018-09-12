@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.MediaTypes;
@@ -27,7 +26,6 @@ import com.cts.healthcare.integration.domain.ClaimHeader;
 import com.cts.healthcare.integration.domain.ClaimMembers;
 import com.cts.healthcare.integration.domain.ClaimProvider;
 import com.cts.healthcare.integration.domain.ClaimServiceLine;
-import com.cts.healthcare.integration.service.ClaimService;
 
 @RestController
 @RequestMapping("/")
@@ -44,9 +42,6 @@ public class ClaimHeaderController {
 	private String URL_CLAIMMEMBER;
 	private String URL_CLAIMPROVIDER;
 	
-
-	@Autowired
-	ClaimService claimService;
 
 	ClaimHeaderController(@Value("${claim.header.service.endpoint.serviceinfo}") String URL_SERVICEINFO,
 			@Value("${claim.header.service.endpoint.headerinfo}") String URL_HEADERINFO,
@@ -132,20 +127,20 @@ public class ClaimHeaderController {
 		return new Claim();
 	}
 
-	@RequestMapping(value = "/claims/{claimId}/serviceline", method = RequestMethod.GET)
-	public ClaimServiceLine getClaimServiceLine(@PathVariable("claimId") String claimId) {
+	@RequestMapping(value = "/claims/{claimId}/servicelines", method = RequestMethod.GET)
+	public List<ClaimServiceLine> getClaimServiceLine(@PathVariable("claimId") String claimId) {
 		 
-		ParameterizedTypeReference<Resource<ClaimServiceLine>> responseType = new ParameterizedTypeReference<Resource<ClaimServiceLine>>() {
+		ParameterizedTypeReference<List<ClaimServiceLine>> responseType = new ParameterizedTypeReference<List<ClaimServiceLine>>() {
 		};
-		ResponseEntity<Resource<ClaimServiceLine>> response = restTemplate.exchange(
+		ResponseEntity<List<ClaimServiceLine>> response = restTemplate.exchange(
 				this.URL_CLAIMSERVICELINE, HttpMethod.GET, null,responseType,claimId);
 		assert response != null;
 		if (response.getStatusCode() == HttpStatus.OK) {
-			ClaimServiceLine outHeader = response.getBody().getContent();
+			List<ClaimServiceLine> outHeader = response.getBody();
 			assert outHeader != null;
 			return outHeader;
 		}
-		return new ClaimServiceLine();
+		return (List<ClaimServiceLine>) new ClaimServiceLine();
 		
 	}
 	

@@ -5,7 +5,6 @@ import java.util.List;
 public class Claim {
 	
 	private String claimId;
-	
 	private List<String> parts;
 	private ClaimHeader claimHeader;
 	private List<ClaimServiceLine> claimServiceLine;
@@ -13,6 +12,8 @@ public class Claim {
 	private ClaimCob claimCob;
 	private ClaimMembers claimMembers;
 	private ClaimProvider claimProvider;
+	
+	
 	public String getClaimId() {
 		return claimId;
 	}
@@ -55,12 +56,6 @@ public class Claim {
 	public void setClaimProvider(ClaimProvider claimProvider) {
 		this.claimProvider = claimProvider;
 	}
-	
-	
-	
-	
-	
-	 
 	
 	
 }

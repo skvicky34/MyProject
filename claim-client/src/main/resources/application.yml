@@ -12,7 +12,7 @@ claim:
         headerinfo: http://localhost:8080/claimservice
         claiminfo: http://localhost:8080/claims/{claimId}?parts={partList}
         claimheader: http://localhost:8080/claims/{claimId}/header
-        claimserviceline: http://localhost:8080/claims/{claimId}/serviceline
+        claimserviceline: http://localhost:8080/claims/{claimId}/servicelines
         claimdiagnosis: http://localhost:8080/claims/{claimId}/diagnosis
         claimcob: http://localhost:8080/claims/{claimId}/cob
         claimmember: http://localhost:8080/claims/{claimId}/members

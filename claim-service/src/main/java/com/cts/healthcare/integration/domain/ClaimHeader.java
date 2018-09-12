@@ -3,16 +3,20 @@ package com.cts.healthcare.integration.domain;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 public class ClaimHeader {
+	
 	private String claimId;
 	private String type;
+	private String subType;
+	private String claimStatus;
+	private String code;
+	private String description;
+	private BigDecimal totalPayableAmount;
 	private BigDecimal totalClaimChargeAmount;
-	private XMLGregorianCalendar statementFromDate;
-	private XMLGregorianCalendar statementToDate;
-	private XMLGregorianCalendar admissionDate;
-	private XMLGregorianCalendar receivedDate;
+	private Date statementFromDate;
+	private Date statementToDate;
+	private Date admissionDate;
+	private Date receivedDate;
 	private String crossReferenceClaimNumber;
 	private String businessType;
 	private String carrier;
@@ -24,10 +28,19 @@ public class ClaimHeader {
 	private String admissionSourceCode;
 	private String admissionTypeCode;
 	private String admissionTime;
-	private XMLGregorianCalendar dischargedDate;
+	private Date dischargedDate;
 	private String dischargeHour;
 	private String patientDischargeFacilityTypeCode;
 	private String claimSubmissionType;
+	private String classId;
+	private String classPlanId;
+	private String productId;
+	private String productType;
+	private String productCategory;
+	private String businessCategory;
+	private String networkId;
+	
+	
 	public String getClaimId() {
 		return claimId;
 	}
@@ -40,34 +53,64 @@ public class ClaimHeader {
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getSubType() {
+		return subType;
+	}
+	public void setSubType(String subType) {
+		this.subType = subType;
+	}
+	public String getClaimStatus() {
+		return claimStatus;
+	}
+	public void setClaimStatus(String claimStatus) {
+		this.claimStatus = claimStatus;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public BigDecimal getTotalPayableAmount() {
+		return totalPayableAmount;
+	}
+	public void setTotalPayableAmount(BigDecimal totalPayableAmount) {
+		this.totalPayableAmount = totalPayableAmount;
+	}
 	public BigDecimal getTotalClaimChargeAmount() {
 		return totalClaimChargeAmount;
 	}
 	public void setTotalClaimChargeAmount(BigDecimal totalClaimChargeAmount) {
 		this.totalClaimChargeAmount = totalClaimChargeAmount;
 	}
-	public XMLGregorianCalendar getStatementFromDate() {
+	public Date getStatementFromDate() {
 		return statementFromDate;
 	}
-	public void setStatementFromDate(XMLGregorianCalendar statementFromDate) {
+	public void setStatementFromDate(Date statementFromDate) {
 		this.statementFromDate = statementFromDate;
 	}
-	public XMLGregorianCalendar getStatementToDate() {
+	public Date getStatementToDate() {
 		return statementToDate;
 	}
-	public void setStatementToDate(XMLGregorianCalendar statementToDate) {
+	public void setStatementToDate(Date statementToDate) {
 		this.statementToDate = statementToDate;
 	}
-	public XMLGregorianCalendar getAdmissionDate() {
+	public Date getAdmissionDate() {
 		return admissionDate;
 	}
-	public void setAdmissionDate(XMLGregorianCalendar admissionDate) {
+	public void setAdmissionDate(Date admissionDate) {
 		this.admissionDate = admissionDate;
 	}
-	public XMLGregorianCalendar getReceivedDate() {
+	public Date getReceivedDate() {
 		return receivedDate;
 	}
-	public void setReceivedDate(XMLGregorianCalendar receivedDate) {
+	public void setReceivedDate(Date receivedDate) {
 		this.receivedDate = receivedDate;
 	}
 	public String getCrossReferenceClaimNumber() {
@@ -136,10 +179,10 @@ public class ClaimHeader {
 	public void setAdmissionTime(String admissionTime) {
 		this.admissionTime = admissionTime;
 	}
-	public XMLGregorianCalendar getDischargedDate() {
+	public Date getDischargedDate() {
 		return dischargedDate;
 	}
-	public void setDischargedDate(XMLGregorianCalendar dischargedDate) {
+	public void setDischargedDate(Date dischargedDate) {
 		this.dischargedDate = dischargedDate;
 	}
 	public String getDischargeHour() {
@@ -160,8 +203,48 @@ public class ClaimHeader {
 	public void setClaimSubmissionType(String claimSubmissionType) {
 		this.claimSubmissionType = claimSubmissionType;
 	}
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+	public String getClassPlanId() {
+		return classPlanId;
+	}
+	public void setClassPlanId(String classPlanId) {
+		this.classPlanId = classPlanId;
+	}
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	public String getProductType() {
+		return productType;
+	}
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+	public String getProductCategory() {
+		return productCategory;
+	}
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+	public String getBusinessCategory() {
+		return businessCategory;
+	}
+	public void setBusinessCategory(String businessCategory) {
+		this.businessCategory = businessCategory;
+	}
+	public String getNetworkId() {
+		return networkId;
+	}
+	public void setNetworkId(String networkId) {
+		this.networkId = networkId;
+	}
 	
-	 
-
 
 }

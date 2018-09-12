@@ -1,11 +1,18 @@
 package com.cts.healthcare.integration.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class ClaimHeader {
+	
 	private String claimId;
 	private String type;
-	private String totalClaimChargeAmount;
+	private String subType;
+	private String claimStatus;
+	private String code;
+	private String description;
+	private BigDecimal totalPayableAmount;
+	private BigDecimal totalClaimChargeAmount;
 	private Date statementFromDate;
 	private Date statementToDate;
 	private Date admissionDate;
@@ -25,6 +32,14 @@ public class ClaimHeader {
 	private String dischargeHour;
 	private String patientDischargeFacilityTypeCode;
 	private String claimSubmissionType;
+	private String classId;
+	private String classPlanId;
+	private String productId;
+	private String productType;
+	private String productCategory;
+	private String businessCategory;
+	private String networkId;
+	
 	
 	public String getClaimId() {
 		return claimId;
@@ -38,10 +53,40 @@ public class ClaimHeader {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getTotalClaimChargeAmount() {
+	public String getSubType() {
+		return subType;
+	}
+	public void setSubType(String subType) {
+		this.subType = subType;
+	}
+	public String getClaimStatus() {
+		return claimStatus;
+	}
+	public void setClaimStatus(String claimStatus) {
+		this.claimStatus = claimStatus;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public BigDecimal getTotalPayableAmount() {
+		return totalPayableAmount;
+	}
+	public void setTotalPayableAmount(BigDecimal totalPayableAmount) {
+		this.totalPayableAmount = totalPayableAmount;
+	}
+	public BigDecimal getTotalClaimChargeAmount() {
 		return totalClaimChargeAmount;
 	}
-	public void setTotalClaimChargeAmount(String totalClaimChargeAmount) {
+	public void setTotalClaimChargeAmount(BigDecimal totalClaimChargeAmount) {
 		this.totalClaimChargeAmount = totalClaimChargeAmount;
 	}
 	public Date getStatementFromDate() {
@@ -158,8 +203,48 @@ public class ClaimHeader {
 	public void setClaimSubmissionType(String claimSubmissionType) {
 		this.claimSubmissionType = claimSubmissionType;
 	}
-	
-		
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+	public String getClassPlanId() {
+		return classPlanId;
+	}
+	public void setClassPlanId(String classPlanId) {
+		this.classPlanId = classPlanId;
+	}
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	public String getProductType() {
+		return productType;
+	}
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+	public String getProductCategory() {
+		return productCategory;
+	}
+	public void setProductCategory(String productCategory) {
+		this.productCategory = productCategory;
+	}
+	public String getBusinessCategory() {
+		return businessCategory;
+	}
+	public void setBusinessCategory(String businessCategory) {
+		this.businessCategory = businessCategory;
+	}
+	public String getNetworkId() {
+		return networkId;
+	}
+	public void setNetworkId(String networkId) {
+		this.networkId = networkId;
+	}
 	
 
 }

@@ -4,47 +4,16 @@ import java.util.List;
 
 public class Claim {
 
-	private String claimId;
-	
+	private String claimId;	
 	private List<String> parts;
 	private ClaimHeader claimHeader;
-	private ClaimServiceLine claimServiceLine;
-	private ClaimDiagnosis claimDiagnosis;
+	private List<ClaimServiceLine> claimServiceLine;
+	//private ClaimDiagnosis claimDiagnosis;
 	private ClaimCob claimCob;
 	private ClaimMembers claimMembers;
 	private ClaimProvider claimProvider;
 	
 	
-	public ClaimMembers getClaimMembers() {
-		return claimMembers;
-	}
-	public void setClaimMembers(ClaimMembers claimMembers) {
-		this.claimMembers = claimMembers;
-	}
-	public ClaimProvider getClaimProvider() {
-		return claimProvider;
-	}
-	public void setClaimProvider(ClaimProvider claimProvider) {
-		this.claimProvider = claimProvider;
-	}
-	public ClaimServiceLine getClaimServiceLine() {
-		return claimServiceLine;
-	}
-	public void setClaimServiceLine(ClaimServiceLine claimServiceLine) {
-		this.claimServiceLine = claimServiceLine;
-	}
-	public ClaimDiagnosis getClaimDiagnosis() {
-		return claimDiagnosis;
-	}
-	public void setClaimDiagnosis(ClaimDiagnosis claimDiagnosis) {
-		this.claimDiagnosis = claimDiagnosis;
-	}
-	public ClaimCob getClaimCob() {
-		return claimCob;
-	}
-	public void setClaimCob(ClaimCob claimCob) {
-		this.claimCob = claimCob;
-	}
 	public String getClaimId() {
 		return claimId;
 	}
@@ -63,6 +32,31 @@ public class Claim {
 	public void setClaimHeader(ClaimHeader claimHeader) {
 		this.claimHeader = claimHeader;
 	}
+	public List<ClaimServiceLine> getClaimServiceLine() {
+		return claimServiceLine;
+	}
+	public void setClaimServiceLine(List<ClaimServiceLine> claimServiceLine) {
+		this.claimServiceLine = claimServiceLine;
+	}
+	public ClaimCob getClaimCob() {
+		return claimCob;
+	}
+	public void setClaimCob(ClaimCob claimCob) {
+		this.claimCob = claimCob;
+	}
+	public ClaimMembers getClaimMembers() {
+		return claimMembers;
+	}
+	public void setClaimMembers(ClaimMembers claimMembers) {
+		this.claimMembers = claimMembers;
+	}
+	public ClaimProvider getClaimProvider() {
+		return claimProvider;
+	}
+	public void setClaimProvider(ClaimProvider claimProvider) {
+		this.claimProvider = claimProvider;
+	}
+	 
 	
 	
 }

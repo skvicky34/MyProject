@@ -6,8 +6,15 @@ public class ClaimProvider {
 	private String renderingProviderId;
 	private String attendingProviderId;
 	private String operatingProviderId;
-	private String renderingProviderNationalProviderIdentifier;
-	private String serviceFacilityNationalProviderIdentifier;
+	private String OperatingProviderNPI;
+	private String OperatingProviderTaxID;
+	private String referingProviderNPI;
+	private String referingProviderTaxID;
+	private String serviceFacilityProviderID;
+	private String serviceFacilityNPI;
+	private String serviceFacilityTaxID;
+	
+	
 	
 	public String getBillingProviderId() {
 		return billingProviderId;
@@ -33,21 +40,49 @@ public class ClaimProvider {
 	public void setOperatingProviderId(String operatingProviderId) {
 		this.operatingProviderId = operatingProviderId;
 	}
-	public String getRenderingProviderNationalProviderIdentifier() {
-		return renderingProviderNationalProviderIdentifier;
+	public String getOperatingProviderNPI() {
+		return OperatingProviderNPI;
 	}
-	public void setRenderingProviderNationalProviderIdentifier(String renderingProviderNationalProviderIdentifier) {
-		this.renderingProviderNationalProviderIdentifier = renderingProviderNationalProviderIdentifier;
+	public void setOperatingProviderNPI(String operatingProviderNPI) {
+		OperatingProviderNPI = operatingProviderNPI;
 	}
-	public String getServiceFacilityNationalProviderIdentifier() {
-		return serviceFacilityNationalProviderIdentifier;
+	public String getOperatingProviderTaxID() {
+		return OperatingProviderTaxID;
 	}
-	public void setServiceFacilityNationalProviderIdentifier(String serviceFacilityNationalProviderIdentifier) {
-		this.serviceFacilityNationalProviderIdentifier = serviceFacilityNationalProviderIdentifier;
+	public void setOperatingProviderTaxID(String operatingProviderTaxID) {
+		OperatingProviderTaxID = operatingProviderTaxID;
+	}
+	public String getReferingProviderNPI() {
+		return referingProviderNPI;
+	}
+	public void setReferingProviderNPI(String referingProviderNPI) {
+		this.referingProviderNPI = referingProviderNPI;
+	}
+	public String getReferingProviderTaxID() {
+		return referingProviderTaxID;
+	}
+	public void setReferingProviderTaxID(String referingProviderTaxID) {
+		this.referingProviderTaxID = referingProviderTaxID;
+	}
+	public String getServiceFacilityProviderID() {
+		return serviceFacilityProviderID;
+	}
+	public void setServiceFacilityProviderID(String serviceFacilityProviderID) {
+		this.serviceFacilityProviderID = serviceFacilityProviderID;
+	}
+	public String getServiceFacilityNPI() {
+		return serviceFacilityNPI;
+	}
+	public void setServiceFacilityNPI(String serviceFacilityNPI) {
+		this.serviceFacilityNPI = serviceFacilityNPI;
+	}
+	public String getServiceFacilityTaxID() {
+		return serviceFacilityTaxID;
+	}
+	public void setServiceFacilityTaxID(String serviceFacilityTaxID) {
+		this.serviceFacilityTaxID = serviceFacilityTaxID;
 	}
 	
-	
-	
-	
+		
 	
 }

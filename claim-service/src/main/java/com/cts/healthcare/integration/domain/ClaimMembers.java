@@ -3,19 +3,21 @@ package com.cts.healthcare.integration.domain;
 public class ClaimMembers {
 
 	private long memberId;
-	private long subscriberId;
+	private String subscriberId;
 	private long groupId;
 	private int memberSuffix;
+	
+	
 	public long getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(long memberId) {
 		this.memberId = memberId;
 	}
-	public long getSubscriberId() {
+	public String getSubscriberId() {
 		return subscriberId;
 	}
-	public void setSubscriberId(long subscriberId) {
+	public void setSubscriberId(String subscriberId) {
 		this.subscriberId = subscriberId;
 	}
 	public long getGroupId() {

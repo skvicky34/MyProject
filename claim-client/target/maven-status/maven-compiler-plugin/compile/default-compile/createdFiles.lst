@@ -1,0 +1,13 @@
+com\cts\healthcare\integration\ClaimClientApplication.class
+com\cts\healthcare\integration\domain\ClaimProvider.class
+com\cts\healthcare\integration\controller\ClaimHeaderController$2.class
+com\cts\healthcare\integration\domain\ClaimHeader.class
+com\cts\healthcare\integration\domain\ClaimDiagnosis.class
+com\cts\healthcare\integration\controller\ClaimHeaderController$1.class
+com\cts\healthcare\integration\controller\ClaimHeaderController.class
+com\cts\healthcare\integration\domain\Claim.class
+com\cts\healthcare\integration\domain\ClaimMembers.class
+com\cts\healthcare\integration\domain\ClaimCob.class
+com\cts\healthcare\integration\controller\ClaimHeaderController$3.class
+com\cts\healthcare\integration\domain\ClaimServiceLine.class
+com\cts\healthcare\integration\controller\ClaimHeaderController$4.class

@@ -1,4 +1,4 @@
-package com.cts.healthcare.integration.service;
+/*package com.cts.healthcare.integration.service;
 
 import java.util.List;
 
@@ -17,8 +17,6 @@ import com.cts.healthcare.integration.domain.ClaimServiceLine;
 @Service
 public class ClaimService {
 
-//@Autowired
-//Claim claim;
 	
 	public Claim getClaimInfo(String claimId, List<String> parts)
 	{
@@ -75,3 +73,4 @@ public class ClaimService {
 	
 
 }
+*/
