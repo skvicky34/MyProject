@@ -1,7 +1,5 @@
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\domain\MemberPatient.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\MemberClientApplication.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\service\MemberService.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\domain\ClaimHeader.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\domain\Member.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\controller\MemberHeaderController.java
-C:\Users\Liyakath.Shareeb\Documents\new-workspace-sts-3.9.5.RELEASE\member-client\src\main\java\com\cts\healthcare\integration\domain\MemberSubscriber.java
+C:\Users\Sandeep.Kumar\git\MyProject\member-client\src\main\java\com\cts\healthcare\integration\controller\MemberClientController.java
+C:\Users\Sandeep.Kumar\git\MyProject\member-client\src\main\java\com\cts\healthcare\integration\domain\Member.java
+C:\Users\Sandeep.Kumar\git\MyProject\member-client\src\main\java\com\cts\healthcare\integration\service\MemberService.java
+C:\Users\Sandeep.Kumar\git\MyProject\member-client\src\main\java\com\cts\healthcare\integration\MemberClientApplication.java
+C:\Users\Sandeep.Kumar\git\MyProject\member-client\src\main\java\com\cts\healthcare\integration\domain\ClaimHeader.java

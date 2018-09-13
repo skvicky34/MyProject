@@ -1,12 +1,10 @@
 package com.cts.healthcare.integration.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +24,7 @@ public class ProviderRestController {
 	public static final Logger logger = LoggerFactory.getLogger(ProviderRestController.class);
 
 	@Autowired
-	@Qualifier("HeaderService")
-	private ProviderService headerService;
+	private ProviderService providerService;
 
 	
 	/**
@@ -44,7 +41,7 @@ public class ProviderRestController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}		
-		return new ResponseEntity<Provider>(headerService.getProvider(id), HttpStatus.OK);
+		return new ResponseEntity<Provider>(providerService.getProvider(id), HttpStatus.OK);
 	}
 	
 	/**
@@ -62,7 +59,7 @@ public class ProviderRestController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}		
-		return new ResponseEntity<LinkedHashMap<String,Provider>>(headerService.getMultipleProviders(identifiers), HttpStatus.OK);
+		return new ResponseEntity<LinkedHashMap<String,Provider>>(providerService.getMultipleProviders(identifiers), HttpStatus.OK);
 	}
 	
 	

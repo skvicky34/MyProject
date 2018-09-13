@@ -13,17 +13,9 @@ import org.springframework.ws.soap.SoapMessage;
 public class WebServiceConnector extends WebServiceGatewaySupport 
 
 {
-	
-	/*@Value("${facet.service.claim.header.nameSpace}")
-	private String facetHeaderNameSpace;
-	
-	@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;*/
-	
+ 
 	public Object callWebService(String url, Object request, String nameSpace)
 	{
-		 
-					
 			Object response = (Object) getWebServiceTemplate().
 					marshalSendAndReceive(url , request,	new WebServiceMessageCallback() {
 						@Override

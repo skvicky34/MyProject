@@ -11,7 +11,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,17 +23,13 @@ import com.cts.healthcare.integration.service.MemberService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.java.Log;
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 @RequestMapping("/")
 public class MemberServiceController {
 
 
 	@Autowired
-	@Qualifier("HeaderService")
-	private MemberService headerService;
+	private MemberService memberService;
 
 	private final static Logger logger = LoggerFactory.getLogger(MemberServiceController.class);
 
@@ -52,7 +47,7 @@ public class MemberServiceController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}		
-		return new ResponseEntity<Member>(headerService.getMember(id), HttpStatus.OK);
+		return new ResponseEntity<Member>(memberService.getMember(id), HttpStatus.OK);
 	}
 	
 	/**
@@ -72,7 +67,7 @@ public class MemberServiceController {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}		
-		return new ResponseEntity<Member>(headerService.getSubscriber(id,groupId,memberSuffix,convertStringToXMLGC(asOfDate)), HttpStatus.OK);
+		return new ResponseEntity<Member>(memberService.getSubscriber(id,groupId,memberSuffix,convertStringToXMLGC(asOfDate)), HttpStatus.OK);
 	}
 	
 	/**

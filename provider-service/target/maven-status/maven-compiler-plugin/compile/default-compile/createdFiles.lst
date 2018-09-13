@@ -1,12 +1,12 @@
 com\trizetto\fxi\isl\HdrCollection.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RECPRAL.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfString.class
+META-INF\spring-configuration-metadata.json
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECPREP.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECPRZA.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\GetProviderV2Response.class
 com\trizetto\fxi\isl\FxiIslHeader.class
 com\trizetto\fxi\isl\HdrColumn.class
-com\cts\healthcare\integration\service\ProviderHeaderServiceImpl.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RECERR.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\GetProviderV2AddrType.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECPROV.class
@@ -21,7 +21,6 @@ com\cts\healthcare\integration\domain\Provider.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECPRAI.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RecordBase.class
 com\cts\healthcare\integration\client\WebServiceConnector.class
-com\cts\healthcare\integration\controller\ProviderHeaderRestController.class
 com\cts\healthcare\integration\config\WsConfigClient.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECPRAL.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RECPREP.class
@@ -30,11 +29,14 @@ com\cts\healthcare\integration\service\ProviderService.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\GetProviderV2AddrTypeResponse.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\package-info.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\GetProviderV2ProviderIdResponse.class
+com\cts\healthcare\integration\config\ProviderProperty.class
 com\trizetto\fxi\isl\package-info.class
 com\cts\healthcare\integration\config\SpringFoxConfig.class
 com\trizetto\fxi\isl\CollectionTypeList.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RECPRZA.class
+com\cts\healthcare\integration\controller\ProviderRestController.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\Response.class
+com\cts\healthcare\integration\service\ProviderServiceImpl.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ArrayOfRECRESP.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\ObjectFactory.class
 com\trizetto\fxi\isl\fawsvcinpgetprovider_v2\RECPRAI.class

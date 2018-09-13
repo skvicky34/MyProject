@@ -11,19 +11,14 @@ spring:
 
 # SOAP WEB SERVICE URL's
 facet:
-  service:
-    member:
-      wsdl: http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetMember_v3.asmx
-      memNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_MemberKey
-      subNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId
-    
-  config:
-    identity: SVCAGENT
-    region: Facets550
-  memberId:
-    page: 1
-    size: 10
-    skipRows: 0
+  memberWsdl: http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetMember_v3.asmx
+  memberNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_MemberKey
+  subscrNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId
+  configIdentity: SVCAGENT
+  configRegion: Facets550
+  pages: 1
+  pageSize: 10
+  skipRows: 0
   
     
    

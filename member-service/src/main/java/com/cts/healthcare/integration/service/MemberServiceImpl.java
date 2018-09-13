@@ -3,22 +3,19 @@ package com.cts.healthcare.integration.service;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.List;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.cts.healthcare.integration.client.WebServiceConnector;
+import com.cts.healthcare.integration.config.MemberProperty;
 import com.cts.healthcare.integration.controller.MemberServiceController;
 import com.cts.healthcare.integration.domain.Member;
 import com.trizetto.fxi.isl.fawsvcinpgetmember_v3.ArrayOfRECMEME;
@@ -29,7 +26,8 @@ import com.trizetto.fxi.isl.fawsvcinpgetmember_v3.GetMemberV3SubscriberId;
 import com.trizetto.fxi.isl.fawsvcinpgetmember_v3.GetMemberV3SubscriberIdResponse;
 import com.trizetto.fxi.isl.fawsvcinpgetmember_v3.RECMEME;
 
-@Service("HeaderService")
+@Service("memberService")
+@EnableConfigurationProperties(MemberProperty.class)
 public class MemberServiceImpl implements MemberService 
 {
 	
@@ -37,35 +35,8 @@ public class MemberServiceImpl implements MemberService
 	@Qualifier("WebServiceConnector")
 	private WebServiceConnector webServiceConnector;
 	
-	@Value("${facet.service.member.wsdl}")
-	private String facetMemberWsdlUrl;
-	
-	/*@Value("${facet.service.claim.serviceLine.wsdl}")
-	private String facetServLineWsdlUrl;*/
-	
-	@Value("${facet.service.member.memNameSpace}")
-	private String facetMemberNameSpace;
-	
-	@Value("${facet.service.member.subNameSpace}")
-	private String facetSubNameSpace;
-	
-	/*@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;*/
-	
-	@Value("${facet.config.identity}")
-	private String facetIdentity;
-	
-	@Value("${facet.config.region}")
-	private String facetRegion;
-	
-	@Value("${facet.memberId.page}")
-	private int pages;
-	
-	@Value("${facet.memberId.size}")
-	private int pageSize;
-	
-	@Value("${facet.memberId.skipRows}")
-	private int skipRows;
+	@Autowired
+	private MemberProperty memberProperty;
 	
 	private final static Logger logger = LoggerFactory.getLogger(MemberServiceController.class);
 	
@@ -77,16 +48,16 @@ public class MemberServiceImpl implements MemberService
 	public Member getMember(Long id)
 	{
 		logger.info("in Service Method getMember()");
-		GetMemberV3MemberKey request = new GetMemberV3MemberKey();
+		GetMemberV3MemberKey getMemberV3MemberKeyRequest = new GetMemberV3MemberKey();
 		Config config = new Config();
 		Member member = new Member();
 		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPMEMECK(id);
-		request.setPConfig(config);
+		config.setFacetsIdentity(memberProperty.getConfigIdentity());
+		config.setRegion(memberProperty.getConfigRegion());
+		getMemberV3MemberKeyRequest.setPMEMECK(id);
+		getMemberV3MemberKeyRequest.setPConfig(config);
 		    
-		GetMemberV3MemberKeyResponse  getMemberV3MemberKeyResponse = (GetMemberV3MemberKeyResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetMemberNameSpace);
+		GetMemberV3MemberKeyResponse  getMemberV3MemberKeyResponse = (GetMemberV3MemberKeyResponse) webServiceConnector.callWebService(memberProperty.getMemberWsdl(), getMemberV3MemberKeyRequest, memberProperty.getMemberNameSpace());
 		    if(getMemberV3MemberKeyResponse != null) {
 		    	ArrayOfRECMEME recMemeArray = getMemberV3MemberKeyResponse.getGetMemberV3MemberKeyResult().getMEMECOLL();
 		    	if(recMemeArray != null)
@@ -128,20 +99,19 @@ public class MemberServiceImpl implements MemberService
 	public Member getSubscriber(Long id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) {
 
 		logger.info("in Service Method getSubscriber()");
-		GetMemberV3SubscriberId request = new GetMemberV3SubscriberId();
+		GetMemberV3SubscriberId getMemberV3SubscriberIdRequest = new GetMemberV3SubscriberId();
 		Config config = new Config();
 		Member member = new Member();
 		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPMEMESFX(memberSuffix);
-		request.setPASOFDT(asOfDate);
-		request.setPGRGRID(groupId);
-		request.setPSBSBID(id.toString());
-		request.setPConfig(config);
-		
-		
-		GetMemberV3SubscriberIdResponse  getMemberV3SubscriberIdResponse = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetSubNameSpace);
+		config.setFacetsIdentity(memberProperty.getConfigIdentity());
+		config.setRegion(memberProperty.getConfigRegion());
+		getMemberV3SubscriberIdRequest.setPMEMESFX(memberSuffix);
+		getMemberV3SubscriberIdRequest.setPASOFDT(asOfDate);
+		getMemberV3SubscriberIdRequest.setPGRGRID(groupId);
+		getMemberV3SubscriberIdRequest.setPSBSBID(id.toString());
+		getMemberV3SubscriberIdRequest.setPConfig(config);
+		 
+		GetMemberV3SubscriberIdResponse  getMemberV3SubscriberIdResponse = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(memberProperty.getMemberWsdl(), getMemberV3SubscriberIdRequest, memberProperty.getSubscrNameSpace());
 	    if(getMemberV3SubscriberIdResponse != null) {
 	    	ArrayOfRECMEME recMemeArray = getMemberV3SubscriberIdResponse.getGetMemberV3SubscriberIdResult().getMEMECOLL();
 	    	if(recMemeArray!=null)

@@ -14,12 +14,6 @@ public class WebServiceConnector extends WebServiceGatewaySupport
 
 {
 	
-	/*@Value("${facet.service.claim.header.nameSpace}")
-	private String facetHeaderNameSpace;
-	
-	@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;*/
-	
 	public Object callWebService(String url, Object request, String nameSpace)
 	{ 
 					

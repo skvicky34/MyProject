@@ -1,6 +1,5 @@
 package com.cts.healthcare.integration.service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,10 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.cts.healthcare.integration.client.WebServiceConnector;
+import com.cts.healthcare.integration.config.ProviderProperty;
 import com.cts.healthcare.integration.controller.ProviderRestController;
 import com.cts.healthcare.integration.domain.Provider;
 import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.ArrayOfRECPROV;
@@ -24,7 +24,8 @@ import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.GetProviderV2ProviderIdRespo
 import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.RECPROV;
 
 
-@Service("HeaderService")
+@Service("providerService")
+@EnableConfigurationProperties(ProviderProperty.class)
 public class ProviderServiceImpl implements ProviderService 
 {
 	
@@ -32,32 +33,8 @@ public class ProviderServiceImpl implements ProviderService
 	@Qualifier("WebServiceConnector")
 	private WebServiceConnector webServiceConnector;
 	
-	@Value("${facet.service.provider.wsdl}")
-	private String facetHeaderWsdlUrl;
-	
-	/*@Value("${facet.service.claim.serviceLine.wsdl}")
-	private String facetServLineWsdlUrl;*/
-	
-	@Value("${facet.service.provider.nameSpace}")
-	private String facetHeaderNameSpace;
-	
-	/*@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;*/
-	
-	@Value("${facet.config.identity}")
-	private String facetIdentity;
-	
-	@Value("${facet.config.region}")
-	private String facetRegion;
-	
-	@Value("${facet.claimId.page}")
-	private int pages;
-	
-	@Value("${facet.claimId.size}")
-	private int pageSize;
-	
-	@Value("${facet.claimId.skipRows}")
-	private int skipRows;
+	@Autowired
+	private ProviderProperty providerProperty; 
 	
 	private final static Logger logger = LoggerFactory.getLogger(ProviderRestController.class);
 	
@@ -67,20 +44,19 @@ public class ProviderServiceImpl implements ProviderService
 	**/
 	@Override
 	public Provider getProvider(String id) {
-		// TODO Auto-generated method stub
 		
 		
 		logger.info("in Service Impl getProvider()");
-		GetProviderV2ProviderId request = new GetProviderV2ProviderId();
+		GetProviderV2ProviderId getProviderV2ProviderIdRequest = new GetProviderV2ProviderId();
 		Config config = new Config();
 		Provider provider = new Provider();
 		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPPRPRID(id);
-		request.setPConfig(config);
+		config.setFacetsIdentity(providerProperty.getConfigIdentity());
+		config.setRegion(providerProperty.getConfigRegion());
+		getProviderV2ProviderIdRequest.setPPRPRID(id);
+		getProviderV2ProviderIdRequest.setPConfig(config);
 		
-		GetProviderV2ProviderIdResponse response = (GetProviderV2ProviderIdResponse) webServiceConnector.callWebService(facetHeaderWsdlUrl, request, facetHeaderNameSpace);
+		GetProviderV2ProviderIdResponse response = (GetProviderV2ProviderIdResponse) webServiceConnector.callWebService(providerProperty.getProviderWsdl(), getProviderV2ProviderIdRequest, providerProperty.getProviderNameSpace());
 	    if(response != null) {
 	    	
 	    	ArrayOfRECPROV recprovArray = response.getGetProviderV2ProviderIdResult().getPROVCOLL();
@@ -114,8 +90,8 @@ public class ProviderServiceImpl implements ProviderService
 	* API method to retrieve Multiple provider Info
 	**/
 	@Override
-	public LinkedHashMap<String,Provider> getMultipleProviders(String identifiers) {
-		// TODO Auto-generated method stub
+	public LinkedHashMap<String,Provider> getMultipleProviders(String identifiers)
+	{
 		logger.info("in Service Impl getMultipleProvider()");
 		LinkedHashMap<String,Provider> providerMap = new LinkedHashMap<String,Provider>();
 		String[] idArray = identifiers.split(",");
@@ -129,7 +105,6 @@ public class ProviderServiceImpl implements ProviderService
 		    {
 		    	providerMap.put(id, null);
 		    }
-		    //providers.add(provider);
 		}
 		return providerMap;
 	    
