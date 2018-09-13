@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -33,6 +35,8 @@ public class ProviderClientController {
 	@Autowired
 	ProviderService providerService;
 
+	public static final Logger logger = LoggerFactory.getLogger(ProviderClientController.class);
+	
 	ProviderClientController(@Value("${provider.service.endpoint.providerinfo}") String URL_PROVIDERINFO,
 			@Value("${provider.service.endpoint.multipleproviderinfo}") String URL_MULTIPLEPROVIDERINFO) {
 		this.URL_PROVIDERINFO = URL_PROVIDERINFO;
@@ -41,8 +45,13 @@ public class ProviderClientController {
 	}
 
 
+	/**
+	*
+	* API method to retrieve Provider info
+	**/
 	@RequestMapping(value = "/providers/{providerId}", method = RequestMethod.GET)
 	public Provider getProvider(@PathVariable("providerId") String providerId) {
+		logger.info("in Client Controller getProvider(");
 		ParameterizedTypeReference<Resource<Provider>> responseType = new ParameterizedTypeReference<Resource<Provider>>() {
 		};
 		ResponseEntity<Resource<Provider>> response = restTemplate.exchange(
@@ -57,11 +66,15 @@ public class ProviderClientController {
 		return new Provider();
 	}
 
+	/**
+	*
+	* API method to retrieve multiple Providers info 
+	**/
 	@RequestMapping(value = "/providers", method = RequestMethod.GET)
 	public LinkedHashMap<String,Provider> getMultipleProviders(
 			@RequestParam(name = "identifiers", required = false) String[] identifiers) {
 		 
-		
+		logger.info("in Client Controller getMultipleProvider(");
 		ParameterizedTypeReference<LinkedHashMap<String,Provider>> responseType = new ParameterizedTypeReference<LinkedHashMap<String,Provider>>() {
 		};
 		

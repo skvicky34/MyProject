@@ -5,12 +5,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cts.healthcare.integration</groupId>
-	<artifactId>provider.service</artifactId>
+	<artifactId>claim.header.service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>provider.service</name>
-	<description>Service project for Provider header service</description>
+	<name>claim.header.service</name>
+	<description>Service project for Claim header service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

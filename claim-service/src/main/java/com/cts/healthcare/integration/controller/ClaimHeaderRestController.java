@@ -36,8 +36,13 @@ public class ClaimHeaderRestController {
 		return new ResponseEntity<String>(headerService.getInfo(), HttpStatus.OK);
 	}
 
+	/**
+	*
+	* API method to  retrieve claim info
+	**/
 	@RequestMapping("/claims/{claimid}")
-	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) {		
+	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) {	
+		logger.info("Called Service getClaim() method" );
 		ObjectMapper mapper = new ObjectMapper();
 		Claim claim = new Claim();
 		try {
@@ -48,13 +53,23 @@ public class ClaimHeaderRestController {
 		return new ResponseEntity<Claim>(headerService.getClaim(id, parts), HttpStatus.OK);
 	}
 	
+	/**
+	*
+	* API method to  retrieve claim header
+	**/
 	@RequestMapping("/claims/{claimid}/header")
-	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {				
+	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {
+		logger.info("Called Service getClaimHeader() method" );
 		return new ResponseEntity<Claim>(headerService.getClaim(id, ""), HttpStatus.OK);
 	}
 	
+	/**
+	*
+	* API method to  retrieve claim service line
+	**/
 	@RequestMapping("/claims/{claimid}/servicelines")
-	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {			
+	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {	
+		logger.info("Called Service getServiceLine() method" );
 		return new ResponseEntity<List<ClaimServiceLine>>(headerService.getClaimServiceLine(id), HttpStatus.OK);
 	}
 	

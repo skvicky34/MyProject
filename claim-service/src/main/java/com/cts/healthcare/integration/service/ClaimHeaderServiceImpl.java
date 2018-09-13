@@ -10,12 +10,15 @@ import java.util.TimeZone;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.cts.healthcare.integration.client.WebServiceConnector;
+import com.cts.healthcare.integration.controller.ClaimHeaderRestController;
 import com.cts.healthcare.integration.domain.Claim;
 import com.cts.healthcare.integration.domain.ClaimCob;
 import com.cts.healthcare.integration.domain.ClaimDiagnosis;
@@ -76,9 +79,16 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		return "Claim Header Service.";
 	}
 	
+	public static final Logger logger = LoggerFactory.getLogger(ClaimHeaderRestController.class);
+	
+	/**
+	*
+	* API method to retrieve Claim info
+	**/
 	@Override
 	public Claim getClaim(String id, String partArray)
 	{
+		logger.info("in ServiceImpl getClaim() method"); 
 		ListClaimV11ClaimId request = new ListClaimV11ClaimId();
 		Config config = new Config();
 		Claim claim = new Claim();
@@ -151,9 +161,14 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		    return claim;
 	}
 	
+	/**
+	*
+	* API method to retrieve Claim service line
+	**/
 	@Override
 	public List<ClaimServiceLine> getClaimServiceLine(String id) {
 
+		logger.info("in ServiceImpl getClaimServiceLine() method"); 
 		ListClaimCDMLV9ClaimId request = new ListClaimCDMLV9ClaimId();
 		com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config config = new com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config();
 		
@@ -229,7 +244,10 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		return null;
 	}
 	 
-	
+	/**
+	*
+	* Utility method to convert XMLGregorianCalendar date to String type
+	**/
 	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)
     {
           String dateString =null;

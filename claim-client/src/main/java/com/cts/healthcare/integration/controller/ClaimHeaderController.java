@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.MediaTypes;
@@ -42,6 +44,7 @@ public class ClaimHeaderController {
 	private String URL_CLAIMMEMBER;
 	private String URL_CLAIMPROVIDER;
 	
+	private final static Logger logger = LoggerFactory.getLogger(ClaimHeaderController.class);
 
 	ClaimHeaderController(@Value("${claim.header.service.endpoint.serviceinfo}") String URL_SERVICEINFO,
 			@Value("${claim.header.service.endpoint.headerinfo}") String URL_HEADERINFO,
@@ -66,11 +69,15 @@ public class ClaimHeaderController {
 
 	@RequestMapping(value = "/headerserviceinfo", method = RequestMethod.GET)
 	public String getServiceInfo() {
+		logger.info("Called Client serviceInfo() method" );
 		return restTemplate.getForObject(URL_SERVICEINFO, String.class);
 	}
 
+	
+	//API method to retrieve claim details 
 	@RequestMapping(value = "/claim", method = RequestMethod.GET)
 	public ClaimHeader getClaim() {
+		logger.info("Called Client getClaim() method" );
 		ParameterizedTypeReference<Resource<ClaimHeader>> responseType = new ParameterizedTypeReference<Resource<ClaimHeader>>() {
 		};
 		ResponseEntity<Resource<ClaimHeader>> response = restTemplate.exchange(
@@ -84,11 +91,15 @@ public class ClaimHeaderController {
 		return new ClaimHeader();
 	}
 
+	/**
+	*
+	* API method to  retrieve claim
+	**/
 	@RequestMapping(value = "/claims/{claimId}", method = RequestMethod.GET)
 	public Claim getClaimInfo(@PathVariable("claimId") String claimId,
 			@RequestParam(name = "parts", required = false) String[] partsArray) {
 		 
-		
+		logger.info("Called Client getClaimInfo() method" );
 		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
 		};
 		
@@ -112,8 +123,13 @@ public class ClaimHeaderController {
 
 	}
 
+	/**
+	*
+	* API method to  retrieve claim header
+	**/
 	@RequestMapping(value = "/claims/{claimId}/header", method = RequestMethod.GET)
 	public Claim getClaimHeader(@PathVariable("claimId") String claimId) {
+		logger.info("Called Client getClaimHeader() method" );
 		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
 		};
 		ResponseEntity<Resource<Claim>> response = restTemplate.exchange(
@@ -127,9 +143,13 @@ public class ClaimHeaderController {
 		return new Claim();
 	}
 
+	/**
+	*
+	* API method to  retrieve claim service line
+	**/
 	@RequestMapping(value = "/claims/{claimId}/servicelines", method = RequestMethod.GET)
 	public List<ClaimServiceLine> getClaimServiceLine(@PathVariable("claimId") String claimId) {
-		 
+		logger.info("Called Client getClaimServiceLine() method" );
 		ParameterizedTypeReference<List<ClaimServiceLine>> responseType = new ParameterizedTypeReference<List<ClaimServiceLine>>() {
 		};
 		ResponseEntity<List<ClaimServiceLine>> response = restTemplate.exchange(

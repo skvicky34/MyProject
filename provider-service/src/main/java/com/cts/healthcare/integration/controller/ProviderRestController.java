@@ -30,9 +30,13 @@ public class ProviderRestController {
 	private ProviderService headerService;
 
 	
-
+	/**
+	*
+	* API method to retrieve Provider Info
+	**/
 	@RequestMapping("/providers/{providerId}")
-	public ResponseEntity<Provider> getProvider(@PathVariable("providerId") String id) {		
+	public ResponseEntity<Provider> getProvider(@PathVariable("providerId") String id) {	
+		logger.info("in Service Controller getProvider()");
 		ObjectMapper mapper = new ObjectMapper();
 		Provider provider = new Provider();
 		try {
@@ -43,9 +47,14 @@ public class ProviderRestController {
 		return new ResponseEntity<Provider>(headerService.getProvider(id), HttpStatus.OK);
 	}
 	
+	/**
+	*
+	* API method to retrieve Multiple provider Info
+	**/
 	@RequestMapping("/providers")
 	public ResponseEntity<LinkedHashMap<String,Provider>> getMultipleProviders(
 			@RequestParam("identifiers") String identifiers) {		
+		logger.info("in Service Controller getMultipleProviders()");
 		ObjectMapper mapper = new ObjectMapper();
 		Provider provider = new Provider();
 		try {

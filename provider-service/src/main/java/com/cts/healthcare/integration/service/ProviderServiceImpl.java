@@ -7,12 +7,15 @@ import java.util.List;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.cts.healthcare.integration.client.WebServiceConnector;
+import com.cts.healthcare.integration.controller.ProviderRestController;
 import com.cts.healthcare.integration.domain.Provider;
 import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.ArrayOfRECPROV;
 import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.Config;
@@ -56,15 +59,18 @@ public class ProviderServiceImpl implements ProviderService
 	@Value("${facet.claimId.skipRows}")
 	private int skipRows;
 	
+	private final static Logger logger = LoggerFactory.getLogger(ProviderRestController.class);
 	
-	
-
+	/**
+	*
+	* API method to retrieve Provider Info
+	**/
 	@Override
 	public Provider getProvider(String id) {
 		// TODO Auto-generated method stub
 		
 		
-		
+		logger.info("in Service Impl getProvider()");
 		GetProviderV2ProviderId request = new GetProviderV2ProviderId();
 		Config config = new Config();
 		Provider provider = new Provider();
@@ -80,22 +86,22 @@ public class ProviderServiceImpl implements ProviderService
 	    	ArrayOfRECPROV recprovArray = response.getGetProviderV2ProviderIdResult().getPROVCOLL();
 	    	if(recprovArray.getRECPROV()!=null) {
 		    	List<RECPROV> recprovList = recprovArray.getRECPROV();
-		    	for (RECPROV rp : recprovList) {
+		    	for (RECPROV recProv : recprovList) {
 		    	
-		    	provider.setProviderId(rp.getPRPRID());
-		    	provider.setProviderType(rp.getPRPRMCTRTYPE());
-		    	provider.setSpecialityCode(rp.getPRCFMCTRSPEC());
-		    	provider.setSpecialityCodeDesc(rp.getPRCFMCTRSPECDESC());
-		    	provider.setEffectiveToDate(convertXMLGCToDate(rp.getPRPRTERMDT()));
-		    	provider.setPracticeNum(rp.getPRADPRACTICEIND());
-		    	provider.setNpi(rp.getPRPRNPI());
+		    	provider.setProviderId(recProv.getPRPRID());
+		    	provider.setProviderType(recProv.getPRPRMCTRTYPE());
+		    	provider.setSpecialityCode(recProv.getPRCFMCTRSPEC());
+		    	provider.setSpecialityCodeDesc(recProv.getPRCFMCTRSPECDESC());
+		    	provider.setEffectiveToDate(convertXMLGCToDate(recProv.getPRPRTERMDT()));
+		    	provider.setPracticeNum(recProv.getPRADPRACTICEIND());
+		    	provider.setNpi(recProv.getPRPRNPI());
 		    	//provider.setFedTaxId(rp.getMCTNID);
-		    	provider.setFirstName(rp.getPRPRNAME());
-		    	provider.setWorkAdd1(rp.getPRADADDR1());
-		    	provider.setWorkAdd2(rp.getPRADADDR2());
-		    	provider.setCity(rp.getPRADCITY());
-		    	provider.setState(rp.getPRADSTATE());
-		    	provider.setPostalCode(rp.getPRADZIP());
+		    	provider.setFirstName(recProv.getPRPRNAME());
+		    	provider.setWorkAdd1(recProv.getPRADADDR1());
+		    	provider.setWorkAdd2(recProv.getPRADADDR2());
+		    	provider.setCity(recProv.getPRADCITY());
+		    	provider.setState(recProv.getPRADSTATE());
+		    	provider.setPostalCode(recProv.getPRADZIP());
 		    	
 		    	}
 	    	}
@@ -103,9 +109,14 @@ public class ProviderServiceImpl implements ProviderService
 	    return provider;
 	}
 
+	/**
+	*
+	* API method to retrieve Multiple provider Info
+	**/
 	@Override
 	public LinkedHashMap<String,Provider> getMultipleProviders(String identifiers) {
 		// TODO Auto-generated method stub
+		logger.info("in Service Impl getMultipleProvider()");
 		LinkedHashMap<String,Provider> providerMap = new LinkedHashMap<String,Provider>();
 		String[] idArray = identifiers.split(",");
 		for(String id : idArray) {
