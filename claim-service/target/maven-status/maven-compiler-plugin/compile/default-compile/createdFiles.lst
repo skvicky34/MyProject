@@ -1,6 +1,7 @@
 com\cts\healthcare\integration\domain\ClaimProvider.class
 com\trizetto\fxi\isl\HdrCollection.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Response.class
+META-INF\spring-configuration-metadata.json
 com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Response.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Config.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKey.class
@@ -44,6 +45,7 @@ com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9MemberKey.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLRN.class
 com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderId.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ClaimId.class
+com\cts\healthcare\integration\config\ClaimProperty.class
 com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Config.class
 com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumber.class
 com\trizetto\fxi\isl\FxiIslHeader.class

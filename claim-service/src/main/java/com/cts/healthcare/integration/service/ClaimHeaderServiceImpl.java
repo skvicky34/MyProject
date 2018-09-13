@@ -1,12 +1,10 @@
 package com.cts.healthcare.integration.service;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -15,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import com.cts.healthcare.integration.client.WebServiceConnector;
+import com.cts.healthcare.integration.config.ClaimProperty;
 import com.cts.healthcare.integration.controller.ClaimHeaderRestController;
 import com.cts.healthcare.integration.domain.Claim;
 import com.cts.healthcare.integration.domain.ClaimCob;
@@ -40,6 +40,7 @@ import com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.RECCDML;
  
 
 @Service("HeaderService")
+@EnableConfigurationProperties(ClaimProperty.class)
 public class ClaimHeaderServiceImpl implements ClaimService 
 {
 	
@@ -47,32 +48,8 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	@Qualifier("WebServiceConnector")
 	private WebServiceConnector webServiceConnector;
 	
-	@Value("${facet.service.claim.header.wsdl}")
-	private String facetHeaderWsdlUrl;
-	
-	@Value("${facet.service.claim.serviceLine.wsdl}")
-	private String facetServLineWsdlUrl;
-	
-	@Value("${facet.service.claim.header.nameSpace}")
-	private String facetHeaderNameSpace;
-	
-	@Value("${facet.service.claim.serviceLine.nameSpace}")
-	private String facetServLineNameSpace;
-	
-	@Value("${facet.config.identity}")
-	private String facetIdentity;
-	
-	@Value("${facet.config.region}")
-	private String facetRegion;
-	
-	@Value("${facet.claimId.page}")
-	private int pages;
-	
-	@Value("${facet.claimId.size}")
-	private int pageSize;
-	
-	@Value("${facet.claimId.skipRows}")
-	private int skipRows;
+	@Autowired
+	private ClaimProperty claimProperty;
 	
 	@Override
 	public String getInfo() {
@@ -89,7 +66,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	public Claim getClaim(String id, String partArray)
 	{
 		logger.info("in ServiceImpl getClaim() method"); 
-		ListClaimV11ClaimId request = new ListClaimV11ClaimId();
+		ListClaimV11ClaimId listClaimV11ClaimIdRequest = new ListClaimV11ClaimId();
 		Config config = new Config();
 		Claim claim = new Claim();
 		ClaimHeader claimHeader = new ClaimHeader();
@@ -97,65 +74,65 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		ClaimCob claimCob = new ClaimCob();
 		ClaimProvider claimProvider = new ClaimProvider();
 		
-		config.setFacetsIdentity(facetIdentity);
-		config.setRegion(facetRegion);
-		request.setPCLCLID(id);
-		request.setPPAGE(pages);
-		request.setPPAGESIZE(pageSize);
-		request.setPSKIPROWS(skipRows);
-		request.setPConfig(config);
+		config.setFacetsIdentity(claimProperty.getConfigIdentity());
+		config.setRegion(claimProperty.getConfigRegion());
+		listClaimV11ClaimIdRequest.setPCLCLID(id);
+		listClaimV11ClaimIdRequest.setPPAGE(claimProperty.getPages());
+		listClaimV11ClaimIdRequest.setPPAGESIZE(claimProperty.getPageSize());
+		listClaimV11ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows());
+		listClaimV11ClaimIdRequest.setPConfig(config);
 		 
-		ListClaimV11ClaimIdResponse  response = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(facetHeaderWsdlUrl, request, facetHeaderNameSpace);
-		    if(response != null) {
-		    	ArrayOfRECCLCL recClclArray = response.getListClaimV11ClaimIdResult().getCLCLCOLL();
-		    	List<RECCLCL> recClclList = recClclArray.getRECCLCL();
-		    	
-		    	for(RECCLCL recClcl : recClclList) {
-		    	
-		    	claim.setClaimId(recClcl.getCLCLID());
-		    	claimHeader.setClaimId(recClcl.getCLCLID());
-		    	claimHeader.setType(recClcl.getCLCLCLTYPE());
-		    	claimHeader.setSubType(recClcl.getCLCLCLSUBTYPE());
-		    	claimHeader.setClaimStatus(recClcl.getCLCLCURSTS());
-		    	claimHeader.setCode(recClcl.getCLSTMCTRREAS());
-		    	claimHeader.setDescription(recClcl.getCLSTMCTRREASDESC());
-		    	claimHeader.setTotalPayableAmount(recClcl.getCLCLTOTPAYABLE());
-		    	claimHeader.setTotalClaimChargeAmount(recClcl.getCLCLTOTCHG());
-		    	claimHeader.setClaimSubmissionType(recClcl.getCLCLCLSUBTYPE());
-		    	claimHeader.setReceivedDate(convertXMLGCToString(recClcl.getCLCLRECDDT()));
-		    	claimHeader.setCarrier(recClcl.getCSCSID());
-		    	claimHeader.setAdmissionDate(convertXMLGCToString(recClcl.getCLHPADMDT()));
-		    	claimHeader.setDischargedDate(convertXMLGCToString(recClcl.getCLHPDCDT()));
-		    	claimHeader.setStatementFromDate(convertXMLGCToString(recClcl.getCLHPSTAMENTFRDT()));
-		    	claimHeader.setStatementToDate(convertXMLGCToString(recClcl.getCLHPSTAMENTTODT()));
-		    	claimHeader.setClassId(recClcl.getCSCSID());
-		    	claimHeader.setClassPlanId(recClcl.getCSPIID());
-		    	claimHeader.setProductId(recClcl.getPDPDID());
-		    	claimHeader.setProductType(recClcl.getPDDSPRODTYPE());
-		    	claimHeader.setProductCategory(recClcl.getCSPDCAT());
-		    	claimHeader.setBusinessCategory(recClcl.getPDDSMCTRBCAT());
-		    	claimHeader.setNetworkId(recClcl.getNWNWID());
-
-		    	claimMember.setMemberId(recClcl.getMEMECK());
-		    	claimMember.setGroupId(recClcl.getGRGRCK());
-		    	claimMember.setSubscriberId(recClcl.getSBSBID());
-		    	claimMember.setMemberSuffix(recClcl.getMEMESFX());
-		    	
-		    	claimProvider.setBillingProviderId(recClcl.getCLCLPAYEEPRID());
-		    	claimProvider.setRenderingProviderId(recClcl.getPRPRID());
-		    	claimProvider.setOperatingProviderNPI(recClcl.getCLHPPRPROPNPI());
-		    	claimProvider.setOperatingProviderTaxID(recClcl.getCLHPPRPROPTAX());
-		    	claimProvider.setReferingProviderTaxID(recClcl.getCLMFPRPRFATAX());
-		    	claimProvider.setServiceFacilityProviderID(recClcl.getCLMFPRPRIDFAC());
-		    	claimProvider.setServiceFacilityTaxID(recClcl.getCLMFPRPRFATAX());
-		    	
-		    	claimCob.setOtherPayerPaid(recClcl.getCLCBCOBAMT());
-		    	claimCob.setOtherPayerAllowable(recClcl.getCLCBCOBALLOW());
-		    	claim.setClaimHeader(claimHeader);
-		    	claim.setClaimMembers(claimMember);
-		    	claim.setClaimCob(claimCob);
-		    	claim.setClaimProvider(claimProvider);
-		    	
+		ListClaimV11ClaimIdResponse  listClaimV11ClaimIdResponse = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(claimProperty.getHeaderWsdl(), listClaimV11ClaimIdRequest, claimProperty.getHeaderNameSpace());
+		    if(listClaimV11ClaimIdResponse != null) {
+		    	ArrayOfRECCLCL recClclArray = listClaimV11ClaimIdResponse.getListClaimV11ClaimIdResult().getCLCLCOLL();
+		    	if(recClclArray != null) {
+				    List<RECCLCL> recClclList = recClclArray.getRECCLCL();
+			    	for(RECCLCL recClcl : recClclList) {
+				    	
+				    	claim.setClaimId(recClcl.getCLCLID());
+				    	claimHeader.setClaimId(recClcl.getCLCLID());
+				    	claimHeader.setType(recClcl.getCLCLCLTYPE());
+				    	claimHeader.setSubType(recClcl.getCLCLCLSUBTYPE());
+				    	claimHeader.setClaimStatus(recClcl.getCLCLCURSTS());
+				    	claimHeader.setCode(recClcl.getCLSTMCTRREAS());
+				    	claimHeader.setDescription(recClcl.getCLSTMCTRREASDESC());
+				    	claimHeader.setTotalPayableAmount(recClcl.getCLCLTOTPAYABLE());
+				    	claimHeader.setTotalClaimChargeAmount(recClcl.getCLCLTOTCHG());
+				    	claimHeader.setClaimSubmissionType(recClcl.getCLCLCLSUBTYPE());
+				    	claimHeader.setReceivedDate(convertXMLGCToString(recClcl.getCLCLRECDDT()));
+				    	claimHeader.setCarrier(recClcl.getCSCSID());
+				    	claimHeader.setAdmissionDate(convertXMLGCToString(recClcl.getCLHPADMDT()));
+				    	claimHeader.setDischargedDate(convertXMLGCToString(recClcl.getCLHPDCDT()));
+				    	claimHeader.setStatementFromDate(convertXMLGCToString(recClcl.getCLHPSTAMENTFRDT()));
+				    	claimHeader.setStatementToDate(convertXMLGCToString(recClcl.getCLHPSTAMENTTODT()));
+				    	claimHeader.setClassId(recClcl.getCSCSID());
+				    	claimHeader.setClassPlanId(recClcl.getCSPIID());
+				    	claimHeader.setProductId(recClcl.getPDPDID());
+				    	claimHeader.setProductType(recClcl.getPDDSPRODTYPE());
+				    	claimHeader.setProductCategory(recClcl.getCSPDCAT());
+				    	claimHeader.setBusinessCategory(recClcl.getPDDSMCTRBCAT());
+				    	claimHeader.setNetworkId(recClcl.getNWNWID());
+		
+				    	claimMember.setMemberId(recClcl.getMEMECK());
+				    	claimMember.setGroupId(recClcl.getGRGRCK());
+				    	claimMember.setSubscriberId(recClcl.getSBSBID());
+				    	claimMember.setMemberSuffix(recClcl.getMEMESFX());
+				    	
+				    	claimProvider.setBillingProviderId(recClcl.getCLCLPAYEEPRID());
+				    	claimProvider.setRenderingProviderId(recClcl.getPRPRID());
+				    	claimProvider.setOperatingProviderNPI(recClcl.getCLHPPRPROPNPI());
+				    	claimProvider.setOperatingProviderTaxID(recClcl.getCLHPPRPROPTAX());
+				    	claimProvider.setReferingProviderTaxID(recClcl.getCLMFPRPRFATAX());
+				    	claimProvider.setServiceFacilityProviderID(recClcl.getCLMFPRPRIDFAC());
+				    	claimProvider.setServiceFacilityTaxID(recClcl.getCLMFPRPRFATAX());
+				    	
+				    	claimCob.setOtherPayerPaid(recClcl.getCLCBCOBAMT());
+				    	claimCob.setOtherPayerAllowable(recClcl.getCLCBCOBALLOW());
+				    	claim.setClaimHeader(claimHeader);
+				    	claim.setClaimMembers(claimMember);
+				    	claim.setClaimCob(claimCob);
+				    	claim.setClaimProvider(claimProvider);
+				    }
 		    	}
 		    } 
 		    return claim;
@@ -166,10 +143,10 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	* API method to retrieve Claim service line
 	**/
 	@Override
-	public List<ClaimServiceLine> getClaimServiceLine(String id) {
+	public List<ClaimServiceLine> getClaimServiceLine(String claimId) {
 
 		logger.info("in ServiceImpl getClaimServiceLine() method"); 
-		ListClaimCDMLV9ClaimId request = new ListClaimCDMLV9ClaimId();
+		ListClaimCDMLV9ClaimId listClaimCDMLV9ClaimIdRequest = new ListClaimCDMLV9ClaimId();
 		com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config config = new com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config();
 		
 		ClaimMembers claimMember;
@@ -177,51 +154,53 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		ClaimDiagnosis claimDiagnosis;
 		ClaimProvider claimProvider;
 		List<ClaimServiceLine> servLineList = new ArrayList<>();
-		config.setFacetsIdentity(facetIdentity);
-		request.setPCLCLID(id);
-		request.setPPAGE(pages);
-		request.setPPAGESIZE(pageSize);
-		request.setPSKIPROWS(skipRows);
-		request.setPConfig(config);
-		   
+		 
+		config.setFacetsIdentity(claimProperty.getConfigIdentity());
+		listClaimCDMLV9ClaimIdRequest.setPCLCLID(claimId);
+		listClaimCDMLV9ClaimIdRequest.setPPAGE(claimProperty.getPages());
+		listClaimCDMLV9ClaimIdRequest.setPPAGESIZE(claimProperty.getPageSize());
+		listClaimCDMLV9ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows()); 
+		listClaimCDMLV9ClaimIdRequest.setPConfig(config);
 		
-		ListClaimCDMLV9ClaimIdResponse  response = (ListClaimCDMLV9ClaimIdResponse)webServiceConnector.callWebService(facetServLineWsdlUrl, request, facetServLineNameSpace);
-		 if(response != null) {
-		    	ArrayOfRECCDML recCdmlArray = response.getListClaimCDMLV9ClaimIdResult().getCDMLCOLL();
-		    	List<RECCDML> recCdmlList = recCdmlArray.getRECCDML();
-		    	for(RECCDML recCdml : recCdmlList) {
-		    		
-		    		claimMember = new ClaimMembers();
-		    		claimServLine = new ClaimServiceLine();
-		    		claimDiagnosis = new ClaimDiagnosis();
-		    		claimProvider = new ClaimProvider();
-		    		
-		    		claimServLine.setClaimId(recCdml.getCLCLID());
-		    		claimServLine.setLineNumber(recCdml.getCDMLSEQNO());
-		    		claimServLine.setConditionCode(recCdml.getIPCDID());		    		
-		    		claimServLine.setServiceFromDate(convertXMLGCToString(recCdml.getCDMLFROMDT()));
-		    		claimServLine.setServiceToDate(convertXMLGCToString(recCdml.getCDMLTODT()));
-		    		//claimServLine.setStatus(recCdml.getcdmlc);
-		    		claimServLine.setChargeAmount(recCdml.getCDMLCHGAMT());
-		    		claimServLine.setTotalClaimAllowedAmount(recCdml.getCDMLALLOW());
-		    		claimServLine.setUnits(recCdml.getCDMLUNITS());
-		    		claimServLine.setNonCoveredChargeAmount(recCdml.getCDMLUNITSALLOW());
-		    		claimServLine.setConditionReferalIndicator(recCdml.getCDMLREFIND());
-		    		claimServLine.setPatientPaidAmount(recCdml.getCDMLPAIDAMT());
-		    		claimServLine.setDeductibleAmount(recCdml.getCDMLDEDAMT());
-		    		claimServLine.setCopayAmount(recCdml.getCDMLCOPAYAMT());
-		    		claimServLine.setCoinsuranceAmount(recCdml.getCDMLCOINSAMT());
-		    		claimServLine.setPlaceOfService(recCdml.getPSCDID()!=null ? recCdml.getPSCDID() : "" 
-		    					+recCdml.getPSCDDESC() !=null ? recCdml.getPSCDDESC() : "");
-		    		claimServLine.setRiskAmt(recCdml.getCDMLRISKWHAMT());
-		    		claimServLine.setDiscountAmount(recCdml.getCDMLDISCAMT());
-		    		claimProvider.setRenderingProviderId(recCdml.getPRPRID());
-		    		claimDiagnosis.setDiagnosisCodeVersion(recCdml.getIDCDID());
-		    		claimMember.setSubscriberId(recCdml.getSBSBID());
-		    		claimMember.setMemberSuffix(recCdml.getMEMESFX());
-		    		claimServLine.setClaimDiagnosis(claimDiagnosis);
-		    		
-		    		servLineList.add(claimServLine);
+		ListClaimCDMLV9ClaimIdResponse  listClaimCDMLV9ClaimIdResponse = (ListClaimCDMLV9ClaimIdResponse)webServiceConnector.callWebService(claimProperty.getServLineWsdl(), listClaimCDMLV9ClaimIdRequest, claimProperty.getServLineNameSpace());
+		 if(listClaimCDMLV9ClaimIdResponse != null) {
+		    	ArrayOfRECCDML recCdmlArray = listClaimCDMLV9ClaimIdResponse.getListClaimCDMLV9ClaimIdResult().getCDMLCOLL();
+		    	if(recCdmlArray != null ) {
+			    	List<RECCDML> recCdmlList = recCdmlArray.getRECCDML();
+			    	for(RECCDML recCdml : recCdmlList) {
+			    		
+			    		claimMember = new ClaimMembers();
+			    		claimServLine = new ClaimServiceLine();
+			    		claimDiagnosis = new ClaimDiagnosis();
+			    		claimProvider = new ClaimProvider();
+			    		
+			    		claimServLine.setClaimId(recCdml.getCLCLID());
+			    		claimServLine.setLineNumber(recCdml.getCDMLSEQNO());
+			    		claimServLine.setConditionCode(recCdml.getIPCDID());		    		
+			    		claimServLine.setServiceFromDate(convertXMLGCToString(recCdml.getCDMLFROMDT()));
+			    		claimServLine.setServiceToDate(convertXMLGCToString(recCdml.getCDMLTODT()));
+			    		//claimServLine.setStatus(recCdml.getcdmlc);
+			    		claimServLine.setChargeAmount(recCdml.getCDMLCHGAMT());
+			    		claimServLine.setTotalClaimAllowedAmount(recCdml.getCDMLALLOW());
+			    		claimServLine.setUnits(recCdml.getCDMLUNITS());
+			    		claimServLine.setNonCoveredChargeAmount(recCdml.getCDMLUNITSALLOW());
+			    		claimServLine.setConditionReferalIndicator(recCdml.getCDMLREFIND());
+			    		claimServLine.setPatientPaidAmount(recCdml.getCDMLPAIDAMT());
+			    		claimServLine.setDeductibleAmount(recCdml.getCDMLDEDAMT());
+			    		claimServLine.setCopayAmount(recCdml.getCDMLCOPAYAMT());
+			    		claimServLine.setCoinsuranceAmount(recCdml.getCDMLCOINSAMT());
+			    		claimServLine.setPlaceOfService(recCdml.getPSCDID()!=null ? recCdml.getPSCDID() : "" 
+			    					+recCdml.getPSCDDESC() !=null ? recCdml.getPSCDDESC() : "");
+			    		claimServLine.setRiskAmt(recCdml.getCDMLRISKWHAMT());
+			    		claimServLine.setDiscountAmount(recCdml.getCDMLDISCAMT());
+			    		claimProvider.setRenderingProviderId(recCdml.getPRPRID());
+			    		claimDiagnosis.setDiagnosisCodeVersion(recCdml.getIDCDID());
+			    		claimMember.setSubscriberId(recCdml.getSBSBID());
+			    		claimMember.setMemberSuffix(recCdml.getMEMESFX());
+			    		claimServLine.setClaimDiagnosis(claimDiagnosis);
+			    		
+			    		servLineList.add(claimServLine);
+			    	}
 		    	}
 		 }
 		return servLineList;

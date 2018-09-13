@@ -44,6 +44,7 @@ C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\triz
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMSVResponse.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMINResponse.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLID.java
+C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\ClaimProperty.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\Claim.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECRESP.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\package-info.java
@@ -71,7 +72,6 @@ C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\triz
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Config.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11Response.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderId.java
-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\AppProperty.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\package-info.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderIdResponse.java
 C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimDiagnosis.java
