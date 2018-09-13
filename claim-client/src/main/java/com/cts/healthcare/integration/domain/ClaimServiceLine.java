@@ -7,17 +7,17 @@ public class ClaimServiceLine {
 	
 	private String claimId;
 	private int lineNumber;
-	private Date serviceToDate;
-	private Date serviceFromDate;
+	private String serviceToDate;
+	private String serviceFromDate;
 	private String placeOfService;
 	private String conditionCode;
 	private String procedureCodes;
 	private String serviceLineRevenueCode;
 	private String status;
 	private String allPendCodes;
-	private Date paidDate;
+	private String paidDate;
 	private String operator;
-	private Date transactionDate;
+	private String transactionDate;
 	private BigDecimal chargeAmount;
 	private BigDecimal totalClaimAllowedAmount;
 	private int nonCoveredChargeAmount;
@@ -47,11 +47,13 @@ public class ClaimServiceLine {
 	private String NDCPrice;
 	private String NDCPrescriptionQualifier;
 	private String prescriptionNumber;
-	private Date prescriptionDate;
+	private String prescriptionDate;
 	private String suppNote;
 	private String serviceNotes;
 	private String feeSchedule;
 	private ClaimDiagnosis claimDiagnosis;
+	
+	
 	
 	
 	
@@ -67,16 +69,16 @@ public class ClaimServiceLine {
 	public void setLineNumber(int lineNumber) {
 		this.lineNumber = lineNumber;
 	}
-	public Date getServiceToDate() {
+	public String getServiceToDate() {
 		return serviceToDate;
 	}
-	public void setServiceToDate(Date serviceToDate) {
+	public void setServiceToDate(String serviceToDate) {
 		this.serviceToDate = serviceToDate;
 	}
-	public Date getServiceFromDate() {
+	public String getServiceFromDate() {
 		return serviceFromDate;
 	}
-	public void setServiceFromDate(Date serviceFromDate) {
+	public void setServiceFromDate(String serviceFromDate) {
 		this.serviceFromDate = serviceFromDate;
 	}
 	public String getPlaceOfService() {
@@ -115,10 +117,10 @@ public class ClaimServiceLine {
 	public void setAllPendCodes(String allPendCodes) {
 		this.allPendCodes = allPendCodes;
 	}
-	public Date getPaidDate() {
+	public String getPaidDate() {
 		return paidDate;
 	}
-	public void setPaidDate(Date paidDate) {
+	public void setPaidDate(String paidDate) {
 		this.paidDate = paidDate;
 	}
 	public String getOperator() {
@@ -127,10 +129,10 @@ public class ClaimServiceLine {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
-	public Date getTransactionDate() {
+	public String getTransactionDate() {
 		return transactionDate;
 	}
-	public void setTransactionDate(Date transactionDate) {
+	public void setTransactionDate(String transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 	public BigDecimal getChargeAmount() {
@@ -307,10 +309,10 @@ public class ClaimServiceLine {
 	public void setPrescriptionNumber(String prescriptionNumber) {
 		this.prescriptionNumber = prescriptionNumber;
 	}
-	public Date getPrescriptionDate() {
+	public String getPrescriptionDate() {
 		return prescriptionDate;
 	}
-	public void setPrescriptionDate(Date prescriptionDate) {
+	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
 	}
 	public String getSuppNote() {
@@ -337,8 +339,5 @@ public class ClaimServiceLine {
 	public void setClaimDiagnosis(ClaimDiagnosis claimDiagnosis) {
 		this.claimDiagnosis = claimDiagnosis;
 	}
-	
-	
-	
-			
+		
 }

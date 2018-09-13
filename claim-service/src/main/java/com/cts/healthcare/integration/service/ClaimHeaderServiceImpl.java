@@ -112,12 +112,12 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		    	claimHeader.setTotalPayableAmount(recClcl.getCLCLTOTPAYABLE());
 		    	claimHeader.setTotalClaimChargeAmount(recClcl.getCLCLTOTCHG());
 		    	claimHeader.setClaimSubmissionType(recClcl.getCLCLCLSUBTYPE());
-		    	claimHeader.setReceivedDate(convertXMLGCToDate(recClcl.getCLCLRECDDT()));
+		    	claimHeader.setReceivedDate(convertXMLGCToString(recClcl.getCLCLRECDDT()));
 		    	claimHeader.setCarrier(recClcl.getCSCSID());
-		    	claimHeader.setAdmissionDate(convertXMLGCToDate(recClcl.getCLHPADMDT()));
-		    	claimHeader.setDischargedDate(convertXMLGCToDate(recClcl.getCLHPDCDT()));
-		    	claimHeader.setStatementFromDate(convertXMLGCToDate(recClcl.getCLHPSTAMENTFRDT()));
-		    	claimHeader.setStatementToDate(convertXMLGCToDate(recClcl.getCLHPSTAMENTTODT()));
+		    	claimHeader.setAdmissionDate(convertXMLGCToString(recClcl.getCLHPADMDT()));
+		    	claimHeader.setDischargedDate(convertXMLGCToString(recClcl.getCLHPDCDT()));
+		    	claimHeader.setStatementFromDate(convertXMLGCToString(recClcl.getCLHPSTAMENTFRDT()));
+		    	claimHeader.setStatementToDate(convertXMLGCToString(recClcl.getCLHPSTAMENTTODT()));
 		    	claimHeader.setClassId(recClcl.getCSCSID());
 		    	claimHeader.setClassPlanId(recClcl.getCSPIID());
 		    	claimHeader.setProductId(recClcl.getPDPDID());
@@ -184,8 +184,8 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		    		claimServLine.setClaimId(recCdml.getCLCLID());
 		    		claimServLine.setLineNumber(recCdml.getCDMLSEQNO());
 		    		claimServLine.setConditionCode(recCdml.getIPCDID());		    		
-		    		claimServLine.setServiceFromDate(convertXMLGCToDate(recCdml.getCDMLFROMDT()));
-		    		claimServLine.setServiceToDate(convertXMLGCToDate(recCdml.getCDMLTODT()));
+		    		claimServLine.setServiceFromDate(convertXMLGCToString(recCdml.getCDMLFROMDT()));
+		    		claimServLine.setServiceToDate(convertXMLGCToString(recCdml.getCDMLTODT()));
 		    		//claimServLine.setStatus(recCdml.getcdmlc);
 		    		claimServLine.setChargeAmount(recCdml.getCDMLCHGAMT());
 		    		claimServLine.setTotalClaimAllowedAmount(recCdml.getCDMLALLOW());
@@ -230,25 +230,15 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	}
 	 
 	
-	public Date convertXMLGCToDate(XMLGregorianCalendar xmlDate)
-	{
-		Date date =null;
-		if(xmlDate!= null) {
-			 TimeZone timeZone = TimeZone.getDefault();
-			 DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS z");
-			 df.setTimeZone(timeZone);
-		        Date date1 =  xmlDate.toGregorianCalendar().getTime();
-		       
-		        String dateString = df.format(date1);
-		        System.out.println(dateString);
-		        try {
-					date = df.parse(dateString);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        
-		}
-		return date;
-	} 
+	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)
+    {
+          String dateString =null;
+          Date date = null;
+          if(xmlDate!= null) {
+                 DateFormat df = new SimpleDateFormat("yyyyMMdd'T'hhmmss.SSS z");
+               date =  xmlDate.toGregorianCalendar().getTime();
+               dateString = df.format(date);
+          }
+          return dateString;
+    }  
 }

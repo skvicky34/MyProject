@@ -9,7 +9,7 @@ public class Member {
 	private Long patientId;
 	private String lastName;
 	private String firstName;
-	private Date dateOfBirth;
+	private String dateOfBirth;
 	private String genderCode;
 	private long mothersMedicaidId;
 	private String medicaidNumber;
@@ -17,8 +17,8 @@ public class Member {
 	private String medicareNumber;
 	private long caseNumber;
 	private String healthInsuranceClaimNumber;
-	private Date effectiveDate;
-	private Date effectiveToDate;
+	private String effectiveDate;
+	private String effectiveToDate;
 	private String carrier;
 	private String memberClass;
 	private String insurerRelation;
@@ -45,10 +45,10 @@ public class Member {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 	public String getGenderCode() {
@@ -93,16 +93,16 @@ public class Member {
 	public void setHealthInsuranceClaimNumber(String healthInsuranceClaimNumber) {
 		this.healthInsuranceClaimNumber = healthInsuranceClaimNumber;
 	}
-	public Date getEffectiveDate() {
+	public String getEffectiveDate() {
 		return effectiveDate;
 	}
-	public void setEffectiveDate(Date effectiveDate) {
+	public void setEffectiveDate(String effectiveDate) {
 		this.effectiveDate = effectiveDate;
 	}
-	public Date getEffectiveToDate() {
+	public String getEffectiveToDate() {
 		return effectiveToDate;
 	}
-	public void setEffectiveToDate(Date effectiveToDate) {
+	public void setEffectiveToDate(String effectiveToDate) {
 		this.effectiveToDate = effectiveToDate;
 	}
 	public String getCarrier() {

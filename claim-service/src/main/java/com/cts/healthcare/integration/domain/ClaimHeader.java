@@ -13,10 +13,10 @@ public class ClaimHeader {
 	private String description;
 	private BigDecimal totalPayableAmount;
 	private BigDecimal totalClaimChargeAmount;
-	private Date statementFromDate;
-	private Date statementToDate;
-	private Date admissionDate;
-	private Date receivedDate;
+	private String statementFromDate;
+	private String statementToDate;
+	private String admissionDate;
+	private String receivedDate;
 	private String crossReferenceClaimNumber;
 	private String businessType;
 	private String carrier;
@@ -28,7 +28,7 @@ public class ClaimHeader {
 	private String admissionSourceCode;
 	private String admissionTypeCode;
 	private String admissionTime;
-	private Date dischargedDate;
+	private String dischargedDate;
 	private String dischargeHour;
 	private String patientDischargeFacilityTypeCode;
 	private String claimSubmissionType;
@@ -89,28 +89,28 @@ public class ClaimHeader {
 	public void setTotalClaimChargeAmount(BigDecimal totalClaimChargeAmount) {
 		this.totalClaimChargeAmount = totalClaimChargeAmount;
 	}
-	public Date getStatementFromDate() {
+	public String getStatementFromDate() {
 		return statementFromDate;
 	}
-	public void setStatementFromDate(Date statementFromDate) {
+	public void setStatementFromDate(String statementFromDate) {
 		this.statementFromDate = statementFromDate;
 	}
-	public Date getStatementToDate() {
+	public String getStatementToDate() {
 		return statementToDate;
 	}
-	public void setStatementToDate(Date statementToDate) {
+	public void setStatementToDate(String statementToDate) {
 		this.statementToDate = statementToDate;
 	}
-	public Date getAdmissionDate() {
+	public String getAdmissionDate() {
 		return admissionDate;
 	}
-	public void setAdmissionDate(Date admissionDate) {
+	public void setAdmissionDate(String admissionDate) {
 		this.admissionDate = admissionDate;
 	}
-	public Date getReceivedDate() {
+	public String getReceivedDate() {
 		return receivedDate;
 	}
-	public void setReceivedDate(Date receivedDate) {
+	public void setReceivedDate(String receivedDate) {
 		this.receivedDate = receivedDate;
 	}
 	public String getCrossReferenceClaimNumber() {
@@ -179,10 +179,10 @@ public class ClaimHeader {
 	public void setAdmissionTime(String admissionTime) {
 		this.admissionTime = admissionTime;
 	}
-	public Date getDischargedDate() {
+	public String getDischargedDate() {
 		return dischargedDate;
 	}
-	public void setDischargedDate(Date dischargedDate) {
+	public void setDischargedDate(String dischargedDate) {
 		this.dischargedDate = dischargedDate;
 	}
 	public String getDischargeHour() {

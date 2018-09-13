@@ -19,10 +19,8 @@ com\trizetto\fxi\isl\ObjectFactory.class
 com\cts\healthcare\integration\client\WebServiceConnector$1.class
 com\trizetto\fxi\isl\fawsvcinpgetmember_v3\ArrayOfString.class
 com\cts\healthcare\integration\controller\MemberHeaderRestController.class
-com\cts\healthcare\integration\domain\MemberSubscriber.class
 com\cts\healthcare\integration\service\MemberService.class
 com\cts\healthcare\integration\client\WebServiceConnector.class
-com\cts\healthcare\integration\domain\MemberPatient.class
 com\cts\healthcare\integration\config\WsConfigClient.class
 com\cts\healthcare\integration\service\MemberHeaderServiceImpl.class
 com\cts\healthcare\integration\domain\ClaimHeader.class

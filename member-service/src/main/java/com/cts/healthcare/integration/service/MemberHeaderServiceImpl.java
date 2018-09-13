@@ -77,39 +77,38 @@ public class MemberHeaderServiceImpl implements MemberService
 		request.setPMEMECK(id);
 		request.setPConfig(config);
 		    
-		GetMemberV3MemberKeyResponse  response = (GetMemberV3MemberKeyResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetMemberNameSpace);
-		    if(response != null) {
-		    	ArrayOfRECMEME recmemeArray = response.getGetMemberV3MemberKeyResult().getMEMECOLL();
-		    	List<RECMEME> recmemeList = recmemeArray.getRECMEME();
-		    	Iterator<RECMEME> it =  recmemeList.iterator();
-		    	for(RECMEME rr : recmemeList) {
-		    		member.setPatientId(Long.valueOf(rr.getMEMERECORDNO()));
-		    		member.setFirstName(rr.getMEMEFIRSTNAME());
-		    		member.setLastName(rr.getMEMELASTNAME());
-		    		member.setDateOfBirth(convertXMLGCToDate(rr.getMEMEBIRTHDT()));
-		    		member.setGenderCode(rr.getMEMESEX());
-		    		member.setMedicaidNumber(rr.getMEMEMEDCDNO());
-		    		member.setSocialSecurityNumber(rr.getMEMESSN());
-		    		member.setMedicareNumber(rr.getMEMEHICN());
-		    		member.setHealthInsuranceClaimNumber(rr.getMEMEHICN());
-		    		member.setEffectiveDate(convertXMLGCToDate(rr.getMEMEELIGDT()));
-		    		member.setEffectiveToDate(convertXMLGCToDate(rr.getMEMEORIGEFFDT()));
-		    		member.setInsurerRelation(rr.getMEMEREL());
-		    		
-		    		String address = rr.getSBADADDR1MAIL() + " " + rr.getSBADADDR2MAIL() + " " + rr.getSBADADDR3MAIL();
-		    		member.setAddress(address);
-		    		member.setCity(rr.getSBADCITYMAIL());
-		    		member.setState(rr.getSBADSTATEMAIL());
-		    		member.setZip(rr.getSBADZIPMAIL());
-
-		    	
+		GetMemberV3MemberKeyResponse  getMemberV3MemberKeyResponse = (GetMemberV3MemberKeyResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetMemberNameSpace);
+		    if(getMemberV3MemberKeyResponse != null) {
+		    	ArrayOfRECMEME recMemeArray = getMemberV3MemberKeyResponse.getGetMemberV3MemberKeyResult().getMEMECOLL();
+		    	if(recMemeArray != null)
+		    	{
+			    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
+			    	
+			    	for(RECMEME rr : recMemeList) {
+			    		member.setPatientId(Long.valueOf(rr.getMEMERECORDNO()));
+			    		member.setFirstName(rr.getMEMEFIRSTNAME());
+			    		member.setLastName(rr.getMEMELASTNAME());
+			    		member.setDateOfBirth(convertXMLGCToString(rr.getMEMEBIRTHDT()));
+			    		member.setGenderCode(rr.getMEMESEX());
+			    		member.setMedicaidNumber(rr.getMEMEMEDCDNO());
+			    		member.setSocialSecurityNumber(rr.getMEMESSN());
+			    		member.setMedicareNumber(rr.getMEMEHICN());
+			    		member.setHealthInsuranceClaimNumber(rr.getMEMEHICN());
+			    		member.setEffectiveDate(convertXMLGCToString(rr.getMEMEELIGDT()));
+			    		member.setEffectiveToDate(convertXMLGCToString(rr.getMEMEORIGEFFDT()));
+			    		member.setInsurerRelation(rr.getMEMEREL());
+			    		
+			    		String address = rr.getSBADADDR1MAIL() + " " + rr.getSBADADDR2MAIL() + " " + rr.getSBADADDR3MAIL();
+			    		member.setAddress(address);
+			    		member.setCity(rr.getSBADCITYMAIL());
+			    		member.setState(rr.getSBADSTATEMAIL());
+			    		member.setZip(rr.getSBADZIPMAIL());
+	
+			    	
+			    	}
 		    	}
-		    }else {
-		    	System.out.println(" Error in getting member ");
 		    }
-		    
 		    return member;
-		 
 	}
 
 	@Override
@@ -129,43 +128,44 @@ public class MemberHeaderServiceImpl implements MemberService
 		request.setPConfig(config);
 		
 		
-		GetMemberV3SubscriberIdResponse  response = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetSubNameSpace);
-	    if(response != null) {
-	    	ArrayOfRECMEME recmemeArray = response.getGetMemberV3SubscriberIdResult().getMEMECOLL();
-	    	List<RECMEME> recmemeList = recmemeArray.getRECMEME();
-    		for(RECMEME rr : recmemeList) {	    	
-	    		member.setPatientId(Long.valueOf(rr.getSBSBID()));
-	    		member.setFirstName(rr.getSBSBFIRSTNAME());
-	    		member.setLastName(rr.getSBSBLASTNAME());
-	    		if(rr.getSBSBMEMEBIRTHDT()!=null)
-	    		{
-	    			member.setDateOfBirth(convertXMLGCToDate(rr.getSBSBMEMEBIRTHDT()));
-	    		}
-	    		
-	    		member.setGenderCode(rr.getSBSBMEMESEX());
-	    		member.setMedicaidNumber(rr.getMEMEMEDCDNO());
-	    		member.setSocialSecurityNumber(rr.getMEMESSN());
-	    		member.setMedicareNumber(rr.getMEMEHICN());
-	    		member.setHealthInsuranceClaimNumber(rr.getMEMEHICN());
-	    		if(rr.getMEMEELIGDT()!=null)
-	    		{
-	    		member.setEffectiveDate(convertXMLGCToDate(rr.getMEMEELIGDT()));
-	    		}
-	    		if(rr.getMEMEORIGEFFDT()!=null)
-	    		{
-	    		member.setEffectiveToDate(convertXMLGCToDate(rr.getMEMEORIGEFFDT()));
-	    		}
-	    		
-	    		String address = rr.getSBADADDR1MAIL() + " " 
-	    						+ (rr.getSBADADDR2MAIL()==null?"":" "  + rr.getSBADADDR2MAIL())
-	    						+ (rr.getSBADADDR3MAIL()==null?"":" " +rr.getSBADADDR3MAIL()) ;
-	    		member.setAddress(address);
-	    		member.setCity(rr.getSBADCITYMAIL());
-	    		member.setState(rr.getSBADSTATEMAIL());
-	    		member.setZip(rr.getSBADZIPMAIL());
+		GetMemberV3SubscriberIdResponse  getMemberV3SubscriberIdResponse = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(facetMemberWsdlUrl, request, facetSubNameSpace);
+	    if(getMemberV3SubscriberIdResponse != null) {
+	    	ArrayOfRECMEME recMemeArray = getMemberV3SubscriberIdResponse.getGetMemberV3SubscriberIdResult().getMEMECOLL();
+	    	if(recMemeArray!=null)
+	    	{
+		    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
+	    		for(RECMEME rr : recMemeList) {	    	
+		    		member.setPatientId(Long.valueOf(rr.getSBSBID()));
+		    		member.setFirstName(rr.getSBSBFIRSTNAME());
+		    		member.setLastName(rr.getSBSBLASTNAME());
+		    		if(rr.getSBSBMEMEBIRTHDT()!=null)
+		    		{
+		    			member.setDateOfBirth(convertXMLGCToString(rr.getSBSBMEMEBIRTHDT()));
+		    		}
+		    		
+		    		member.setGenderCode(rr.getSBSBMEMESEX());
+		    		member.setMedicaidNumber(rr.getMEMEMEDCDNO());
+		    		member.setSocialSecurityNumber(rr.getMEMESSN());
+		    		member.setMedicareNumber(rr.getMEMEHICN());
+		    		member.setHealthInsuranceClaimNumber(rr.getMEMEHICN());
+		    		if(rr.getMEMEELIGDT()!=null)
+		    		{
+		    		member.setEffectiveDate(convertXMLGCToString(rr.getMEMEELIGDT()));
+		    		}
+		    		if(rr.getMEMEORIGEFFDT()!=null)
+		    		{
+		    		member.setEffectiveToDate(convertXMLGCToString(rr.getMEMEORIGEFFDT()));
+		    		}
+		    		
+		    		String address = rr.getSBADADDR1MAIL() + " " 
+		    						+ (rr.getSBADADDR2MAIL()!=null?rr.getSBADADDR2MAIL():"")
+		    						+ (rr.getSBADADDR3MAIL()!=null?rr.getSBADADDR3MAIL():"") ;
+		    		member.setAddress(address);
+		    		member.setCity(rr.getSBADCITYMAIL());
+		    		member.setState(rr.getSBADSTATEMAIL());
+		    		member.setZip(rr.getSBADZIPMAIL());
+		    	}
 	    	}
-	    }else {
-	    	System.out.println(" Error in getting member ");
 	    }
 		
 		return member;
@@ -173,15 +173,15 @@ public class MemberHeaderServiceImpl implements MemberService
 	} 
 	
 	
-	public Date convertXMLGCToDate(XMLGregorianCalendar xmlDate)
-	{
-		Date date =null;
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddThh:mm:ss.SSZ");
-		if(xmlDate!= null) {
-			XMLGregorianCalendar xmlCalendar = xmlDate;
-			date = xmlCalendar.toGregorianCalendar().getTime();
-			//date = sdf.format(date);
-		}
-		return date;
-	}  
+	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)
+    {
+          String dateString =null;
+          Date date = null;
+          if(xmlDate!= null) {
+                 DateFormat df = new SimpleDateFormat("yyyyMMdd");
+               date =  xmlDate.toGregorianCalendar().getTime();
+               dateString = df.format(date);
+          }
+          return dateString;
+    }  
 }
