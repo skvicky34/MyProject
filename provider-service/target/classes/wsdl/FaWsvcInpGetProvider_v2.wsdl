@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s1="http://trizetto.com/fxi/isl" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2">
+      <s:element name="GetProvider_v2_ProviderId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPRPR_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Config">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FacetsIdentity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemUserName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CallingSystemTransactionId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RequestedColumns" type="tns:ArrayOfString" />
+              <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RecordBase" />
+      <s:complexType name="REC_PREP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRPG_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPG_NAME" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PREP_EFF_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PREP_TERM_DT" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_PRAL">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRAL_MCTR_LANG" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAL_MCTR_LANG_DESC" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_PRAI">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRAI_PRPR_ID_ASSOC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAI_PRPR_ID_NAME" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRAI_EFF_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRAI_TERM_DT" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_PRZA">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MCCY_CTRY_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GZCD_ZIP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GZCD_ZIP_PLUS_LOW" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRZA_EFF_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="GZCD_ZIP_PLUS_HIGH" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRZA_TERM_DT" nillable="true" type="s:dateTime" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_PROV">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_ENTITY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NAME" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRPR_TERM_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC2_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRCF_MCTR_SPEC2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_STS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_LANG_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_VAL1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_VAL1_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_VAL2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_MCTR_VAL2_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_ADDR1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_ADDR2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_ADDR3" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_CITY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_STATE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_ZIP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_COUNTY" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_PHONE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_PHONE_EXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_FAX" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_FAX_EXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_EMAIL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_CTRY_CD" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_HD_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAD_PRACTICE_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRPR_NPI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRRC_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRRC_DESC" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRRP_EFF_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRRP_TERM_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRES_AMT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRES_EFF_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRES_TERM_DT" nillable="true" type="s:dateTime" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRES_MCTR_TYPE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRES_TYPE_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRZA_COLL" type="tns:ArrayOfREC_PRZA" />
+              <s:element minOccurs="1" maxOccurs="1" name="PRAM_MEM_PCT" nillable="true" type="s:decimal" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAM_EMR_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAM_EPRES_IND" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAM_MCTR_VAL" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAM_MCTR_VAL_DESC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAI_COLL" type="tns:ArrayOfREC_PRAI" />
+              <s:element minOccurs="0" maxOccurs="1" name="PRAL_COLL" type="tns:ArrayOfREC_PRAL" />
+              <s:element minOccurs="0" maxOccurs="1" name="PREP_COLL" type="tns:ArrayOfREC_PREP" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_PRZA">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_PRZA" nillable="true" type="tns:REC_PRZA" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_PRAI">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_PRAI" nillable="true" type="tns:REC_PRAI" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_PRAL">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_PRAL" nillable="true" type="tns:REC_PRAL" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_PREP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_PREP" nillable="true" type="tns:REC_PREP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="REC_RESP">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PITM_TICKET_NO" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PITM_STS" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_SERVICE" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="REC_ERR">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CODE" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_CONTEXT" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_USER" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_SYS" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ERR_MSG_PROG" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:RecordBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="AppReturnCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="AppErrors" type="tns:ArrayOfREC_ERR" />
+              <s:element minOccurs="0" maxOccurs="1" name="RESP_COLL" type="tns:ArrayOfREC_RESP" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_ERR">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_ERR" nillable="true" type="tns:REC_ERR" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_RESP">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_RESP" nillable="true" type="tns:REC_RESP" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetProvider_v2Response">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Response">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="PROV_COLL" type="tns:ArrayOfREC_PROV" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfREC_PROV">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="REC_PROV" nillable="true" type="tns:REC_PROV" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProvider_v2_ProviderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProvider_v2_ProviderIdResult" type="tns:GetProvider_v2Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProvider_v2_AddrType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pConfig" type="tns:Config" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPRPR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pPRAD_TYPE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetProvider_v2_AddrTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProvider_v2_AddrTypeResult" type="tns:GetProvider_v2Response" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://trizetto.com/fxi/isl">
+      <s:element name="FxiIslHeader" type="s1:FxiIslHeader" />
+      <s:complexType name="FxiIslHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Partner" type="s1:PartnerType" />
+          <s:element minOccurs="1" maxOccurs="1" name="Data" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:complexType name="PartnerType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PartnerName" type="s1:PartnerNameType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PartnerTime" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PartnerNameType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Facets" />
+          <s:enumeration value="HealthWeb" />
+          <s:enumeration value="NetworX" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HdrCollection">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Column" nillable="true" type="s1:HdrColumn" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SubCollection" nillable="true" type="s1:HdrCollection" />
+        </s:sequence>
+        <s:attribute name="type" type="s1:CollectionTypeList" use="required" />
+        <s:attribute name="name" type="s:string" />
+      </s:complexType>
+      <s:complexType name="HdrColumn">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="name" type="s:string" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="CollectionTypeList">
+        <s:restriction base="s:string">
+          <s:enumeration value="SoapHeader" />
+          <s:enumeration value="Input" />
+          <s:enumeration value="Row" />
+          <s:enumeration value="Group" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProvider_v2_ProviderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProvider_v2_ProviderId" />
+  </wsdl:message>
+  <wsdl:message name="GetProvider_v2_ProviderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProvider_v2_ProviderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProvider_v2_ProviderIdFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetProvider_v2_AddrTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProvider_v2_AddrType" />
+  </wsdl:message>
+  <wsdl:message name="GetProvider_v2_AddrTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProvider_v2_AddrTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProvider_v2_AddrTypeFxiIslHeader">
+    <wsdl:part name="FxiIslHeader" element="s1:FxiIslHeader" />
+  </wsdl:message>
+  <wsdl:portType name="WebSvcGetProvider_v2Soap">
+    <wsdl:operation name="GetProvider_v2_ProviderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Provider information by Provider Identifier.</wsdl:documentation>
+      <wsdl:input message="tns:GetProvider_v2_ProviderIdSoapIn" />
+      <wsdl:output message="tns:GetProvider_v2_ProviderIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProvider_v2_AddrType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This service retrieves Provider information by Provider Address Type.</wsdl:documentation>
+      <wsdl:input message="tns:GetProvider_v2_AddrTypeSoapIn" />
+      <wsdl:output message="tns:GetProvider_v2_AddrTypeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebSvcGetProvider_v2Soap" type="tns:WebSvcGetProvider_v2Soap">
+    <wsdl:documentation>
+      <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" />
+    </wsdl:documentation>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProvider_v2_ProviderId">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2/GetProvider_v2_ProviderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProvider_v2_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvider_v2_AddrType">
+      <soap:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2/GetProvider_v2_AddrType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProvider_v2_AddrTypeFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebSvcGetProvider_v2Soap12" type="tns:WebSvcGetProvider_v2Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProvider_v2_ProviderId">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2/GetProvider_v2_ProviderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProvider_v2_ProviderIdFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProvider_v2_AddrType">
+      <soap12:operation soapAction="http://trizetto.com/fxi/isl/FaWsvcInpGetProvider_v2/GetProvider_v2_AddrType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProvider_v2_AddrTypeFxiIslHeader" part="FxiIslHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebSvcGetProvider_v2">
+    <wsdl:port name="WebSvcGetProvider_v2Soap" binding="tns:WebSvcGetProvider_v2Soap">
+      <soap:address location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetProvider_v2.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebSvcGetProvider_v2Soap12" binding="tns:WebSvcGetProvider_v2Soap12">
+      <soap12:address location="http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetProvider_v2.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
