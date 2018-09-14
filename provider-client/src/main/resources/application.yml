@@ -8,7 +8,7 @@ provider:
   service:
     endpoint:
       providerinfo: http://localhost:8085/providers/{providerId}
-      multipleproviderinfo: http://localhost:8085/providers?identifiers={identifierList}
+      multipleproviderinfo: http://localhost:8085/providers?identifiers={providerIdList}
         
         
         

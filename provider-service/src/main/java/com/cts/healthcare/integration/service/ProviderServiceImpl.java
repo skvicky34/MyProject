@@ -94,17 +94,19 @@ public class ProviderServiceImpl implements ProviderService
 	public Map<String,Provider> getMultipleProviders(String idList)
 	{
 		logger.info("in Service Impl getMultipleProvider()");
-		LinkedHashMap<String,Provider> providerMap = new LinkedHashMap<String,Provider>();
-		String[] idArray = idList.split(",");
+		Map<String,Provider> providerMap = new LinkedHashMap<String,Provider>();
+		String[] idArray = idList.split(",");	
+		StringBuffer idString = null;
 		for(String id : idArray) {
-			Provider provider = getProvider(id);
+			idString = new StringBuffer(id.trim().replaceAll("[\\[\\]]", ""));
+			Provider provider = getProvider(idString.toString());			
 		    if(provider.getProviderId()!=null)
 		    {
-		    	providerMap.put(id, provider);
+		    	providerMap.put(idString.toString(), provider);
 		    }
 		    else
 		    {
-		    	providerMap.put(id, null);
+		    	providerMap.put(idString.toString(), null);
 		    }
 		}
 		return providerMap;
