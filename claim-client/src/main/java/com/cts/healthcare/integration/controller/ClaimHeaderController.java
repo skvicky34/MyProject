@@ -23,10 +23,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.cts.healthcare.integration.domain.Claim;
 import com.cts.healthcare.integration.domain.ClaimCob;
-import com.cts.healthcare.integration.domain.ClaimDiagnosis;
 import com.cts.healthcare.integration.domain.ClaimHeader;
-import com.cts.healthcare.integration.domain.ClaimMembers;
-import com.cts.healthcare.integration.domain.ClaimProvider;
 import com.cts.healthcare.integration.domain.ClaimServiceLine;
 
 @RestController
@@ -39,10 +36,7 @@ public class ClaimHeaderController {
 	private String URL_CLAIMINFO;
 	private String URL_CLAIMHEADER;
 	private String URL_CLAIMSERVICELINE;
-	private String URL_CLAIMDIAGNOSIS;
 	private String URL_CLAIMCOB;
-	private String URL_CLAIMMEMBER;
-	private String URL_CLAIMPROVIDER;
 	
 	private final static Logger logger = LoggerFactory.getLogger(ClaimHeaderController.class);
 
@@ -51,19 +45,13 @@ public class ClaimHeaderController {
 			@Value("${claim.header.service.endpoint.claiminfo}") String URL_CLAIMINFO,
 			@Value("${claim.header.service.endpoint.claimheader}") String URL_CLAIMHEADER,
 			@Value("${claim.header.service.endpoint.claimserviceline}") String URL_CLAIMSERVICELINE,
-			@Value("${claim.header.service.endpoint.claimdiagnosis}") String URL_CLAIMDIAGNOSIS,
-			@Value("${claim.header.service.endpoint.claimcob}") String URL_CLAIMCOB,
-			@Value("${claim.header.service.endpoint.claimmember}") String URL_CLAIMMEMBER,
-			@Value("${claim.header.service.endpoint.claimprovider}") String URL_CLAIMPROVIDER) {
+			@Value("${claim.header.service.endpoint.claimcob}") String URL_CLAIMCOB) {
 		this.URL_SERVICEINFO = URL_SERVICEINFO;
 		this.URL_HEADERINFO = URL_HEADERINFO;
 		this.URL_CLAIMINFO = URL_CLAIMINFO;
 		this.URL_CLAIMHEADER= URL_CLAIMHEADER;
 		this.URL_CLAIMSERVICELINE= URL_CLAIMSERVICELINE;
-		this.URL_CLAIMDIAGNOSIS= URL_CLAIMDIAGNOSIS;
 		this.URL_CLAIMCOB= URL_CLAIMCOB;
-		this.URL_CLAIMMEMBER=URL_CLAIMMEMBER;
-		this.URL_CLAIMPROVIDER=URL_CLAIMPROVIDER;
 		this.restTemplate = new RestTemplate();
 	}
 
@@ -108,11 +96,8 @@ public class ClaimHeaderController {
 		for(String part: partsArray)
 			partList.add(part);
 		}
-		//params.put("claimId", claimId);
-	    
 		ResponseEntity<Resource<Claim>> response = restTemplate.exchange(
 				this.URL_CLAIMINFO, HttpMethod.GET, null,responseType, claimId, partList);
-				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);
 		assert response != null;
 		if (response.getStatusCode() == HttpStatus.OK) {
 			Claim outHeader = response.getBody().getContent();
@@ -128,7 +113,8 @@ public class ClaimHeaderController {
 	* API method to  retrieve claim header
 	**/
 	@RequestMapping(value = "/claims/{claimId}/header", method = RequestMethod.GET)
-	public Claim getClaimHeader(@PathVariable("claimId") String claimId) {
+	public Claim getClaimHeader(@PathVariable("claimId") String claimId) 
+	{
 		logger.info("Called Client getClaimHeader() method" );
 		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
 		};
@@ -148,7 +134,8 @@ public class ClaimHeaderController {
 	* API method to  retrieve claim service line
 	**/
 	@RequestMapping(value = "/claims/{claimId}/servicelines", method = RequestMethod.GET)
-	public List<ClaimServiceLine> getClaimServiceLine(@PathVariable("claimId") String claimId) {
+	public List<ClaimServiceLine> getClaimServiceLine(@PathVariable("claimId") String claimId) 
+	{
 		logger.info("Called Client getClaimServiceLine() method" );
 		ParameterizedTypeReference<List<ClaimServiceLine>> responseType = new ParameterizedTypeReference<List<ClaimServiceLine>>() {
 		};
@@ -164,28 +151,16 @@ public class ClaimHeaderController {
 		
 	}
 	
-	@RequestMapping(value = "/claims/{claimId}/diagnosis", method = RequestMethod.GET)
-	public ClaimDiagnosis getClaimDiagnosis(@PathVariable("claimId") String claimId) {
-		//return claimService.getClaimDiagnosis(claimId);
-		return restTemplate.getForObject(URL_CLAIMDIAGNOSIS, ClaimDiagnosis.class, claimId);
-	}
-	
+	/**
+	*
+	* API method to  retrieve claim COB
+	**/	
 	@RequestMapping(value = "/claims/{claimId}/cob", method = RequestMethod.GET)
-	public ClaimCob getClaimCob(@PathVariable("claimId") String claimId) {
-		//return claimService.getClaimCob(claimId);
+	public ClaimCob getClaimCob(@PathVariable("claimId") String claimId)
+	{
+		logger.info(" in Client getClaimCob() method" );
 		return restTemplate.getForObject(URL_CLAIMCOB, ClaimCob.class, claimId);
 	}
 	
-	@RequestMapping(value = "/claims/{claimId}/members", method = RequestMethod.GET)
-	public ClaimMembers getClaimMembers(@PathVariable("claimId") String claimId, @RequestParam(name = "parts", required = false) List<String> parts) {
-		//return claimService.getClaimMembers(claimId,parts);
-		return restTemplate.getForObject(URL_CLAIMMEMBER, ClaimMembers.class, claimId);
-	}
-	
-	@RequestMapping(value = "/claims/{claimId}/providers", method = RequestMethod.GET)
-	public ClaimProvider getClaimProviders(@PathVariable("claimId") String claimId, @RequestParam(name = "parts", required = false) List<String> parts) {
-		//return claimService.getClaimProvider(claimId, parts);
-		return restTemplate.getForObject(URL_CLAIMPROVIDER, ClaimProvider.class, claimId);
-	}
-	
+		
 }

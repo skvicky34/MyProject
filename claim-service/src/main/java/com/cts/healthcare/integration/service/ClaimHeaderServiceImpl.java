@@ -38,7 +38,7 @@ import com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.RECCDML;
  
  
 
-@Service("HeaderService")
+@Service("claimService")
 @EnableConfigurationProperties(ClaimProperty.class)
 public class ClaimHeaderServiceImpl implements ClaimService 
 {
@@ -205,23 +205,29 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		return servLineList;
 	}
 
-	@Override
-	public ClaimDiagnosis getClaimDiagnosis(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ClaimCob getClaimCob(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * 
+	 * Method to get the Claim Header details
+	 * 
+	 */
+	public Claim getClaimHeader(String id) {
+		Claim claim = getClaim(id, "");
+		claim.setClaimCob(null);
+		return claim;
 	}
 	
-	@Override
-	public ClaimHeader getClaimHeader(String id) {
-		return null;
+	/**
+	 * 
+	 * Method to get the Claim COB details
+	 * 
+	 */
+	public ClaimCob getClaimCob(String id) {
+		Claim claim = getClaim(id, "");
+		 
+		return claim.getClaimCob();
 	}
-	 
+	
+		 
 	/**
 	*
 	* Utility method to convert XMLGregorianCalendar date to String type
