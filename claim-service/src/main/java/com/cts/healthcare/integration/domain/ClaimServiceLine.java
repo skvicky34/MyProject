@@ -1,7 +1,6 @@
 package com.cts.healthcare.integration.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class ClaimServiceLine {
 	

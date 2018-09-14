@@ -1,9 +1,5 @@
 package com.cts.healthcare.integration.domain;
 
-import java.util.Date;
-
-import javax.xml.datatype.XMLGregorianCalendar;
-
 public class Member {
 
 	private Long patientId;

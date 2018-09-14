@@ -3,6 +3,7 @@ package com.cts.healthcare.integration.controller;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,29 +72,26 @@ public class ProviderClientController {
 	* API method to retrieve multiple Providers info 
 	**/
 	@RequestMapping(value = "/providers", method = RequestMethod.GET)
-	public LinkedHashMap<String,Provider> getMultipleProviders(
+	public Map<String,Provider> getMultipleProviders(
 			@RequestParam(name = "identifiers", required = false) String[] identifiers) {
 		 
 		logger.info("in Client Controller getMultipleProvider(");
-		ParameterizedTypeReference<LinkedHashMap<String,Provider>> responseType = new ParameterizedTypeReference<LinkedHashMap<String,Provider>>() {
+		ParameterizedTypeReference<Map<String,Provider>> responseType = new ParameterizedTypeReference<Map<String,Provider>>() {
 		};
 		
-		List<String> identifierList = new ArrayList<String>();
-//		String identifierList = "";
+		List<String> providerIdList = new ArrayList<String>();
 		if(identifiers != null) {
 			for(String id : identifiers)
-				identifierList.add(id);
-//		 identifierList = Arrays.toString(identifiers);
+				providerIdList.add(id);
 		}
-		//params.put("claimId", claimId);
 	    
-		ResponseEntity<LinkedHashMap<String,Provider>> response = restTemplate.exchange(
-				this.URL_MULTIPLEPROVIDERINFO, HttpMethod.GET, null,responseType, identifierList);
+		ResponseEntity<Map<String,Provider>> response = restTemplate.exchange(
+				this.URL_MULTIPLEPROVIDERINFO, HttpMethod.GET, null,responseType, providerIdList);
 				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);
 		assert response != null;
 		
 		if (response.getStatusCode() == HttpStatus.OK) {
-			LinkedHashMap<String,Provider> outHeader = response.getBody();
+			Map<String,Provider> outHeader = response.getBody();
 			assert outHeader != null;
 			return outHeader;
 		}

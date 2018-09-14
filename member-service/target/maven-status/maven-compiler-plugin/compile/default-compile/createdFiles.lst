@@ -24,7 +24,6 @@ com\cts\healthcare\integration\service\MemberServiceImpl.class
 com\cts\healthcare\integration\service\MemberService.class
 com\cts\healthcare\integration\client\WebServiceConnector.class
 com\cts\healthcare\integration\config\WsConfigClient.class
-com\cts\healthcare\integration\domain\ClaimHeader.class
 com\trizetto\fxi\isl\PartnerNameType.class
 com\cts\healthcare\integration\domain\Member.class
 com\trizetto\fxi\isl\fawsvcinpgetmember_v3\GetMemberV3MemberKeyResponse.class

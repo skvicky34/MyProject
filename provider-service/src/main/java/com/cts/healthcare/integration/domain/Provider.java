@@ -1,14 +1,12 @@
 package com.cts.healthcare.integration.domain;
 
-import java.util.Date;
-
 public class Provider {
 
 	private String providerId;
 	private String providerType;
 	private String specialityCode;
 	private String specialityCodeDesc;
-	private Date effectiveToDate;
+	private String effectiveToDate;
 	private String practiceNum;
 	private String npi;
 	private String fedTaxId;
@@ -45,10 +43,10 @@ public class Provider {
 	public void setSpecialityCodeDesc(String specialityCodeDesc) {
 		this.specialityCodeDesc = specialityCodeDesc;
 	}
-	public Date getEffectiveToDate() {
+	public String getEffectiveToDate() {
 		return effectiveToDate;
 	}
-	public void setEffectiveToDate(Date effectiveToDate) {
+	public void setEffectiveToDate(String effectiveToDate) {
 		this.effectiveToDate = effectiveToDate;
 	}
 	public String getPracticeNum() {

@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService
 		GetMemberV3MemberKeyResponse  getMemberV3MemberKeyResponse = (GetMemberV3MemberKeyResponse) webServiceConnector.callWebService(memberProperty.getMemberWsdl(), getMemberV3MemberKeyRequest, memberProperty.getMemberNameSpace());
 		    if(getMemberV3MemberKeyResponse != null) {
 		    	ArrayOfRECMEME recMemeArray = getMemberV3MemberKeyResponse.getGetMemberV3MemberKeyResult().getMEMECOLL();
-		    	if(recMemeArray != null)
+		    	if(recMemeArray != null && recMemeArray.getRECMEME() != null)
 		    	{
 			    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
 			    	
@@ -78,7 +78,9 @@ public class MemberServiceImpl implements MemberService
 			    		member.setEffectiveToDate(convertXMLGCToString(recMeme.getMEMEORIGEFFDT()));
 			    		member.setInsurerRelation(recMeme.getMEMEREL());
 			    		
-			    		String address = recMeme.getSBADADDR1MAIL() + " " + recMeme.getSBADADDR2MAIL() + " " + recMeme.getSBADADDR3MAIL();
+			    		String address = recMeme.getSBADADDR1MAIL()!= null?recMeme.getSBADADDR1MAIL():"" + " " +
+			    				recMeme.getSBADADDR2MAIL()!=null?recMeme.getSBADADDR2MAIL():"" + " " + 
+			    					recMeme.getSBADADDR3MAIL()!= null?recMeme.getSBADADDR3MAIL():"";
 			    		member.setAddress(address);
 			    		member.setCity(recMeme.getSBADCITYMAIL());
 			    		member.setState(recMeme.getSBADSTATEMAIL());
@@ -114,7 +116,7 @@ public class MemberServiceImpl implements MemberService
 		GetMemberV3SubscriberIdResponse  getMemberV3SubscriberIdResponse = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(memberProperty.getMemberWsdl(), getMemberV3SubscriberIdRequest, memberProperty.getSubscrNameSpace());
 	    if(getMemberV3SubscriberIdResponse != null) {
 	    	ArrayOfRECMEME recMemeArray = getMemberV3SubscriberIdResponse.getGetMemberV3SubscriberIdResult().getMEMECOLL();
-	    	if(recMemeArray!=null)
+	    	if(recMemeArray != null && recMemeArray.getRECMEME()!=null)
 	    	{
 		    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
 	    		for(RECMEME recMeme : recMemeList) {	    	
@@ -140,9 +142,9 @@ public class MemberServiceImpl implements MemberService
 		    		member.setEffectiveToDate(convertXMLGCToString(recMeme.getMEMEORIGEFFDT()));
 		    		}
 		    		
-		    		String address = recMeme.getSBADADDR1MAIL() + " " 
-		    						+ (recMeme.getSBADADDR2MAIL()!=null?recMeme.getSBADADDR2MAIL():"")
-		    						+ (recMeme.getSBADADDR3MAIL()!=null?recMeme.getSBADADDR3MAIL():"") ;
+		    		String address = recMeme.getSBADADDR1MAIL()!=null?recMeme.getSBADADDR1MAIL():""
+		    						+ recMeme.getSBADADDR2MAIL()!=null?recMeme.getSBADADDR2MAIL():""
+		    						+ recMeme.getSBADADDR3MAIL()!=null?recMeme.getSBADADDR3MAIL():"" ;
 		    		member.setAddress(address);
 		    		member.setCity(recMeme.getSBADCITYMAIL());
 		    		member.setState(recMeme.getSBADSTATEMAIL());

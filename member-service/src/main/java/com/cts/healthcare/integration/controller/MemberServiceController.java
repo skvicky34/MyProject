@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cts.healthcare.integration.domain.Member;
 import com.cts.healthcare.integration.service.MemberService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/")
@@ -38,15 +36,10 @@ public class MemberServiceController {
 	* API method to retrieve Member Info
 	**/
 	@RequestMapping("/members/{memberId}")
-	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) {
+	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) 
+	{
 		logger.info("in Service Controller getMember()");
-		ObjectMapper mapper = new ObjectMapper();
-		Member member = new Member();
-		try {
-			mapper.writeValueAsString(member);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}		
+		 
 		return new ResponseEntity<Member>(memberService.getMember(id), HttpStatus.OK);
 	}
 	
@@ -58,15 +51,10 @@ public class MemberServiceController {
 	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") Long id,
 			@RequestParam(name="groupId", required=true) String groupId,
 			@RequestParam(name="memberSuffix", required=true) String memberSuffix,
-			@RequestParam(name="asOfDate", required=true) String asOfDate) {	
+			@RequestParam(name="asOfDate", required=true) String asOfDate) 
+	{	
 		logger.info("in Service Controller getSubscriber()");
-		ObjectMapper mapper = new ObjectMapper();
-		Member member = new Member();
-		try {
-			mapper.writeValueAsString(member);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}		
+		 	
 		return new ResponseEntity<Member>(memberService.getSubscriber(id,groupId,memberSuffix,convertStringToXMLGC(asOfDate)), HttpStatus.OK);
 	}
 	

@@ -18,8 +18,6 @@ import com.cts.healthcare.integration.domain.ClaimCob;
 import com.cts.healthcare.integration.domain.ClaimDiagnosis;
 import com.cts.healthcare.integration.domain.ClaimServiceLine;
 import com.cts.healthcare.integration.service.ClaimService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping("/")
@@ -41,15 +39,9 @@ public class ClaimHeaderRestController {
 	* API method to  retrieve claim info
 	**/
 	@RequestMapping("/claims/{claimid}")
-	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) {	
+	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) 
+	{	
 		logger.info("Called Service getClaim() method" );
-		ObjectMapper mapper = new ObjectMapper();
-		Claim claim = new Claim();
-		try {
-			mapper.writeValueAsString(claim);
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}		
 		return new ResponseEntity<Claim>(headerService.getClaim(id, parts), HttpStatus.OK);
 	}
 	
@@ -58,7 +50,8 @@ public class ClaimHeaderRestController {
 	* API method to  retrieve claim header
 	**/
 	@RequestMapping("/claims/{claimid}/header")
-	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {
+	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) 
+	{
 		logger.info("Called Service getClaimHeader() method" );
 		return new ResponseEntity<Claim>(headerService.getClaim(id, ""), HttpStatus.OK);
 	}
@@ -68,7 +61,8 @@ public class ClaimHeaderRestController {
 	* API method to  retrieve claim service line
 	**/
 	@RequestMapping("/claims/{claimid}/servicelines")
-	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {	
+	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) 
+	{	
 		logger.info("Called Service getServiceLine() method" );
 		return new ResponseEntity<List<ClaimServiceLine>>(headerService.getClaimServiceLine(id), HttpStatus.OK);
 	}

@@ -1,8 +1,11 @@
 package com.cts.healthcare.integration.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -32,7 +35,7 @@ public class ProviderServiceImpl implements ProviderService
 	@Autowired
 	@Qualifier("WebServiceConnector")
 	private WebServiceConnector webServiceConnector;
-	
+		
 	@Autowired
 	private ProviderProperty providerProperty; 
 	
@@ -42,7 +45,6 @@ public class ProviderServiceImpl implements ProviderService
 	*
 	* API method to retrieve Provider Info
 	**/
-	@Override
 	public Provider getProvider(String id) {
 		
 		
@@ -60,7 +62,7 @@ public class ProviderServiceImpl implements ProviderService
 	    if(response != null) {
 	    	
 	    	ArrayOfRECPROV recprovArray = response.getGetProviderV2ProviderIdResult().getPROVCOLL();
-	    	if(recprovArray.getRECPROV()!=null) {
+	    	if(recprovArray!= null && recprovArray.getRECPROV()!=null) {
 		    	List<RECPROV> recprovList = recprovArray.getRECPROV();
 		    	for (RECPROV recProv : recprovList) {
 		    	
@@ -68,7 +70,7 @@ public class ProviderServiceImpl implements ProviderService
 		    	provider.setProviderType(recProv.getPRPRMCTRTYPE());
 		    	provider.setSpecialityCode(recProv.getPRCFMCTRSPEC());
 		    	provider.setSpecialityCodeDesc(recProv.getPRCFMCTRSPECDESC());
-		    	provider.setEffectiveToDate(convertXMLGCToDate(recProv.getPRPRTERMDT()));
+		    	provider.setEffectiveToDate(convertXMLGCToString(recProv.getPRPRTERMDT()));
 		    	provider.setPracticeNum(recProv.getPRADPRACTICEIND());
 		    	provider.setNpi(recProv.getPRPRNPI());
 		    	//provider.setFedTaxId(rp.getMCTNID);
@@ -89,12 +91,11 @@ public class ProviderServiceImpl implements ProviderService
 	*
 	* API method to retrieve Multiple provider Info
 	**/
-	@Override
-	public LinkedHashMap<String,Provider> getMultipleProviders(String identifiers)
+	public Map<String,Provider> getMultipleProviders(String idList)
 	{
 		logger.info("in Service Impl getMultipleProvider()");
 		LinkedHashMap<String,Provider> providerMap = new LinkedHashMap<String,Provider>();
-		String[] idArray = identifiers.split(",");
+		String[] idArray = idList.split(",");
 		for(String id : idArray) {
 			Provider provider = getProvider(id);
 		    if(provider.getProviderId()!=null)
@@ -111,16 +112,16 @@ public class ProviderServiceImpl implements ProviderService
 	}
 
 	
-	public Date convertXMLGCToDate(XMLGregorianCalendar xmlDate)
+	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)
 	{
-		Date date =null;
-		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddThh:mm:ss.SSZ");
-		if(xmlDate!= null) {
-			XMLGregorianCalendar xmlCalendar = xmlDate;
-			date = xmlCalendar.toGregorianCalendar().getTime();
-			//date = sdf.format(date);
-		}
-		return date;
+		 String dateString =null;
+         Date date = null;
+         if(xmlDate!= null) {
+                DateFormat df = new SimpleDateFormat("yyyyMMdd");
+              date =  xmlDate.toGregorianCalendar().getTime();
+              dateString = df.format(date);
+         }
+         return dateString;
 	} 
 	 
 

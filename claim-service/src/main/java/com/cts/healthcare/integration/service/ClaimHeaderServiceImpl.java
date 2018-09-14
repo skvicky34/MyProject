@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +84,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		ListClaimV11ClaimIdResponse  listClaimV11ClaimIdResponse = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(claimProperty.getHeaderWsdl(), listClaimV11ClaimIdRequest, claimProperty.getHeaderNameSpace());
 		    if(listClaimV11ClaimIdResponse != null) {
 		    	ArrayOfRECCLCL recClclArray = listClaimV11ClaimIdResponse.getListClaimV11ClaimIdResult().getCLCLCOLL();
-		    	if(recClclArray != null) {
+		    	if(recClclArray != null && recClclArray.getRECCLCL() != null) {
 				    List<RECCLCL> recClclList = recClclArray.getRECCLCL();
 			    	for(RECCLCL recClcl : recClclList) {
 				    	
@@ -165,7 +164,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		ListClaimCDMLV9ClaimIdResponse  listClaimCDMLV9ClaimIdResponse = (ListClaimCDMLV9ClaimIdResponse)webServiceConnector.callWebService(claimProperty.getServLineWsdl(), listClaimCDMLV9ClaimIdRequest, claimProperty.getServLineNameSpace());
 		 if(listClaimCDMLV9ClaimIdResponse != null) {
 		    	ArrayOfRECCDML recCdmlArray = listClaimCDMLV9ClaimIdResponse.getListClaimCDMLV9ClaimIdResult().getCDMLCOLL();
-		    	if(recCdmlArray != null ) {
+		    	if(recCdmlArray != null && recCdmlArray.getRECCDML() != null ) {
 			    	List<RECCDML> recCdmlList = recCdmlArray.getRECCDML();
 			    	for(RECCDML recCdml : recCdmlList) {
 			    		
