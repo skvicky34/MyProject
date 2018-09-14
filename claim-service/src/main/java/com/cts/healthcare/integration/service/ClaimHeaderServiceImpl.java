@@ -4,7 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -57,13 +59,51 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	
 	public static final Logger logger = LoggerFactory.getLogger(ClaimHeaderRestController.class);
 	
+	
+	/**
+	 * 
+	 * @param id
+	 * @param partArray
+	 * @return
+	 */
+	public Map<String,Object> getClaimParts(String claimId, String partArray)
+	{
+		Map<String,Object> claimPartsMap = new LinkedHashMap<>();
+		String[] parts = partArray.split(",");	
+		StringBuffer part = null;
+		Claim claim = null;
+		List<ClaimServiceLine> servLineList = null;
+		for(String partType : parts) {
+			part = new StringBuffer(partType.trim().replaceAll("[\\[\\]]", ""));
+			switch(part.toString()) 
+	        { 
+	            case "header": 
+	                claim = getClaim(claimId); 
+	                //claim.setClaimCob(null);
+	                claimPartsMap.put(part.toString(), claim.getClaimHeader());
+	                break; 
+	            case "servicelines": 
+	                servLineList = getClaimServiceLine(claimId);
+	                claimPartsMap.put(part.toString(), servLineList);
+	                break; 
+	            case "cob": 
+	            	claim = getClaim(claimId);
+		            claimPartsMap.put(part.toString(), claim.getClaimCob());
+	            	 
+	        } 
+		    
+		}
+		return claimPartsMap;
+		
+	}
+	 
 	/**
 	*
 	* API method to retrieve Claim info
 	**/
-	@Override
-	public Claim getClaim(String id, String partArray)
-	{
+	public Claim getClaim(String claimId) {
+		
+
 		logger.info("in ServiceImpl getClaim() method"); 
 		ListClaimV11ClaimId listClaimV11ClaimIdRequest = new ListClaimV11ClaimId();
 		Config config = new Config();
@@ -75,7 +115,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		
 		config.setFacetsIdentity(claimProperty.getConfigIdentity());
 		config.setRegion(claimProperty.getConfigRegion());
-		listClaimV11ClaimIdRequest.setPCLCLID(id);
+		listClaimV11ClaimIdRequest.setPCLCLID(claimId);
 		listClaimV11ClaimIdRequest.setPPAGE(claimProperty.getPages());
 		listClaimV11ClaimIdRequest.setPPAGESIZE(claimProperty.getPageSize());
 		listClaimV11ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows());
@@ -135,8 +175,8 @@ public class ClaimHeaderServiceImpl implements ClaimService
 		    	}
 		    } 
 		    return claim;
-	}
 	
+	}
 	/**
 	*
 	* API method to retrieve Claim service line
@@ -211,7 +251,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	 * 
 	 */
 	public Claim getClaimHeader(String id) {
-		Claim claim = getClaim(id, "");
+		Claim claim = getClaim(id);
 		claim.setClaimCob(null);
 		return claim;
 	}
@@ -222,7 +262,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	 * 
 	 */
 	public ClaimCob getClaimCob(String id) {
-		Claim claim = getClaim(id, "");
+		Claim claim = getClaim(id);
 		 
 		return claim.getClaimCob();
 	}

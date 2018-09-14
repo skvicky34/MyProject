@@ -2,7 +2,9 @@ package com.cts.healthcare.integration.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,11 +86,11 @@ public class ClaimHeaderController {
 	* API method to  retrieve claim
 	**/
 	@RequestMapping(value = "/claims/{claimId}", method = RequestMethod.GET)
-	public Claim getClaimInfo(@PathVariable("claimId") String claimId,
+	public Map<String,Object> getClaimInfo(@PathVariable("claimId") String claimId,
 			@RequestParam(name = "parts", required = false) String[] partsArray) {
 		 
 		logger.info("Called Client getClaimInfo() method" );
-		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {
+		ParameterizedTypeReference<Map<String,Object>> responseType = new ParameterizedTypeReference<Map<String,Object>>() {
 		};
 		
 		List<String> partList = new ArrayList<String>();
@@ -96,15 +98,15 @@ public class ClaimHeaderController {
 		for(String part: partsArray)
 			partList.add(part);
 		}
-		ResponseEntity<Resource<Claim>> response = restTemplate.exchange(
+		ResponseEntity<Map<String,Object>> response = restTemplate.exchange(
 				this.URL_CLAIMINFO, HttpMethod.GET, null,responseType, claimId, partList);
 		assert response != null;
 		if (response.getStatusCode() == HttpStatus.OK) {
-			Claim outHeader = response.getBody().getContent();
+			Map<String,Object> outHeader = response.getBody();
 			assert outHeader != null;
 			return outHeader;
 		}
-		return new Claim();
+		return new LinkedHashMap<String,Object>();
 
 	}
 

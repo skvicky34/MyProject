@@ -1,6 +1,7 @@
 package com.cts.healthcare.integration.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,10 +37,10 @@ public class ClaimHeaderRestController {
 	* API method to  retrieve claim info
 	**/
 	@RequestMapping("/claims/{claimid}")
-	public ResponseEntity<Claim> getClaim(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) 
+	public ResponseEntity<Map<String,Object>> getClaimParts(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) 
 	{	
 		logger.info("Called Service getClaim() method" );
-		return new ResponseEntity<Claim>(claimService.getClaim(id, parts), HttpStatus.OK);
+		return new ResponseEntity<Map<String,Object>>(claimService.getClaimParts(id, parts), HttpStatus.OK);
 	}
 	
 	/**
