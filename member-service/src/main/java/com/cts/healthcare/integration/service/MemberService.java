@@ -8,7 +8,7 @@ public interface MemberService {
 	
 	public Member getMember(Long id);
 	
-	public Member getSubscriber(Long id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) ;
+	public Member getSubscriber(String id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) ;
 
 		
 }

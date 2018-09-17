@@ -153,7 +153,7 @@ public class ClaimHeaderServiceImpl implements ClaimService
 				    	claimHeader.setNetworkId(recClcl.getNWNWID());
 		
 				    	claimMember.setMemberId(recClcl.getMEMECK());
-				    	claimMember.setGroupId(recClcl.getGRGRCK());
+				    	claimMember.setGroupId(recClcl.getGRGRID());
 				    	claimMember.setSubscriberId(recClcl.getSBSBID());
 				    	claimMember.setMemberSuffix(recClcl.getMEMESFX());
 				    	

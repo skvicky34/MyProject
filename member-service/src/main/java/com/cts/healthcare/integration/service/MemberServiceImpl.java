@@ -65,7 +65,7 @@ public class MemberServiceImpl implements MemberService
 			    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
 			    	
 			    	for(RECMEME recMeme : recMemeList) {
-			    		member.setPatientId(Long.valueOf(recMeme.getMEMERECORDNO()));
+			    		member.setPatientId(recMeme.getMEMERECORDNO());
 			    		member.setFirstName(recMeme.getMEMEFIRSTNAME());
 			    		member.setLastName(recMeme.getMEMELASTNAME());
 			    		member.setDateOfBirth(convertXMLGCToString(recMeme.getMEMEBIRTHDT()));
@@ -98,7 +98,7 @@ public class MemberServiceImpl implements MemberService
 	* API method to retrieve Subscriber Info
 	**/
 	@Override
-	public Member getSubscriber(Long id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) {
+	public Member getSubscriber(String id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) {
 
 		logger.info("in Service Method getSubscriber()");
 		GetMemberV3SubscriberId getMemberV3SubscriberIdRequest = new GetMemberV3SubscriberId();
@@ -110,7 +110,7 @@ public class MemberServiceImpl implements MemberService
 		getMemberV3SubscriberIdRequest.setPMEMESFX(memberSuffix);
 		getMemberV3SubscriberIdRequest.setPASOFDT(asOfDate);
 		getMemberV3SubscriberIdRequest.setPGRGRID(groupId);
-		getMemberV3SubscriberIdRequest.setPSBSBID(id.toString());
+		getMemberV3SubscriberIdRequest.setPSBSBID(id);
 		getMemberV3SubscriberIdRequest.setPConfig(config);
 		 
 		GetMemberV3SubscriberIdResponse  getMemberV3SubscriberIdResponse = (GetMemberV3SubscriberIdResponse) webServiceConnector.callWebService(memberProperty.getMemberWsdl(), getMemberV3SubscriberIdRequest, memberProperty.getSubscrNameSpace());
@@ -120,7 +120,7 @@ public class MemberServiceImpl implements MemberService
 	    	{
 		    	List<RECMEME> recMemeList = recMemeArray.getRECMEME();
 	    		for(RECMEME recMeme : recMemeList) {	    	
-		    		member.setPatientId(Long.valueOf(recMeme.getSBSBID()));
+		    		member.setPatientId(recMeme.getSBSBID());
 		    		member.setFirstName(recMeme.getSBSBFIRSTNAME());
 		    		member.setLastName(recMeme.getSBSBLASTNAME());
 		    		if(recMeme.getSBSBMEMEBIRTHDT()!=null)

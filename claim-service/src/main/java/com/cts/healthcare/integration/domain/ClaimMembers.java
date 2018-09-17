@@ -4,7 +4,7 @@ public class ClaimMembers {
 
 	private long memberId;
 	private String subscriberId;
-	private long groupId;
+	private String groupId;
 	private int memberSuffix;
 	
 	
@@ -20,10 +20,10 @@ public class ClaimMembers {
 	public void setSubscriberId(String subscriberId) {
 		this.subscriberId = subscriberId;
 	}
-	public long getGroupId() {
+	public String getGroupId() {
 		return groupId;
 	}
-	public void setGroupId(long groupId) {
+	public void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
 	public int getMemberSuffix() {

@@ -2,7 +2,7 @@ package com.cts.healthcare.integration.domain;
 
 public class Member {
 
-	private Long patientId;
+	private String patientId;
 	private String lastName;
 	private String firstName;
 	private String dateOfBirth;
@@ -23,10 +23,10 @@ public class Member {
 	private String state;
 	private String zip;
 	
-	public Long getPatientId() {
+	public String getPatientId() {
 		return patientId;
 	}
-	public void setPatientId(Long patientId) {
+	public void setPatientId(String patientId) {
 		this.patientId = patientId;
 	}
 	public String getLastName() {

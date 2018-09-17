@@ -48,7 +48,7 @@ public class MemberServiceController {
 	* API method to retrieve Subscriber Info
 	**/
 	@RequestMapping("/members/subscriber/{subscriberId}")
-	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") Long id,
+	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") String id,
 			@RequestParam(name="groupId", required=true) String groupId,
 			@RequestParam(name="memberSuffix", required=true) String memberSuffix,
 			@RequestParam(name="asOfDate", required=true) String asOfDate) 
