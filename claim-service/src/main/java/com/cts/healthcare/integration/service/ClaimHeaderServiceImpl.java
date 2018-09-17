@@ -232,6 +232,8 @@ public class ClaimHeaderServiceImpl implements ClaimService
 			    					+recCdml.getPSCDDESC() !=null ? recCdml.getPSCDDESC() : "");
 			    		claimServLine.setRiskAmt(recCdml.getCDMLRISKWHAMT());
 			    		claimServLine.setDiscountAmount(recCdml.getCDMLDISCAMT());
+			    		claimServLine.setProcedureCodes(recCdml.getIPCDID());
+			    		claimServLine.setServiceLineRevenueCode(recCdml.getRCRCID()); 
 			    		claimProvider.setRenderingProviderId(recCdml.getPRPRID());
 			    		claimDiagnosis.setDiagnosisCodeVersion(recCdml.getIDCDID());
 			    		claimMember.setSubscriberId(recCdml.getSBSBID());
