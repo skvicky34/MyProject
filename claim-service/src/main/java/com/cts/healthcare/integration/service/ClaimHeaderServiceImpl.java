@@ -69,29 +69,30 @@ public class ClaimHeaderServiceImpl implements ClaimService
 	public Map<String,Object> getClaimParts(String claimId, String partArray)
 	{
 		Map<String,Object> claimPartsMap = new LinkedHashMap<>();
-		String[] parts = partArray.split(",");	
-		StringBuffer part = null;
-		Claim claim = null;
-		List<ClaimServiceLine> servLineList = null;
-		for(String partType : parts) {
-			part = new StringBuffer(partType.trim().replaceAll("[\\[\\]]", ""));
-			switch(part.toString()) 
-	        { 
-	            case "header": 
-	                claim = getClaim(claimId); 
-	                //claim.setClaimCob(null);
-	                claimPartsMap.put(part.toString(), claim.getClaimHeader());
-	                break; 
-	            case "servicelines": 
-	                servLineList = getClaimServiceLine(claimId);
-	                claimPartsMap.put(part.toString(), servLineList);
-	                break; 
-	            case "cob": 
-	            	claim = getClaim(claimId);
-		            claimPartsMap.put(part.toString(), claim.getClaimCob());
-	            	 
-	        } 
-		    
+		if(partArray != null) {
+			
+			String[] parts = partArray.split(",");	
+			StringBuffer part = null;
+			Claim claim = null;
+			List<ClaimServiceLine> servLineList = null;
+			for(String partType : parts) {
+				part = new StringBuffer(partType.trim().replaceAll("[\\[\\]]", ""));
+				switch(part.toString()) 
+		        { 
+		            case "header": 
+		                claim = getClaim(claimId); 
+		                //claim.setClaimCob(null);
+		                claimPartsMap.put(part.toString(), claim.getClaimHeader());
+		                break; 
+		            case "servicelines": 
+		                servLineList = getClaimServiceLine(claimId);
+		                claimPartsMap.put(part.toString(), servLineList);
+		                break; 
+		            case "cob": 
+		            	claim = getClaim(claimId);
+			            claimPartsMap.put(part.toString(), claim.getClaimCob());
+		        } 
+			}
 		}
 		return claimPartsMap;
 		
