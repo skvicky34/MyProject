@@ -1,0 +1,24 @@
+
+server:
+  port: ${port:8087}
+spring:
+  #profiles: dev
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: null
+
+# SOAP WEB SERVICE URL's
+facet:
+  utilizationWsdl: http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpSearchUMUmsv_v4.asmx
+  utilizationNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpSearchUMUmsv_v4
+  configIdentity: SVCAGENT
+  configRegion: Facets550
+  pages: 1
+  pageSize: 10
+  skipRows: 0
+  
+  
+   
+     

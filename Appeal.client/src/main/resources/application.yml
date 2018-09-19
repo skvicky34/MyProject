@@ -1,0 +1,10 @@
+server:
+ port: 8088
+  
+
+# Service Endpoints
+
+appeal: 
+  service:
+    endpoint: 
+        serviceinfo: http://localhost:8089/appeal
