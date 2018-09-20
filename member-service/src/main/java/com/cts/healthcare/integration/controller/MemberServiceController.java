@@ -10,7 +10,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,47 +22,51 @@ import com.cts.healthcare.integration.service.MemberService;
 
 @Controller
 @RequestMapping("/")
-public class MemberServiceController {
+public class MemberServiceController 
+{
 
+	private final static Logger LOGGER = LoggerFactory.getLogger(MemberServiceController.class);
 
-	@Autowired
-	private MemberService memberService;
+	private final MemberService memberService;
 
-	private final static Logger logger = LoggerFactory.getLogger(MemberServiceController.class);
+	public MemberServiceController(MemberService memberService) {
+		this.memberService = memberService;
+	}
 
 	/**
-	*
-	* API method to retrieve Member Info
-	**/
+	 *
+	 * API method to retrieve Member Info
+	 **/
 	@RequestMapping("/members/{memberId}")
 	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) 
 	{
-		logger.info("in Service Controller getMember()");
-		 
+		LOGGER.info("in MemberServiceController getMember()");
 		return new ResponseEntity<Member>(memberService.getMember(id), HttpStatus.OK);
 	}
-	
+
 	/**
-	*
-	* API method to retrieve Subscriber Info
-	**/
+	 *
+	 * API method to retrieve Subscriber Info
+	 **/
 	@RequestMapping("/members/subscriber/{subscriberId}")
 	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") String id,
-			@RequestParam(name="groupId", required=true) String groupId,
-			@RequestParam(name="memberSuffix", required=true) String memberSuffix,
-			@RequestParam(name="asOfDate", required=true) String asOfDate) 
-	{	
-		logger.info("in Service Controller getSubscriber()");
-		 	
-		return new ResponseEntity<Member>(memberService.getSubscriber(id,groupId,memberSuffix,convertStringToXMLGC(asOfDate)), HttpStatus.OK);
+			@RequestParam(name = "groupId", required = true) String groupId,
+			@RequestParam(name = "memberSuffix", required = true) String memberSuffix,
+			@RequestParam(name = "asOfDate", required = true) String asOfDate) 
+	{
+		LOGGER.info("in MemberServiceController getSubscriber()");
+		return new ResponseEntity<Member>(
+				memberService.getSubscriber(id, groupId, memberSuffix, convertStringToXMLGC(asOfDate)), HttpStatus.OK);
 	}
-	
+
 	/**
-	*
-	* Utility method to convert from String to XMLGregorianCalendar format
-	**/
+	 *
+	 * Utility method to convert from String to XMLGregorianCalendar format
+	 **/
 	public XMLGregorianCalendar convertStringToXMLGC(String strDate)
 	{
+		LOGGER.info("in MemberServiceController convertStringToXMLGC()");
+
 		DateFormat format = new SimpleDateFormat("yyyyMMdd");
 		Date date = new Date();
 		XMLGregorianCalendar xmlGregCal = null;
@@ -72,13 +75,12 @@ public class MemberServiceController {
 			GregorianCalendar cal = new GregorianCalendar();
 			cal.setTime(date);
 
-			xmlGregCal =  DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
+			xmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.error(e.getMessage());
 		}
 
 		return xmlGregCal;
 	}
-	
+
 }

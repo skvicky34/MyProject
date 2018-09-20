@@ -1,25 +1,12 @@
 
-server:
-  port: ${port:8080}
-spring:
-  #profiles: dev
-  datasource:
+spring: 
+  datasource: 
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password: null
 
-# SOAP WEB SERVICE URL's
-facet: 
-  headerWsdl: http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaim_v11.asmx
-  headerNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11/ListClaim_v11_ClaimId
-  servLineWsdl: http://abn-ode-app-037.ode.trizetto.com/FacetsWebServiceLibrary/FaWsvcInpListClaimCDML_v9.asmx
-  servLineNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9/ListClaimCDML_v9_ClaimId
-  configIdentity: SVCAGENT
-  configRegion: Facets550
-  pages: 1
-  pageSize: 10
-  skipRows: 0
+
   
     
    

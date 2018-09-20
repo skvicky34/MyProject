@@ -1,5 +1,5 @@
 server:
- port: ${port:8084}
+ port: ${port:8085}
   
 
 # Service Endpoints
@@ -7,8 +7,8 @@ server:
 provider:
   service:
     endpoint:
-      providerinfo: http://localhost:8085/providers/{providerId}
-      multipleproviderinfo: http://localhost:8085/providers?identifiers={providerIdList}
+      providerinfo: http://localhost:8084/providers/{providerId}
+      multipleproviderinfo: http://localhost:8084/providers?identifiers={providerIdList}
         
         
         

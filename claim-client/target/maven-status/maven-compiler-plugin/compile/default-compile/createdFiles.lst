@@ -2,10 +2,12 @@ com\cts\healthcare\integration\ClaimClientApplication.class
 com\cts\healthcare\integration\domain\ClaimProvider.class
 com\cts\healthcare\integration\controller\ClaimHeaderController$2.class
 com\cts\healthcare\integration\domain\ClaimHeader.class
+META-INF\spring-configuration-metadata.json
 com\cts\healthcare\integration\domain\ClaimDiagnosis.class
 com\cts\healthcare\integration\controller\ClaimHeaderController$1.class
 com\cts\healthcare\integration\controller\ClaimHeaderController.class
 com\cts\healthcare\integration\domain\Claim.class
+com\cts\healthcare\integration\config\ClaimClientProperty.class
 com\cts\healthcare\integration\domain\ClaimMembers.class
 com\cts\healthcare\integration\domain\ClaimCob.class
 com\cts\healthcare\integration\controller\ClaimHeaderController$3.class

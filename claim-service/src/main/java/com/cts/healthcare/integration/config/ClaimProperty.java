@@ -6,24 +6,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix="facet")
+
 public class ClaimProperty {
-	
 	private String headerWsdl;
-	
 	private String servLineWsdl;
-	
 	private String headerNameSpace;
-	
 	private String servLineNameSpace;
-	
 	private String configIdentity;
-	
 	private String configRegion;
-	
 	private int pages;
-	
 	private int pageSize;
-	
 	private int skipRows;
 	
 

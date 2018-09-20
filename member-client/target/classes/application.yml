@@ -1,14 +1,14 @@
 server:
- port: ${port:8082}
+ port: ${port:8083}
   
 
 # Service Endpoints
 
 member:
-  service:
+  service: 
       endpoint:
-        memberinfo: http://localhost:8083/members/{memberId}
-        subscriberinfo : http://localhost:8083/members/subscriber/{subscriberId}?groupId={groupId}&memberSuffix={memberSuffix}&asOfDate={asOfDate}
+        memberinfo: http://localhost:8082/members/{memberId}
+        subscriberinfo : http://localhost:8082/members/subscriber/{subscriberId}?groupId={groupId}&memberSuffix={memberSuffix}&asOfDate={asOfDate}
         
    
   

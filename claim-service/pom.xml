@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.cts.healthcare.integration</groupId>
-	<artifactId>claim.header.service</artifactId>
+	<artifactId>claim-header-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -25,6 +25,7 @@
 		<java.version>1.8</java.version>
 		<swagger.version>2.8.0</swagger.version>
 		<maven-jaxb2-plugin.version>0.13.3</maven-jaxb2-plugin.version>
+		 <spring-cloud.version>Finchley.SR1</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -95,63 +96,26 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
+		  <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
 	</dependencies>
-
+  	
+  	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+  	
 	<build>
 		<plugins>
-			 <!-- <plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				 <groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>${maven-jaxb2-plugin.version}</version>
-				<executions>
-					<execution>
-						<id>schema1-generate</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-				<configuration>
-					<keep>true</keep>
-	                <extension>true</extension>
-	                <forceRegenerate>true</forceRegenerate>
-	                <args>
-	                <arg> -XautoNameResolution
-	                </arg></args>
-					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
-						<schemaIncludes>
-				          <include>FaWsvcInpListClaim_v11.wsdl</include>
-				        </schemaIncludes>
-				     <generatePackage>com.trizetto.header</generatePackage>
-				        <generateDirectory>${project.build.directory}/generated-sources/xjc1</generateDirectory>
-				        
-				</configuration>
-				</execution>
-				<execution>
-					<id>schema2-generate</id>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-				<configuration>
-					<keep>true</keep>
-	                <extension>true</extension>
-	                <forceRegenerate>true</forceRegenerate>
-	                <args>
-	                <arg> -XautoNameResolution
-	                </arg></args>
-					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
-						<schemaIncludes>
-					          <include>FaWsvcInpListClaimCDML_v9.wsdl</include>
-					        </schemaIncludes>
-					        <generatePackage>com.trizetto.servLine</generatePackage>
-					        <generateDirectory>${project.build.directory}/generated-sources/xjc2</generateDirectory>
-				</configuration>
-				</execution>
-				</executions> 
-				</plugin>  -->
-				
 				<plugin>
     <groupId>org.apache.cxf</groupId>
     <artifactId>cxf-codegen-plugin</artifactId>

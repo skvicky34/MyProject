@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,57 +21,59 @@ import com.cts.healthcare.integration.service.ClaimService;
 @RequestMapping("/")
 public class ClaimHeaderRestController {
 
-	public static final Logger logger = LoggerFactory.getLogger(ClaimHeaderRestController.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(ClaimHeaderRestController.class);
 
-	@Autowired
-	private ClaimService claimService;
+	private final ClaimService claimService;
+	
+	public ClaimHeaderRestController(ClaimService claimService) {
+		this.claimService = claimService;
+	}
 
-	@RequestMapping("/serviceinfo")
+	@RequestMapping("/headerserviceinfo")
 	public ResponseEntity<String> getInfo() {
 		return new ResponseEntity<String>(claimService.getInfo(), HttpStatus.OK);
 	}
 
 	/**
-	*
-	* API method to  retrieve claim info
-	**/
+	 *
+	 * API method to retrieve claim info
+	 **/
 	@RequestMapping("/claims/{claimid}")
-	public ResponseEntity<Map<String,Object>> getClaimParts(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) 
-	{	
-		logger.info("Called Service getClaim() method" );
-		return new ResponseEntity<Map<String,Object>>(claimService.getClaimParts(id, parts), HttpStatus.OK);
+	public ResponseEntity<Map<String, Object>> getClaimParts(@PathVariable("claimid") String id,
+			@RequestParam(name = "parts", required = false) String[] parts) {
+		LOGGER.info("in ClaimHeaderRestController getClaimParts() method");
+		return new ResponseEntity<Map<String, Object>>(claimService.getClaimParts(id, parts), HttpStatus.OK);
 	}
-	
+
 	/**
-	*
-	* API method to  retrieve claim header
-	**/
+	 *
+	 * API method to retrieve claim header
+	 **/
 	@RequestMapping("/claims/{claimid}/header")
-	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) 
-	{
-		logger.info("Called Service getClaimHeader() method" );
+	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {
+		LOGGER.info("in ClaimHeaderRestController getClaimHeader() method");
 		return new ResponseEntity<Claim>(claimService.getClaimHeader(id), HttpStatus.OK);
 	}
-	
+
 	/**
-	*
-	* API method to  retrieve claim service line
-	**/
+	 *
+	 * API method to retrieve claim service line
+	 **/
 	@RequestMapping("/claims/{claimid}/servicelines")
-	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) 
-	{	
-		logger.info("Called Service getServiceLine() method" );
+	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {
+		LOGGER.info("in ClaimHeaderRestController getServiceLine() method");
 		return new ResponseEntity<List<ClaimServiceLine>>(claimService.getClaimServiceLine(id), HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Method to get the Claim COB for the given ClaimId
-	 * 	
+	 * 
 	 * @param id
 	 * @return
 	 */
 	@RequestMapping("/claims/{claimid}/cob")
-	public ResponseEntity<ClaimCob> getCob(@PathVariable("claimid") String id) {				
+	public ResponseEntity<ClaimCob> getCob(@PathVariable("claimid") String id) {
+		LOGGER.info("in ClaimHeaderRestController getCob() method");
 		return new ResponseEntity<ClaimCob>(claimService.getClaimCob(id), HttpStatus.OK);
 	}
 }

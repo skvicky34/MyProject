@@ -1,19 +1,17 @@
 server:
- port: ${port:8081}
+ port: ${port:8080}
   
 
 # Service Endpoints
 
 claim: 
-  header:
-    service:
-      endpoint:
-        serviceinfo: http://localhost:8080/serviceinfo
-        headerinfo: http://localhost:8080/claimservice
-        claiminfo: http://localhost:8080/claims/{claimId}?parts={partList}
-        claimheader: http://localhost:8080/claims/{claimId}/header
-        claimserviceline: http://localhost:8080/claims/{claimId}/servicelines
-        claimcob: http://localhost:8080/claims/{claimId}/cob
+  service: 
+    endpoint: 
+        serviceInfo: http://localhost:8081/serviceinfo
+        claimInfo: http://localhost:8081/claims/{claimId}?parts={partList}
+        claimHeader: http://localhost:8081/claims/{claimId}/header
+        claimServiceline: http://localhost:8081/claims/{claimId}/servicelines
+        claimCob: http://localhost:8081/claims/{claimId}/cob
         
         
    

@@ -1,6 +1,5 @@
+com\cts\healthcare\integration\ProviderClientApplication.class
 com\cts\healthcare\integration\controller\ProviderClientController.class
 com\cts\healthcare\integration\domain\Provider.class
-com\cts\healthcare\integration\controller\ProviderClientController$2.class
-com\cts\healthcare\integration\ProviderClientApplication.class
 com\cts\healthcare\integration\controller\ProviderClientController$1.class
-com\cts\healthcare\integration\service\ProviderService.class
+com\cts\healthcare\integration\controller\ProviderClientController$2.class

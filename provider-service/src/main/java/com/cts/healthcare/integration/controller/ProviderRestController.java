@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,13 +16,16 @@ import com.cts.healthcare.integration.service.ProviderService;
 
 @Controller
 @RequestMapping("/")
-public class ProviderRestController {
+public class ProviderRestController 
+{
 
 	public static final Logger logger = LoggerFactory.getLogger(ProviderRestController.class);
 
-	@Autowired
 	private ProviderService providerService;
 
+	public ProviderRestController(ProviderService providerService) {
+		this.providerService = providerService;
+	}
 	
 	/**
 	*
@@ -42,7 +44,7 @@ public class ProviderRestController {
 	* API method to retrieve Multiple provider Info
 	**/
 	@RequestMapping("/providers")
-	public ResponseEntity<Map<String,Provider>> getMultipleProviders(@RequestParam("identifiers") String identifiers)
+	public ResponseEntity<Map<String,Provider>> getMultipleProviders(@RequestParam(name = "identifiers", required = false) String[] identifiers)
 	{		
 		logger.info("in Service Controller getMultipleProviders()");
 		

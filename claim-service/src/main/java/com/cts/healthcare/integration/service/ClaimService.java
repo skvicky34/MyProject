@@ -11,7 +11,7 @@ public interface ClaimService {
 	
 	public String getInfo();
 	
-	public Map<String,Object> getClaimParts(String id, String parts);
+	public Map<String,Object> getClaimParts(String id, String[] parts);
 	
 	public Claim getClaimHeader(String id) ;
 	

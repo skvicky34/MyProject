@@ -1,24 +1,18 @@
 
 server:
-  port: ${port:8083}
-spring:
-  #profiles: dev
+  port: 8082 
+   
+spring: 
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
     password: null
 
-# SOAP WEB SERVICE URL's
-facet:
-  memberWsdl: http://abn-ode-app-037/FacetsWebServiceLibrary/FaWsvcInpGetMember_v3.asmx
-  memberNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_MemberKey
-  subscrNameSpace: http://trizetto.com/fxi/isl/FaWsvcInpGetMember_v3/GetMember_v3_SubscriberId
-  configIdentity: SVCAGENT
-  configRegion: Facets550
-  pages: 1
-  pageSize: 10
-  skipRows: 0
+ 
+ 
+ 
+ 
   
     
    
