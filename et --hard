@@ -1,0 +1,1592 @@
+warning: LF will be replaced by CRLF in claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in member-client/target/classes/META-INF/additional-spring-configuration-metadata.json.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/claim-client/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderController.java b/claim-client/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderController.java[m
+[1mindex 73aa2ad..ed6ac02 100644[m
+[1m--- a/claim-client/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderController.java[m
+[1m+++ b/claim-client/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderController.java[m
+[36m@@ -40,7 +40,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	private String URL_CLAIMSERVICELINE;[m
+ 	private String URL_CLAIMCOB;[m
+ 	[m
+[31m-	private final static Logger logger = LoggerFactory.getLogger(ClaimHeaderController.class);[m
+[32m+[m	[32mprivate final static Logger LOGGER = LoggerFactory.getLogger(ClaimHeaderController.class);[m[41m[m
+ [m
+ 	ClaimHeaderController(@Value("${claim.header.service.endpoint.serviceinfo}") String URL_SERVICEINFO,[m
+ 			@Value("${claim.header.service.endpoint.headerinfo}") String URL_HEADERINFO,[m
+[36m@@ -59,7 +59,7 @@[m [mpublic class ClaimHeaderController {[m
+ [m
+ 	@RequestMapping(value = "/headerserviceinfo", method = RequestMethod.GET)[m
+ 	public String getServiceInfo() {[m
+[31m-		logger.info("Called Client serviceInfo() method" );[m
+[32m+[m		[32mLOGGER.info("Called Client serviceInfo() method" );[m[41m[m
+ 		return restTemplate.getForObject(URL_SERVICEINFO, String.class);[m
+ 	}[m
+ [m
+[36m@@ -67,7 +67,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	//API method to retrieve claim details [m
+ 	@RequestMapping(value = "/claim", method = RequestMethod.GET)[m
+ 	public ClaimHeader getClaim() {[m
+[31m-		logger.info("Called Client getClaim() method" );[m
+[32m+[m		[32mLOGGER.info("Called Client getClaim() method" );[m[41m[m
+ 		ParameterizedTypeReference<Resource<ClaimHeader>> responseType = new ParameterizedTypeReference<Resource<ClaimHeader>>() {[m
+ 		};[m
+ 		ResponseEntity<Resource<ClaimHeader>> response = restTemplate.exchange([m
+[36m@@ -89,7 +89,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	public Map<String,Object> getClaimInfo(@PathVariable("claimId") String claimId,[m
+ 			@RequestParam(name = "parts", required = false) String[] partsArray) {[m
+ 		 [m
+[31m-		logger.info("Called Client getClaimInfo() method" );[m
+[32m+[m		[32mLOGGER.info("Called Client getClaimInfo() method" );[m[41m[m
+ 		ParameterizedTypeReference<Map<String,Object>> responseType = new ParameterizedTypeReference<Map<String,Object>>() {[m
+ 		};[m
+ 		[m
+[36m@@ -117,7 +117,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	@RequestMapping(value = "/claims/{claimId}/header", method = RequestMethod.GET)[m
+ 	public Claim getClaimHeader(@PathVariable("claimId") String claimId) [m
+ 	{[m
+[31m-		logger.info("Called Client getClaimHeader() method" );[m
+[32m+[m		[32mLOGGER.info("Called Client getClaimHeader() method" );[m[41m[m
+ 		ParameterizedTypeReference<Resource<Claim>> responseType = new ParameterizedTypeReference<Resource<Claim>>() {[m
+ 		};[m
+ 		ResponseEntity<Resource<Claim>> response = restTemplate.exchange([m
+[36m@@ -138,7 +138,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	@RequestMapping(value = "/claims/{claimId}/servicelines", method = RequestMethod.GET)[m
+ 	public List<ClaimServiceLine> getClaimServiceLine(@PathVariable("claimId") String claimId) [m
+ 	{[m
+[31m-		logger.info("Called Client getClaimServiceLine() method" );[m
+[32m+[m		[32mLOGGER.info("Called Client getClaimServiceLine() method" );[m[41m[m
+ 		ParameterizedTypeReference<List<ClaimServiceLine>> responseType = new ParameterizedTypeReference<List<ClaimServiceLine>>() {[m
+ 		};[m
+ 		ResponseEntity<List<ClaimServiceLine>> response = restTemplate.exchange([m
+[36m@@ -160,7 +160,7 @@[m [mpublic class ClaimHeaderController {[m
+ 	@RequestMapping(value = "/claims/{claimId}/cob", method = RequestMethod.GET)[m
+ 	public ClaimCob getClaimCob(@PathVariable("claimId") String claimId)[m
+ 	{[m
+[31m-		logger.info(" in Client getClaimCob() method" );[m
+[32m+[m		[32mLOGGER.info(" in Client getClaimCob() method" );[m[41m[m
+ 		return restTemplate.getForObject(URL_CLAIMCOB, ClaimCob.class, claimId);[m
+ 	}[m
+ 	[m
+[1mdiff --git a/claim-client/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderController.class b/claim-client/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderController.class[m
+[1mindex f7430a7..aeb606e 100644[m
+Binary files a/claim-client/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderController.class and b/claim-client/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderController.class differ
+[1mdiff --git a/claim-service/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderRestController.java b/claim-service/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderRestController.java[m
+[1mindex 2ef1af6..aaf878e 100644[m
+[1m--- a/claim-service/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderRestController.java[m
+[1m+++ b/claim-service/src/main/java/com/cts/healthcare/integration/controller/ClaimHeaderRestController.java[m
+[36m@@ -22,7 +22,7 @@[m [mimport com.cts.healthcare.integration.service.ClaimService;[m
+ @RequestMapping("/")[m
+ public class ClaimHeaderRestController {[m
+ [m
+[31m-	public static final Logger logger = LoggerFactory.getLogger(ClaimHeaderRestController.class);[m
+[32m+[m	[32mpublic static final Logger LOGGER = LoggerFactory.getLogger(ClaimHeaderRestController.class);[m[41m[m
+ [m
+ 	@Autowired[m
+ 	private ClaimService claimService;[m
+[36m@@ -33,46 +33,44 @@[m [mpublic class ClaimHeaderRestController {[m
+ 	}[m
+ [m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to  retrieve claim info[m
+[31m-	**/[m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * API method to retrieve claim info[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+ 	@RequestMapping("/claims/{claimid}")[m
+[31m-	public ResponseEntity<Map<String,Object>> getClaimParts(@PathVariable("claimid") String id, @RequestParam(name="parts", required=false) String parts) [m
+[31m-	{	[m
+[31m-		logger.info("Called Service getClaim() method" );[m
+[31m-		return new ResponseEntity<Map<String,Object>>(claimService.getClaimParts(id, parts), HttpStatus.OK);[m
+[32m+[m	[32mpublic ResponseEntity<Map<String, Object>> getClaimParts(@PathVariable("claimid") String id,[m[41m[m
+[32m+[m			[32m@RequestParam(name = "parts", required = false) String[] parts) {[m[41m[m
+[32m+[m		[32mLOGGER.info("Called Service getClaimParts() method");[m[41m[m
+[32m+[m		[32mreturn new ResponseEntity<Map<String, Object>>(claimService.getClaimParts(id, parts), HttpStatus.OK);[m[41m[m
+ 	}[m
+[31m-	[m
+[32m+[m[41m[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to  retrieve claim header[m
+[31m-	**/[m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * API method to retrieve claim header[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+ 	@RequestMapping("/claims/{claimid}/header")[m
+[31m-	public ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) [m
+[31m-	{[m
+[31m-		logger.info("Called Service getClaimHeader() method" );[m
+[32m+[m	[32mpublic ResponseEntity<Claim> getClaimHeader(@PathVariable("claimid") String id) {[m[41m[m
+[32m+[m		[32mLOGGER.info("Called Service getClaimHeader() method");[m[41m[m
+ 		return new ResponseEntity<Claim>(claimService.getClaimHeader(id), HttpStatus.OK);[m
+ 	}[m
+[31m-	[m
+[32m+[m[41m[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to  retrieve claim service line[m
+[31m-	**/[m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * API method to retrieve claim service line[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+ 	@RequestMapping("/claims/{claimid}/servicelines")[m
+[31m-	public ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) [m
+[31m-	{	[m
+[31m-		logger.info("Called Service getServiceLine() method" );[m
+[32m+[m	[32mpublic ResponseEntity<List<ClaimServiceLine>> getServiceLine(@PathVariable("claimid") String id) {[m[41m[m
+[32m+[m		[32mLOGGER.info("Called Service getServiceLine() method");[m[41m[m
+ 		return new ResponseEntity<List<ClaimServiceLine>>(claimService.getClaimServiceLine(id), HttpStatus.OK);[m
+ 	}[m
+[31m-	[m
+[32m+[m[41m[m
+ 	/**[m
+ 	 * Method to get the Claim COB for the given ClaimId[m
+[31m-	 * 	[m
+[32m+[m	[32m *[m[41m [m
+ 	 * @param id[m
+ 	 * @return[m
+ 	 */[m
+ 	@RequestMapping("/claims/{claimid}/cob")[m
+[31m-	public ResponseEntity<ClaimCob> getCob(@PathVariable("claimid") String id) {				[m
+[32m+[m	[32mpublic ResponseEntity<ClaimCob> getCob(@PathVariable("claimid") String id) {[m[41m[m
+ 		return new ResponseEntity<ClaimCob>(claimService.getClaimCob(id), HttpStatus.OK);[m
+ 	}[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.java b/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.java[m
+[1mindex 32e4d96..7afb7a0 100644[m
+[1m--- a/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.java[m
+[1m+++ b/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.java[m
+[36m@@ -36,76 +36,64 @@[m [mimport com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.ArrayOfRECCDML;[m
+ import com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.ListClaimCDMLV9ClaimId;[m
+ import com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.ListClaimCDMLV9ClaimIdResponse;[m
+ import com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.RECCDML;[m
+[31m- [m
+[31m- [m
+[31m- [m
+ [m
+ @Service("claimService")[m
+ @EnableConfigurationProperties(ClaimProperty.class)[m
+[31m-public class ClaimHeaderServiceImpl implements ClaimService [m
+[31m-{[m
+[32m+[m[32mpublic class ClaimHeaderServiceImpl implements ClaimService {[m[41m[m
+[32m+[m[41m[m
+[32m+[m[41m	[m
+[32m+[m	[32mpublic static final Logger LOGGER = LoggerFactory.getLogger(ClaimHeaderRestController.class);[m[41m[m
+ 	[m
+ 	@Autowired[m
+ 	@Qualifier("WebServiceConnector")[m
+ 	private WebServiceConnector webServiceConnector;[m
+[31m-	[m
+[32m+[m[41m[m
+ 	@Autowired[m
+ 	private ClaimProperty claimProperty;[m
+[31m-	[m
+[32m+[m[41m[m
+ 	@Override[m
+ 	public String getInfo() {[m
+ 		return "Claim Header Service.";[m
+ 	}[m
+[31m-	[m
+[31m-	public static final Logger logger = LoggerFactory.getLogger(ClaimHeaderRestController.class);[m
+[31m-	[m
+[31m-	[m
+[32m+[m[41m[m
+ 	/**[m
+ 	 * [m
+ 	 * @param id[m
+ 	 * @param partArray[m
+ 	 * @return[m
+ 	 */[m
+[31m-	public Map<String,Object> getClaimParts(String claimId, String partArray)[m
+[31m-	{[m
+[31m-		Map<String,Object> claimPartsMap = new LinkedHashMap<>();[m
+[31m-		if(partArray != null) {[m
+[31m-			[m
+[31m-			String[] parts = partArray.split(",");	[m
+[31m-			StringBuffer part = null;[m
+[32m+[m	[32mpublic Map<String, Object> getClaimParts(String claimId, String[] partArray) {[m[41m[m
+[32m+[m		[32mMap<String, Object> claimPartsMap = new LinkedHashMap<>();[m[41m[m
+[32m+[m		[32mif (partArray != null) {[m[41m[m
+ 			Claim claim = null;[m
+ 			List<ClaimServiceLine> servLineList = null;[m
+[31m-			for(String partType : parts) {[m
+[31m-				part = new StringBuffer(partType.trim().replaceAll("[\\[\\]]", ""));[m
+[31m-				switch(part.toString()) [m
+[31m-		        { [m
+[31m-		            case "header": [m
+[31m-		                claim = getClaim(claimId); [m
+[31m-		                //claim.setClaimCob(null);[m
+[31m-		                claimPartsMap.put(part.toString(), claim.getClaimHeader());[m
+[31m-		                break; [m
+[31m-		            case "servicelines": [m
+[31m-		                servLineList = getClaimServiceLine(claimId);[m
+[31m-		                claimPartsMap.put(part.toString(), servLineList);[m
+[31m-		                break; [m
+[31m-		            case "cob": [m
+[31m-		            	claim = getClaim(claimId);[m
+[31m-			            claimPartsMap.put(part.toString(), claim.getClaimCob());[m
+[31m-		        } [m
+[32m+[m			[32mfor (String part : partArray) {[m[41m[m
+[32m+[m				[32mswitch (part) {[m[41m[m
+[32m+[m				[32mcase "header":[m[41m[m
+[32m+[m					[32mclaim = getClaim(claimId);[m[41m[m
+[32m+[m					[32mclaimPartsMap.put(part, claim.getClaimHeader());[m[41m[m
+[32m+[m					[32mbreak;[m[41m[m
+[32m+[m				[32mcase "servicelines":[m[41m[m
+[32m+[m					[32mservLineList = getClaimServiceLine(claimId);[m[41m[m
+[32m+[m					[32mclaimPartsMap.put(part, servLineList);[m[41m[m
+[32m+[m					[32mbreak;[m[41m[m
+[32m+[m				[32mcase "cob":[m[41m[m
+[32m+[m					[32mclaim = getClaim(claimId);[m[41m[m
+[32m+[m					[32mclaimPartsMap.put(part, claim.getClaimCob());[m[41m[m
+[32m+[m				[32m}[m[41m[m
+ 			}[m
+ 		}[m
+ 		return claimPartsMap;[m
+[31m-		[m
+[32m+[m[41m[m
+ 	}[m
+[31m-	 [m
+[32m+[m[41m[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Claim info[m
+[31m-	**/[m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * API method to retrieve Claim info[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+ 	public Claim getClaim(String claimId) {[m
+[31m-		[m
+ [m
+[31m-		logger.info("in ServiceImpl getClaim() method"); [m
+[32m+[m		[32mLOGGER.info("in ServiceImpl getClaim() method");[m[41m[m
+ 		ListClaimV11ClaimId listClaimV11ClaimIdRequest = new ListClaimV11ClaimId();[m
+ 		Config config = new Config();[m
+ 		Claim claim = new Claim();[m
+[36m@@ -113,7 +101,7 @@[m [mpublic class ClaimHeaderServiceImpl implements ClaimService[m
+ 		ClaimMembers claimMember = new ClaimMembers();[m
+ 		ClaimCob claimCob = new ClaimCob();[m
+ 		ClaimProvider claimProvider = new ClaimProvider();[m
+[31m-		[m
+[32m+[m[41m[m
+ 		config.setFacetsIdentity(claimProperty.getConfigIdentity());[m
+ 		config.setRegion(claimProperty.getConfigRegion());[m
+ 		listClaimV11ClaimIdRequest.setPCLCLID(claimId);[m
+[36m@@ -121,130 +109,136 @@[m [mpublic class ClaimHeaderServiceImpl implements ClaimService[m
+ 		listClaimV11ClaimIdRequest.setPPAGESIZE(claimProperty.getPageSize());[m
+ 		listClaimV11ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows());[m
+ 		listClaimV11ClaimIdRequest.setPConfig(config);[m
+[31m-		 [m
+[31m-		ListClaimV11ClaimIdResponse  listClaimV11ClaimIdResponse = (ListClaimV11ClaimIdResponse) webServiceConnector.callWebService(claimProperty.getHeaderWsdl(), listClaimV11ClaimIdRequest, claimProperty.getHeaderNameSpace());[m
+[31m-		    if(listClaimV11ClaimIdResponse != null) {[m
+[31m-		    	ArrayOfRECCLCL recClclArray = listClaimV11ClaimIdResponse.getListClaimV11ClaimIdResult().getCLCLCOLL();[m
+[31m-		    	if(recClclArray != null && recClclArray.getRECCLCL() != null) {[m
+[31m-				    List<RECCLCL> recClclList = recClclArray.getRECCLCL();[m
+[31m-			    	for(RECCLCL recClcl : recClclList) {[m
+[31m-				    	[m
+[31m-				    	claim.setClaimId(recClcl.getCLCLID());[m
+[31m-				    	claimHeader.setClaimId(recClcl.getCLCLID());[m
+[31m-				    	claimHeader.setType(recClcl.getCLCLCLTYPE());[m
+[31m-				    	claimHeader.setSubType(recClcl.getCLCLCLSUBTYPE());[m
+[31m-				    	claimHeader.setClaimStatus(recClcl.getCLCLCURSTS());[m
+[31m-				    	claimHeader.setCode(recClcl.getCLSTMCTRREAS());[m
+[31m-				    	claimHeader.setDescription(recClcl.getCLSTMCTRREASDESC());[m
+[31m-				    	claimHeader.setTotalPayableAmount(recClcl.getCLCLTOTPAYABLE());[m
+[31m-				    	claimHeader.setTotalClaimChargeAmount(recClcl.getCLCLTOTCHG());[m
+[31m-				    	claimHeader.setClaimSubmissionType(recClcl.getCLCLCLSUBTYPE());[m
+[31m-				    	claimHeader.setReceivedDate(convertXMLGCToString(recClcl.getCLCLRECDDT()));[m
+[31m-				    	claimHeader.setCarrier(recClcl.getCSCSID());[m
+[31m-				    	claimHeader.setAdmissionDate(convertXMLGCToString(recClcl.getCLHPADMDT()));[m
+[31m-				    	claimHeader.setDischargedDate(convertXMLGCToString(recClcl.getCLHPDCDT()));[m
+[31m-				    	claimHeader.setStatementFromDate(convertXMLGCToString(recClcl.getCLHPSTAMENTFRDT()));[m
+[31m-				    	claimHeader.setStatementToDate(convertXMLGCToString(recClcl.getCLHPSTAMENTTODT()));[m
+[31m-				    	claimHeader.setClassId(recClcl.getCSCSID());[m
+[31m-				    	claimHeader.setClassPlanId(recClcl.getCSPIID());[m
+[31m-				    	claimHeader.setProductId(recClcl.getPDPDID());[m
+[31m-				    	claimHeader.setProductType(recClcl.getPDDSPRODTYPE());[m
+[31m-				    	claimHeader.setProductCategory(recClcl.getCSPDCAT());[m
+[31m-				    	claimHeader.setBusinessCategory(recClcl.getPDDSMCTRBCAT());[m
+[31m-				    	claimHeader.setNetworkId(recClcl.getNWNWID());[m
+[31m-		[m
+[31m-				    	claimMember.setMemberId(recClcl.getMEMECK());[m
+[31m-				    	claimMember.setGroupId(recClcl.getGRGRID());[m
+[31m-				    	claimMember.setSubscriberId(recClcl.getSBSBID());[m
+[31m-				    	claimMember.setMemberSuffix(recClcl.getMEMESFX());[m
+[31m-				    	[m
+[31m-				    	claimProvider.setBillingProviderId(recClcl.getCLCLPAYEEPRID());[m
+[31m-				    	claimProvider.setRenderingProviderId(recClcl.getPRPRID());[m
+[31m-				    	claimProvider.setOperatingProviderNPI(recClcl.getCLHPPRPROPNPI());[m
+[31m-				    	claimProvider.setOperatingProviderTaxID(recClcl.getCLHPPRPROPTAX());[m
+[31m-				    	claimProvider.setReferingProviderTaxID(recClcl.getCLMFPRPRFATAX());[m
+[31m-				    	claimProvider.setServiceFacilityProviderID(recClcl.getCLMFPRPRIDFAC());[m
+[31m-				    	claimProvider.setServiceFacilityTaxID(recClcl.getCLMFPRPRFATAX());[m
+[31m-				    	[m
+[31m-				    	claimCob.setOtherPayerPaid(recClcl.getCLCBCOBAMT());[m
+[31m-				    	claimCob.setOtherPayerAllowable(recClcl.getCLCBCOBALLOW());[m
+[31m-				    	claim.setClaimHeader(claimHeader);[m
+[31m-				    	claim.setClaimMembers(claimMember);[m
+[31m-				    	claim.setClaimCob(claimCob);[m
+[31m-				    	claim.setClaimProvider(claimProvider);[m
+[31m-				    }[m
+[31m-		    	}[m
+[31m-		    } [m
+[31m-		    return claim;[m
+[31m-	[m
+[32m+[m[41m[m
+[32m+[m		[32mListClaimV11ClaimIdResponse listClaimV11ClaimIdResponse = (ListClaimV11ClaimIdResponse) webServiceConnector[m[41m[m
+[32m+[m				[32m.callWebService(claimProperty.getHeaderWsdl(), listClaimV11ClaimIdRequest,[m[41m[m
+[32m+[m						[32mclaimProperty.getHeaderNameSpace());[m[41m[m
+[32m+[m		[32mif (listClaimV11ClaimIdResponse != null) {[m[41m[m
+[32m+[m			[32mArrayOfRECCLCL recClclArray = listClaimV11ClaimIdResponse.getListClaimV11ClaimIdResult().getCLCLCOLL();[m[41m[m
+[32m+[m			[32mif (recClclArray != null && recClclArray.getRECCLCL() != null) {[m[41m[m
+[32m+[m				[32mList<RECCLCL> recClclList = recClclArray.getRECCLCL();[m[41m[m
+[32m+[m				[32mfor (RECCLCL recClcl : recClclList) {[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaim.setClaimId(recClcl.getCLCLID());[m[41m[m
+[32m+[m					[32mclaimHeader.setClaimId(recClcl.getCLCLID());[m[41m[m
+[32m+[m					[32mclaimHeader.setType(recClcl.getCLCLCLTYPE());[m[41m[m
+[32m+[m					[32mclaimHeader.setSubType(recClcl.getCLCLCLSUBTYPE());[m[41m[m
+[32m+[m					[32mclaimHeader.setClaimStatus(recClcl.getCLCLCURSTS());[m[41m[m
+[32m+[m					[32mclaimHeader.setCode(recClcl.getCLSTMCTRREAS());[m[41m[m
+[32m+[m					[32mclaimHeader.setDescription(recClcl.getCLSTMCTRREASDESC());[m[41m[m
+[32m+[m					[32mclaimHeader.setTotalPayableAmount(recClcl.getCLCLTOTPAYABLE());[m[41m[m
+[32m+[m					[32mclaimHeader.setTotalClaimChargeAmount(recClcl.getCLCLTOTCHG());[m[41m[m
+[32m+[m					[32mclaimHeader.setClaimSubmissionType(recClcl.getCLCLCLSUBTYPE());[m[41m[m
+[32m+[m					[32mclaimHeader.setReceivedDate(convertXMLGCToString(recClcl.getCLCLRECDDT()));[m[41m[m
+[32m+[m					[32mclaimHeader.setCarrier(recClcl.getCSCSID());[m[41m[m
+[32m+[m					[32mclaimHeader.setAdmissionDate(convertXMLGCToString(recClcl.getCLHPADMDT()));[m[41m[m
+[32m+[m					[32mclaimHeader.setDischargedDate(convertXMLGCToString(recClcl.getCLHPDCDT()));[m[41m[m
+[32m+[m					[32mclaimHeader.setStatementFromDate(convertXMLGCToString(recClcl.getCLHPSTAMENTFRDT()));[m[41m[m
+[32m+[m					[32mclaimHeader.setStatementToDate(convertXMLGCToString(recClcl.getCLHPSTAMENTTODT()));[m[41m[m
+[32m+[m					[32mclaimHeader.setClassId(recClcl.getCSCSID());[m[41m[m
+[32m+[m					[32mclaimHeader.setClassPlanId(recClcl.getCSPIID());[m[41m[m
+[32m+[m					[32mclaimHeader.setProductId(recClcl.getPDPDID());[m[41m[m
+[32m+[m					[32mclaimHeader.setProductType(recClcl.getPDDSPRODTYPE());[m[41m[m
+[32m+[m					[32mclaimHeader.setProductCategory(recClcl.getCSPDCAT());[m[41m[m
+[32m+[m					[32mclaimHeader.setBusinessCategory(recClcl.getPDDSMCTRBCAT());[m[41m[m
+[32m+[m					[32mclaimHeader.setNetworkId(recClcl.getNWNWID());[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaimMember.setMemberId(recClcl.getMEMECK());[m[41m[m
+[32m+[m					[32mclaimMember.setGroupId(recClcl.getGRGRID());[m[41m[m
+[32m+[m					[32mclaimMember.setSubscriberId(recClcl.getSBSBID());[m[41m[m
+[32m+[m					[32mclaimMember.setMemberSuffix(recClcl.getMEMESFX());[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaimProvider.setBillingProviderId(recClcl.getCLCLPAYEEPRID());[m[41m[m
+[32m+[m					[32mclaimProvider.setRenderingProviderId(recClcl.getPRPRID());[m[41m[m
+[32m+[m					[32mclaimProvider.setOperatingProviderNPI(recClcl.getCLHPPRPROPNPI());[m[41m[m
+[32m+[m					[32mclaimProvider.setOperatingProviderTaxID(recClcl.getCLHPPRPROPTAX());[m[41m[m
+[32m+[m					[32mclaimProvider.setReferingProviderTaxID(recClcl.getCLMFPRPRFATAX());[m[41m[m
+[32m+[m					[32mclaimProvider.setServiceFacilityProviderID(recClcl.getCLMFPRPRIDFAC());[m[41m[m
+[32m+[m					[32mclaimProvider.setServiceFacilityTaxID(recClcl.getCLMFPRPRFATAX());[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaimCob.setOtherPayerPaid(recClcl.getCLCBCOBAMT());[m[41m[m
+[32m+[m					[32mclaimCob.setOtherPayerAllowable(recClcl.getCLCBCOBALLOW());[m[41m[m
+[32m+[m					[32mclaim.setClaimHeader(claimHeader);[m[41m[m
+[32m+[m					[32mclaim.setClaimMembers(claimMember);[m[41m[m
+[32m+[m					[32mclaim.setClaimCob(claimCob);[m[41m[m
+[32m+[m					[32mclaim.setClaimProvider(claimProvider);[m[41m[m
+[32m+[m				[32m}[m[41m[m
+[32m+[m			[32m}[m[41m[m
+[32m+[m		[32m}[m[41m[m
+[32m+[m		[32mreturn claim;[m[41m[m
+[32m+[m[41m[m
+ 	}[m
+[32m+[m[41m[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Claim service line[m
+[31m-	**/[m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * API method to retrieve Claim service line[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+ 	@Override[m
+ 	public List<ClaimServiceLine> getClaimServiceLine(String claimId) {[m
+ [m
+[31m-		logger.info("in ServiceImpl getClaimServiceLine() method"); [m
+[32m+[m		[32mLOGGER.info("in ServiceImpl getClaimServiceLine() method");[m[41m[m
+ 		ListClaimCDMLV9ClaimId listClaimCDMLV9ClaimIdRequest = new ListClaimCDMLV9ClaimId();[m
+ 		com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config config = new com.trizetto.fxi.isl.fawsvcinplistclaimcdml_v9.Config();[m
+[31m-		[m
+[32m+[m[41m[m
+ 		ClaimMembers claimMember;[m
+ 		ClaimServiceLine claimServLine;[m
+ 		ClaimDiagnosis claimDiagnosis;[m
+ 		ClaimProvider claimProvider;[m
+ 		List<ClaimServiceLine> servLineList = new ArrayList<>();[m
+[31m-		 [m
+[32m+[m[41m[m
+ 		config.setFacetsIdentity(claimProperty.getConfigIdentity());[m
+ 		listClaimCDMLV9ClaimIdRequest.setPCLCLID(claimId);[m
+ 		listClaimCDMLV9ClaimIdRequest.setPPAGE(claimProperty.getPages());[m
+ 		listClaimCDMLV9ClaimIdRequest.setPPAGESIZE(claimProperty.getPageSize());[m
+[31m-		listClaimCDMLV9ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows()); [m
+[32m+[m		[32mlistClaimCDMLV9ClaimIdRequest.setPSKIPROWS(claimProperty.getSkipRows());[m[41m[m
+ 		listClaimCDMLV9ClaimIdRequest.setPConfig(config);[m
+[31m-		[m
+[31m-		ListClaimCDMLV9ClaimIdResponse  listClaimCDMLV9ClaimIdResponse = (ListClaimCDMLV9ClaimIdResponse)webServiceConnector.callWebService(claimProperty.getServLineWsdl(), listClaimCDMLV9ClaimIdRequest, claimProperty.getServLineNameSpace());[m
+[31m-		 if(listClaimCDMLV9ClaimIdResponse != null) {[m
+[31m-		    	ArrayOfRECCDML recCdmlArray = listClaimCDMLV9ClaimIdResponse.getListClaimCDMLV9ClaimIdResult().getCDMLCOLL();[m
+[31m-		    	if(recCdmlArray != null && recCdmlArray.getRECCDML() != null ) {[m
+[31m-			    	List<RECCDML> recCdmlList = recCdmlArray.getRECCDML();[m
+[31m-			    	for(RECCDML recCdml : recCdmlList) {[m
+[31m-			    		[m
+[31m-			    		claimMember = new ClaimMembers();[m
+[31m-			    		claimServLine = new ClaimServiceLine();[m
+[31m-			    		claimDiagnosis = new ClaimDiagnosis();[m
+[31m-			    		claimProvider = new ClaimProvider();[m
+[31m-			    		[m
+[31m-			    		claimServLine.setClaimId(recCdml.getCLCLID());[m
+[31m-			    		claimServLine.setLineNumber(recCdml.getCDMLSEQNO());[m
+[31m-			    		claimServLine.setConditionCode(recCdml.getIPCDID());		    		[m
+[31m-			    		claimServLine.setServiceFromDate(convertXMLGCToString(recCdml.getCDMLFROMDT()));[m
+[31m-			    		claimServLine.setServiceToDate(convertXMLGCToString(recCdml.getCDMLTODT()));[m
+[31m-			    		//claimServLine.setStatus(recCdml.getcdmlc);[m
+[31m-			    		claimServLine.setChargeAmount(recCdml.getCDMLCHGAMT());[m
+[31m-			    		claimServLine.setTotalClaimAllowedAmount(recCdml.getCDMLALLOW());[m
+[31m-			    		claimServLine.setUnits(recCdml.getCDMLUNITS());[m
+[31m-			    		claimServLine.setNonCoveredChargeAmount(recCdml.getCDMLUNITSALLOW());[m
+[31m-			    		claimServLine.setConditionReferalIndicator(recCdml.getCDMLREFIND());[m
+[31m-			    		claimServLine.setPatientPaidAmount(recCdml.getCDMLPAIDAMT());[m
+[31m-			    		claimServLine.setDeductibleAmount(recCdml.getCDMLDEDAMT());[m
+[31m-			    		claimServLine.setCopayAmount(recCdml.getCDMLCOPAYAMT());[m
+[31m-			    		claimServLine.setCoinsuranceAmount(recCdml.getCDMLCOINSAMT());[m
+[31m-			    		claimServLine.setPlaceOfService(recCdml.getPSCDID()!=null ? recCdml.getPSCDID() : "" [m
+[31m-			    					+recCdml.getPSCDDESC() !=null ? recCdml.getPSCDDESC() : "");[m
+[31m-			    		claimServLine.setRiskAmt(recCdml.getCDMLRISKWHAMT());[m
+[31m-			    		claimServLine.setDiscountAmount(recCdml.getCDMLDISCAMT());[m
+[31m-			    		claimServLine.setProcedureCodes(recCdml.getIPCDID());[m
+[31m-			    		claimServLine.setServiceLineRevenueCode(recCdml.getRCRCID()); [m
+[31m-			    		claimProvider.setRenderingProviderId(recCdml.getPRPRID());[m
+[31m-			    		claimDiagnosis.setDiagnosisCodeVersion(recCdml.getIDCDID());[m
+[31m-			    		claimMember.setSubscriberId(recCdml.getSBSBID());[m
+[31m-			    		claimMember.setMemberSuffix(recCdml.getMEMESFX());[m
+[31m-			    		claimServLine.setClaimDiagnosis(claimDiagnosis);[m
+[31m-			    		[m
+[31m-			    		servLineList.add(claimServLine);[m
+[31m-			    	}[m
+[31m-		    	}[m
+[31m-		 }[m
+[32m+[m[41m[m
+[32m+[m		[32mListClaimCDMLV9ClaimIdResponse listClaimCDMLV9ClaimIdResponse = (ListClaimCDMLV9ClaimIdResponse) webServiceConnector[m[41m[m
+[32m+[m				[32m.callWebService(claimProperty.getServLineWsdl(), listClaimCDMLV9ClaimIdRequest,[m[41m[m
+[32m+[m						[32mclaimProperty.getServLineNameSpace());[m[41m[m
+[32m+[m		[32mif (listClaimCDMLV9ClaimIdResponse != null) {[m[41m[m
+[32m+[m			[32mArrayOfRECCDML recCdmlArray = listClaimCDMLV9ClaimIdResponse.getListClaimCDMLV9ClaimIdResult()[m[41m[m
+[32m+[m					[32m.getCDMLCOLL();[m[41m[m
+[32m+[m			[32mif (recCdmlArray != null && recCdmlArray.getRECCDML() != null) {[m[41m[m
+[32m+[m				[32mList<RECCDML> recCdmlList = recCdmlArray.getRECCDML();[m[41m[m
+[32m+[m				[32mfor (RECCDML recCdml : recCdmlList) {[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaimMember = new ClaimMembers();[m[41m[m
+[32m+[m					[32mclaimServLine = new ClaimServiceLine();[m[41m[m
+[32m+[m					[32mclaimDiagnosis = new ClaimDiagnosis();[m[41m[m
+[32m+[m					[32mclaimProvider = new ClaimProvider();[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mclaimServLine.setClaimId(recCdml.getCLCLID());[m[41m[m
+[32m+[m					[32mclaimServLine.setLineNumber(recCdml.getCDMLSEQNO());[m[41m[m
+[32m+[m					[32mclaimServLine.setConditionCode(recCdml.getIPCDID());[m[41m[m
+[32m+[m					[32mclaimServLine.setServiceFromDate(convertXMLGCToString(recCdml.getCDMLFROMDT()));[m[41m[m
+[32m+[m					[32mclaimServLine.setServiceToDate(convertXMLGCToString(recCdml.getCDMLTODT()));[m[41m[m
+[32m+[m					[32m// claimServLine.setStatus(recCdml.getcdmlc);[m[41m[m
+[32m+[m					[32mclaimServLine.setChargeAmount(recCdml.getCDMLCHGAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setTotalClaimAllowedAmount(recCdml.getCDMLALLOW());[m[41m[m
+[32m+[m					[32mclaimServLine.setUnits(recCdml.getCDMLUNITS());[m[41m[m
+[32m+[m					[32mclaimServLine.setNonCoveredChargeAmount(recCdml.getCDMLUNITSALLOW());[m[41m[m
+[32m+[m					[32mclaimServLine.setConditionReferalIndicator(recCdml.getCDMLREFIND());[m[41m[m
+[32m+[m					[32mclaimServLine.setPatientPaidAmount(recCdml.getCDMLPAIDAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setDeductibleAmount(recCdml.getCDMLDEDAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setCopayAmount(recCdml.getCDMLCOPAYAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setCoinsuranceAmount(recCdml.getCDMLCOINSAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setPlaceOfService(recCdml.getPSCDID() != null ? recCdml.getPSCDID()[m[41m[m
+[32m+[m							[32m: "" + recCdml.getPSCDDESC() != null ? recCdml.getPSCDDESC() : "");[m[41m[m
+[32m+[m					[32mclaimServLine.setRiskAmt(recCdml.getCDMLRISKWHAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setDiscountAmount(recCdml.getCDMLDISCAMT());[m[41m[m
+[32m+[m					[32mclaimServLine.setProcedureCodes(recCdml.getIPCDID());[m[41m[m
+[32m+[m					[32mclaimServLine.setServiceLineRevenueCode(recCdml.getRCRCID());[m[41m[m
+[32m+[m					[32mclaimProvider.setRenderingProviderId(recCdml.getPRPRID());[m[41m[m
+[32m+[m					[32mclaimDiagnosis.setDiagnosisCodeVersion(recCdml.getIDCDID());[m[41m[m
+[32m+[m					[32mclaimMember.setSubscriberId(recCdml.getSBSBID());[m[41m[m
+[32m+[m					[32mclaimMember.setMemberSuffix(recCdml.getMEMESFX());[m[41m[m
+[32m+[m					[32mclaimServLine.setClaimDiagnosis(claimDiagnosis);[m[41m[m
+[32m+[m[41m[m
+[32m+[m					[32mservLineList.add(claimServLine);[m[41m[m
+[32m+[m				[32m}[m[41m[m
+[32m+[m			[32m}[m[41m[m
+[32m+[m		[32m}[m[41m[m
+ 		return servLineList;[m
+ 	}[m
+ [m
+[36m@@ -258,7 +252,7 @@[m [mpublic class ClaimHeaderServiceImpl implements ClaimService[m
+ 		claim.setClaimCob(null);[m
+ 		return claim;[m
+ 	}[m
+[31m-	[m
+[32m+[m[41m[m
+ 	/**[m
+ 	 * [m
+ 	 * Method to get the Claim COB details[m
+[36m@@ -266,24 +260,22 @@[m [mpublic class ClaimHeaderServiceImpl implements ClaimService[m
+ 	 */[m
+ 	public ClaimCob getClaimCob(String id) {[m
+ 		Claim claim = getClaim(id);[m
+[31m-		 [m
+[32m+[m[41m[m
+ 		return claim.getClaimCob();[m
+ 	}[m
+[31m-	[m
+[31m-		 [m
+[32m+[m[41m[m
+ 	/**[m
+[31m-	*[m
+[31m-	* Utility method to convert XMLGregorianCalendar date to String type[m
+[31m-	**/[m
+[31m-	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)[m
+[31m-    {[m
+[31m-          String dateString =null;[m
+[31m-          Date date = null;[m
+[31m-          if(xmlDate!= null) {[m
+[31m-                 DateFormat df = new SimpleDateFormat("yyyyMMdd'T'hhmmss.SSS z");[m
+[31m-               date =  xmlDate.toGregorianCalendar().getTime();[m
+[31m-               dateString = df.format(date);[m
+[31m-          }[m
+[31m-          return dateString;[m
+[31m-    }  [m
+[32m+[m	[32m *[m[41m[m
+[32m+[m	[32m * Utility method to convert XMLGregorianCalendar date to String type[m[41m[m
+[32m+[m	[32m **/[m[41m[m
+[32m+[m	[32mprivate String convertXMLGCToString(XMLGregorianCalendar xmlDate) {[m[41m[m
+[32m+[m		[32mString dateString = null;[m[41m[m
+[32m+[m		[32mDate date = null;[m[41m[m
+[32m+[m		[32mif (xmlDate != null) {[m[41m[m
+[32m+[m			[32mDateFormat df = new SimpleDateFormat("yyyyMMdd'T'hhmmss.SSS z");[m[41m[m
+[32m+[m			[32mdate = xmlDate.toGregorianCalendar().getTime();[m[41m[m
+[32m+[m			[32mdateString = df.format(date);[m[41m[m
+[32m+[m		[32m}[m[41m[m
+[32m+[m		[32mreturn dateString;[m[41m[m
+[32m+[m	[32m}[m[41m[m
+ }[m
+[1mdiff --git a/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimService.java b/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimService.java[m
+[1mindex 1f7466c..ca52412 100644[m
+[1m--- a/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimService.java[m
+[1m+++ b/claim-service/src/main/java/com/cts/healthcare/integration/service/ClaimService.java[m
+[36m@@ -11,7 +11,7 @@[m [mpublic interface ClaimService {[m
+ 	[m
+ 	public String getInfo();[m
+ 	[m
+[31m-	public Map<String,Object> getClaimParts(String id, String parts);[m
+[32m+[m	[32mpublic Map<String,Object> getClaimParts(String id, String[] parts);[m[41m[m
+ 	[m
+ 	public Claim getClaimHeader(String id) ;[m
+ 	[m
+[1mdiff --git a/claim-service/target/claim.header.service-0.0.1-SNAPSHOT.jar b/claim-service/target/claim.header.service-0.0.1-SNAPSHOT.jar[m
+[1mindex ae9c388..ba24b78 100644[m
+Binary files a/claim-service/target/claim.header.service-0.0.1-SNAPSHOT.jar and b/claim-service/target/claim.header.service-0.0.1-SNAPSHOT.jar differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/ClaimServiceApplication.class b/claim-service/target/classes/com/cts/healthcare/integration/ClaimServiceApplication.class[m
+[1mindex 0249bdd..d000983 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/ClaimServiceApplication.class and b/claim-service/target/classes/com/cts/healthcare/integration/ClaimServiceApplication.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class b/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class[m
+[1mindex 1ff3798..011842a 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class and b/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class b/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class[m
+[1mindex 27f3354..eb046f2 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class and b/claim-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class b/claim-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class[m
+[1mindex e476bd6..db9d5a8 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class and b/claim-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class b/claim-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class[m
+[1mindex 8d50cb5..aa7f237 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class and b/claim-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderRestController.class b/claim-service/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderRestController.class[m
+[1mindex 2148bd3..d83e9bf 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderRestController.class and b/claim-service/target/classes/com/cts/healthcare/integration/controller/ClaimHeaderRestController.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/Claim.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/Claim.class[m
+[1mindex 4b0d5f5..8d01a0f 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/Claim.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/Claim.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimCob.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimCob.class[m
+[1mindex e7e35cd..24b7e84 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimCob.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimCob.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimDiagnosis.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimDiagnosis.class[m
+[1mindex 94e63f8..611c06e 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimDiagnosis.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimDiagnosis.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class[m
+[1mindex 633937d..1d3f4c6 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimMembers.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimMembers.class[m
+[1mindex ac4ada1..91de210 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimMembers.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimMembers.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimProvider.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimProvider.class[m
+[1mindex f921d15..c78bb05 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimProvider.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimProvider.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimServiceLine.class b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimServiceLine.class[m
+[1mindex 0732ae6..21b6386 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimServiceLine.class and b/claim-service/target/classes/com/cts/healthcare/integration/domain/ClaimServiceLine.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.class b/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.class[m
+[1mindex 860b3b0..325f911 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.class and b/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimHeaderServiceImpl.class differ
+[1mdiff --git a/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimService.class b/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimService.class[m
+[1mindex 3d9eaa8..be8a060 100644[m
+Binary files a/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimService.class and b/claim-service/target/classes/com/cts/healthcare/integration/service/ClaimService.class differ
+[1mdiff --git a/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.class b/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.class[m
+[1mindex 3a633bb..fc9c42b 100644[m
+Binary files a/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.class and b/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.class differ
+[1mdiff --git a/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.class b/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.class[m
+[1mindex 925347d..e2de7a6 100644[m
+Binary files a/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.class and b/claim-service/target/classes/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.class differ
+[1mdiff --git a/claim-service/target/cxf-codegen-plugin-markers/.2FC95264748636A92B3FA024B80B47605EBB4880 b/claim-service/target/cxf-codegen-plugin-markers/.2FC95264748636A92B3FA024B80B47605EBB4880[m
+[1mdeleted file mode 100644[m
+[1mindex fe734dd..0000000[m
+Binary files a/claim-service/target/cxf-codegen-plugin-markers/.2FC95264748636A92B3FA024B80B47605EBB4880 and /dev/null differ
+[1mdiff --git a/claim-service/target/cxf-codegen-plugin-markers/.8CD3D9A54C31FB89A6F56317C5531C201316717A b/claim-service/target/cxf-codegen-plugin-markers/.8CD3D9A54C31FB89A6F56317C5531C201316717A[m
+[1mdeleted file mode 100644[m
+[1mindex ebc64c5..0000000[m
+Binary files a/claim-service/target/cxf-codegen-plugin-markers/.8CD3D9A54C31FB89A6F56317C5531C201316717A and /dev/null differ
+[1mdiff --git a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.java b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.java[m
+[1mindex c747e91..ffdd243 100644[m
+[1m--- a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.java[m
+[1m+++ b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11.java[m
+[36m@@ -10,12 +10,12 @@[m [mimport javax.xml.ws.Service;[m
+ [m
+ /**[m
+  * This class was generated by Apache CXF 3.1.9[m
+[31m- * 2018-09-15T01:39:23.956-06:00[m
+[32m+[m[32m * 2018-09-18T06:32:11.264-06:00[m
+  * Generated source version: 3.1.9[m
+  * [m
+  */[m
+ @WebServiceClient(name = "WebSvcListClaim_v11", [m
+[31m-                  wsdlLocation = "file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl",[m
+[32m+[m[32m                  wsdlLocation = "file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl",[m
+                   targetNamespace = "http://trizetto.com/fxi/isl/FaWsvcInpListClaim_v11") [m
+ public class WebSvcListClaimV11 extends Service {[m
+ [m
+[36m@@ -27,11 +27,11 @@[m [mpublic class WebSvcListClaimV11 extends Service {[m
+     static {[m
+         URL url = null;[m
+         try {[m
+[31m-            url = new URL("file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl");[m
+[32m+[m[32m            url = new URL("file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl");[m
+         } catch (MalformedURLException e) {[m
+             java.util.logging.Logger.getLogger(WebSvcListClaimV11.class.getName())[m
+                 .log(java.util.logging.Level.INFO, [m
+[31m-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl");[m
+[32m+[m[32m                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaim_v11.wsdl");[m
+         }[m
+         WSDL_LOCATION = url;[m
+     }[m
+[1mdiff --git a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11Soap.java b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11Soap.java[m
+[1mindex 57f7c17..046c185 100644[m
+[1m--- a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11Soap.java[m
+[1m+++ b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaim_v11/WebSvcListClaimV11Soap.java[m
+[36m@@ -10,7 +10,7 @@[m [mimport javax.xml.ws.ResponseWrapper;[m
+ [m
+ /**[m
+  * This class was generated by Apache CXF 3.1.9[m
+[31m- * 2018-09-15T01:39:23.925-06:00[m
+[32m+[m[32m * 2018-09-18T06:32:11.258-06:00[m
+  * Generated source version: 3.1.9[m
+  * [m
+  */[m
+[1mdiff --git a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.java b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.java[m
+[1mindex b937c43..fb4a53d 100644[m
+[1m--- a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.java[m
+[1m+++ b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9.java[m
+[36m@@ -10,12 +10,12 @@[m [mimport javax.xml.ws.Service;[m
+ [m
+ /**[m
+  * This class was generated by Apache CXF 3.1.9[m
+[31m- * 2018-09-15T01:39:23.574-06:00[m
+[32m+[m[32m * 2018-09-18T06:32:11.014-06:00[m
+  * Generated source version: 3.1.9[m
+  * [m
+  */[m
+ @WebServiceClient(name = "WebSvcListClaimCDML_v9", [m
+[31m-                  wsdlLocation = "file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl",[m
+[32m+[m[32m                  wsdlLocation = "file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl",[m
+                   targetNamespace = "http://trizetto.com/fxi/isl/FaWsvcInpListClaimCDML_v9") [m
+ public class WebSvcListClaimCDMLV9 extends Service {[m
+ [m
+[36m@@ -27,11 +27,11 @@[m [mpublic class WebSvcListClaimCDMLV9 extends Service {[m
+     static {[m
+         URL url = null;[m
+         try {[m
+[31m-            url = new URL("file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl");[m
+[32m+[m[32m            url = new URL("file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl");[m
+         } catch (MalformedURLException e) {[m
+             java.util.logging.Logger.getLogger(WebSvcListClaimCDMLV9.class.getName())[m
+                 .log(java.util.logging.Level.INFO, [m
+[31m-                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Sandeep.Kumar/git/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl");[m
+[32m+[m[32m                     "Can not initialize the default wsdl from {0}", "file:/C:/Users/Liyakath.Shareeb/Documents/service-repo/MyProject/claim-service/src/main/resources/wsdl/FaWsvcInpListClaimCDML_v9.wsdl");[m
+         }[m
+         WSDL_LOCATION = url;[m
+     }[m
+[1mdiff --git a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9Soap.java b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9Soap.java[m
+[1mindex 6e9ddfd..213494c 100644[m
+[1m--- a/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9Soap.java[m
+[1m+++ b/claim-service/target/generated/cxf/com/trizetto/fxi/isl/fawsvcinplistclaimcdml_v9/WebSvcListClaimCDMLV9Soap.java[m
+[36m@@ -10,7 +10,7 @@[m [mimport javax.xml.ws.ResponseWrapper;[m
+ [m
+ /**[m
+  * This class was generated by Apache CXF 3.1.9[m
+[31m- * 2018-09-15T01:39:23.509-06:00[m
+[32m+[m[32m * 2018-09-18T06:32:10.970-06:00[m
+  * Generated source version: 3.1.9[m
+  * [m
+  */[m
+[1mdiff --git a/claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst b/claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst[m
+[1mindex c3a3ea1..e0acbea 100644[m
+[1m--- a/claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst[m
+[1m+++ b/claim-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst[m
+[36m@@ -1,85 +1,85 @@[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECRESP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\HdrCollection.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimProvider.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\service\ClaimHeaderServiceImpl.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\ObjectFactory.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLHC.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Response.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKey.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9Response.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RecordBase.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\controller\ClaimHeaderRestController.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9MemberKey.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ClaimId.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLCL.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\CollectionTypeList.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\WsConfigClient.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ClaimIdResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\client\WebServiceConnector.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\service\ClaimService.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\WebSvcListClaimCDMLV9Soap.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Config.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDLM.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimServiceLine.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfString.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\package-info.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimCob.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimHeader.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECRESP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ObjectFactory.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumberResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Response.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\WebSvcListClaimV11.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9SubscriberKeyResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderId.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLRN.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\PartnerType.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLCL.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ObjectFactory.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RecordBase.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\PartnerNameType.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimMembers.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDLM.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMSVResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMINResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLID.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\ClaimProperty.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\Claim.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECRESP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\package-info.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECERR.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\SpringFoxConfig.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKeyResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMSV.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLHC.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDNP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKey.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\HdrColumn.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\ClaimServiceApplication.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDML.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDML.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDNP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLID.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9MemberKeyResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ClaimId.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMIN.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\WebSvcListClaimCDMLV9.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\WebSvcListClaimV11Soap.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLRN.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECERR.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfString.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Config.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11Response.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderId.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\package-info.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderIdResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimDiagnosis.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumber.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ClaimIdResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECRESP.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECERR.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\FxiIslHeader.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9SubscriberKey.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderIdResponse.java[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECERR.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumberResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECERR.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ClaimId.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLID.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\client\WebServiceConnector.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMINResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\SpringFoxConfig.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMSVResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECRESP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\ClaimServiceApplication.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\HdrColumn.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderIdResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9SubscriberKey.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\FxiIslHeader.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RecordBase.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\package-info.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\package-info.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECERR.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\WebSvcListClaimV11.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\WebSvcListClaimCDMLV9Soap.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9MemberKeyResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimProvider.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDLM.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLHC.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECRESP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKey.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimDiagnosis.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLID.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMSV.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\package-info.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\service\ClaimService.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDML.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\ClaimProperty.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderId.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Config.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Response.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfString.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECERR.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKey.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\WebSvcListClaimCDMLV9.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimCob.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECRESP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLHC.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfString.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\Config.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9PreAuthIdUMIN.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLRN.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RecordBase.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\PartnerType.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ProviderId.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\Response.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\config\WsConfigClient.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimServiceLine.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLCL.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\Claim.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11SubscriberKeyResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDNP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ObjectFactory.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECCDLM.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11Response.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\PartnerNameType.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimHeader.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\ObjectFactory.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9ClaimIdResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ProviderIdResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDNP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ArrayOfRECCLRN.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ClaimId.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\HdrCollection.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\CollectionTypeList.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECCDML.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9MemberKey.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ArrayOfRECERR.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11ClaimIdResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\RECCLCL.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\service\ClaimHeaderServiceImpl.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9SubscriberKeyResponse.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\RECRESP.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\WebSvcListClaimV11Soap.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaimcdml_v9\ListClaimCDMLV9Response.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ListClaimV11MemberKeyorMedicaidNumber.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\generated\cxf\com\trizetto\fxi\isl\fawsvcinplistclaim_v11\ObjectFactory.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\controller\ClaimHeaderRestController.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\main\java\com\cts\healthcare\integration\domain\ClaimMembers.java[m
+[1mdiff --git a/claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst b/claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst[m
+[1mindex 20a6a3d..51349e8 100644[m
+[1m--- a/claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst[m
+[1m+++ b/claim-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst[m
+[36m@@ -1 +1 @@[m
+[31m-C:\Users\Sandeep.Kumar\git\MyProject\claim-service\src\test\java\com\cts\healthcare\integration\ClaimServiceApplicationTests.java[m
+[32m+[m[32mC:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\src\test\java\com\cts\healthcare\integration\ClaimServiceApplicationTests.java[m
+[1mdiff --git a/claim-service/target/surefire-reports/TEST-com.cts.healthcare.integration.ClaimServiceApplicationTests.xml b/claim-service/target/surefire-reports/TEST-com.cts.healthcare.integration.ClaimServiceApplicationTests.xml[m
+[1mindex d43ae5c..26a9925 100644[m
+[1m--- a/claim-service/target/surefire-reports/TEST-com.cts.healthcare.integration.ClaimServiceApplicationTests.xml[m
+[1m+++ b/claim-service/target/surefire-reports/TEST-com.cts.healthcare.integration.ClaimServiceApplicationTests.xml[m
+[36m@@ -1,15 +1,15 @@[m
+ <?xml version="1.0" encoding="UTF-8"?>[m
+[31m-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.cts.healthcare.integration.ClaimServiceApplicationTests" time="12.619" tests="1" errors="0" skipped="0" failures="0">[m
+[32m+[m[32m<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.cts.healthcare.integration.ClaimServiceApplicationTests" time="10.46" tests="1" errors="0" skipped="0" failures="0">[m[41m[m
+   <properties>[m
+     <property name="sun.desktop" value="windows"/>[m
+     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>[m
+     <property name="file.encoding.pkg" value="sun.io"/>[m
+     <property name="java.specification.version" value="1.8"/>[m
+[31m-    <property name="sun.cpu.isalist" value="amd64"/>[m
+[32m+[m[32m    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>[m[41m[m
+     <property name="sun.jnu.encoding" value="Cp1252"/>[m
+[31m-    <property name="java.class.path" value="C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\test-classes;C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\classes;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-hateoas\2.0.4.RELEASE\spring-boot-starter-hateoas-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\hateoas\spring-hateoas\0.25.0.RELEASE\spring-hateoas-0.25.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-aop\5.0.8.RELEASE\spring-aop-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-beans\5.0.8.RELEASE\spring-beans-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-context\5.0.8.RELEASE\spring-context-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\2.0.4.RELEASE\spring-boot-starter-actuator-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter\2.0.4.RELEASE\spring-boot-starter-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.0.4.RELEASE\spring-boot-starter-logging-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.10.0\log4j-to-slf4j-2.10.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\logging\log4j\log4j-api\2.10.0\log4j-api-2.10.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\yaml\snakeyaml\1.19\snakeyaml-1.19.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\2.0.4.RELEASE\spring-boot-actuator-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-actuator\2.0.4.RELEASE\spring-boot-actuator-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.6\jackson-databind-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.6\jackson-core-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.6\jackson-datatype-jsr310-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\micrometer\micrometer-core\1.0.6\micrometer-core-1.0.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hdrhistogram\HdrHistogram\2.1.10\HdrHistogram-2.1.10.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\2.0.4.RELEASE\spring-boot-starter-data-jpa-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-aop\2.0.4.RELEASE\spring-boot-starter-aop-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\aspectj\aspectjweaver\1.8.13\aspectjweaver-1.8.13.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.0.4.RELEASE\spring-boot-starter-jdbc-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\zaxxer\HikariCP\2.7.9\HikariCP-2.7.9.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-jdbc\5.0.8.RELEASE\spring-jdbc-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\hibernate-core\5.2.17.Final\hibernate-core-5.2.17.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.2.Final\hibernate-jpa-2.1-api-1.0.2.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\javassist\javassist\3.22.0-GA\javassist-3.22.0-GA.jar;C:\Users\Sandeep.Kumar\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\jboss\jandex\2.0.3.Final\jandex-2.0.3.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\data\spring-data-jpa\2.0.9.RELEASE\spring-data-jpa-2.0.9.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\data\spring-data-commons\2.0.9.RELEASE\spring-data-commons-2.0.9.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-orm\5.0.8.RELEASE\spring-orm-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-tx\5.0.8.RELEASE\spring-tx-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-aspects\5.0.8.RELEASE\spring-aspects-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-web\2.0.4.RELEASE\spring-boot-starter-web-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-json\2.0.4.RELEASE\spring-boot-starter-json-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.9.6\jackson-datatype-jdk8-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.9.6\jackson-module-parameter-names-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\2.0.4.RELEASE\spring-boot-starter-tomcat-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.32\tomcat-embed-core-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.32\tomcat-embed-el-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.32\tomcat-embed-websocket-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\validator\hibernate-validator\6.0.11.Final\hibernate-validator-6.0.11.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-web\5.0.8.RELEASE\spring-web-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-webmvc\5.0.8.RELEASE\spring-webmvc-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-expression\5.0.8.RELEASE\spring-expression-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-web-services\2.0.4.RELEASE\spring-boot-starter-web-services-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-oxm\5.0.8.RELEASE\spring-oxm-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\ws\spring-ws-core\3.0.3.RELEASE\spring-ws-core-3.0.3.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\ws\spring-xml\3.0.3.RELEASE\spring-xml-3.0.3.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\commons-io\commons-io\2.5\commons-io-2.5.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-devtools\2.0.4.RELEASE\spring-boot-devtools-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot\2.0.4.RELEASE\spring-boot-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.0.4.RELEASE\spring-boot-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-test\2.0.4.RELEASE\spring-boot-starter-test-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-test\2.0.4.RELEASE\spring-boot-test-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\2.0.4.RELEASE\spring-boot-test-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\jayway\jsonpath\json-path\2.4.0\json-path-2.4.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\minidev\json-smart\2.3\json-smart-2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\minidev\accessors-smart\1.2\accessors-smart-1.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;C:\Users\Sandeep.Kumar\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\assertj\assertj-core\3.9.1\assertj-core-3.9.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\mockito\mockito-core\2.15.0\mockito-core-2.15.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\bytebuddy\byte-buddy\1.7.11\byte-buddy-1.7.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\bytebuddy\byte-buddy-agent\1.7.11\byte-buddy-agent-1.7.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\skyscreamer\jsonassert\1.5.0\jsonassert-1.5.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-core\5.0.8.RELEASE\spring-core-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-jcl\5.0.8.RELEASE\spring-jcl-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-test\5.0.8.RELEASE\spring-test-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\xmlunit\xmlunit-core\2.5.1\xmlunit-core-2.5.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\h2database\h2\1.4.197\h2-1.4.197.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\projectlombok\lombok\1.16.22\lombok-1.16.22.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger2\2.8.0\springfox-swagger2-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\swagger\swagger-annotations\1.5.14\swagger-annotations-1.5.14.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\swagger\swagger-models\1.5.14\swagger-models-1.5.14.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-spi\2.8.0\springfox-spi-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-core\2.8.0\springfox-core-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-schema\2.8.0\springfox-schema-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger-common\2.8.0\springfox-swagger-common-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-spring-web\2.8.0\springfox-spring-web-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\reflections\reflections\0.9.11\reflections-0.9.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\google\guava\guava\20.0\guava-20.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\mapstruct\mapstruct\1.2.0.Final\mapstruct-1.2.0.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger-ui\2.8.0\springfox-swagger-ui-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-configuration-processor\2.0.4.RELEASE\spring-boot-configuration-processor-2.0.4.RELEASE.jar;"/>[m
+[32m+[m[32m    <property name="java.class.path" value="C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\test-classes;C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\classes;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-hateoas\2.0.4.RELEASE\spring-boot-starter-hateoas-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\hateoas\spring-hateoas\0.25.0.RELEASE\spring-hateoas-0.25.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-aop\5.0.8.RELEASE\spring-aop-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-beans\5.0.8.RELEASE\spring-beans-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-context\5.0.8.RELEASE\spring-context-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\2.0.4.RELEASE\spring-boot-starter-actuator-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter\2.0.4.RELEASE\spring-boot-starter-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.0.4.RELEASE\spring-boot-starter-logging-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.10.0\log4j-to-slf4j-2.10.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\logging\log4j\log4j-api\2.10.0\log4j-api-2.10.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\yaml\snakeyaml\1.19\snakeyaml-1.19.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\2.0.4.RELEASE\spring-boot-actuator-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-actuator\2.0.4.RELEASE\spring-boot-actuator-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.6\jackson-databind-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.6\jackson-core-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.6\jackson-datatype-jsr310-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\micrometer\micrometer-core\1.0.6\micrometer-core-1.0.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hdrhistogram\HdrHistogram\2.1.10\HdrHistogram-2.1.10.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\2.0.4.RELEASE\spring-boot-starter-data-jpa-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-aop\2.0.4.RELEASE\spring-boot-starter-aop-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\aspectj\aspectjweaver\1.8.13\aspectjweaver-1.8.13.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.0.4.RELEASE\spring-boot-starter-jdbc-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\zaxxer\HikariCP\2.7.9\HikariCP-2.7.9.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-jdbc\5.0.8.RELEASE\spring-jdbc-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\hibernate-core\5.2.17.Final\hibernate-core-5.2.17.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.2.Final\hibernate-jpa-2.1-api-1.0.2.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\javassist\javassist\3.22.0-GA\javassist-3.22.0-GA.jar;C:\Users\Liyakath.Shareeb\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\jboss\jandex\2.0.3.Final\jandex-2.0.3.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\data\spring-data-jpa\2.0.9.RELEASE\spring-data-jpa-2.0.9.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\data\spring-data-commons\2.0.9.RELEASE\spring-data-commons-2.0.9.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-orm\5.0.8.RELEASE\spring-orm-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-tx\5.0.8.RELEASE\spring-tx-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-aspects\5.0.8.RELEASE\spring-aspects-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-web\2.0.4.RELEASE\spring-boot-starter-web-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-json\2.0.4.RELEASE\spring-boot-starter-json-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.9.6\jackson-datatype-jdk8-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.9.6\jackson-module-parameter-names-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\2.0.4.RELEASE\spring-boot-starter-tomcat-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.32\tomcat-embed-core-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.32\tomcat-embed-el-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.32\tomcat-embed-websocket-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\validator\hibernate-validator\6.0.11.Final\hibernate-validator-6.0.11.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-web\5.0.8.RELEASE\spring-web-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-webmvc\5.0.8.RELEASE\spring-webmvc-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-expression\5.0.8.RELEASE\spring-expression-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-web-services\2.0.4.RELEASE\spring-boot-starter-web-services-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-oxm\5.0.8.RELEASE\spring-oxm-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\ws\spring-ws-core\3.0.3.RELEASE\spring-ws-core-3.0.3.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\ws\spring-xml\3.0.3.RELEASE\spring-xml-3.0.3.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\commons-io\commons-io\2.5\commons-io-2.5.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-devtools\2.0.4.RELEASE\spring-boot-devtools-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot\2.0.4.RELEASE\spring-boot-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.0.4.RELEASE\spring-boot-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-test\2.0.4.RELEASE\spring-boot-starter-test-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-test\2.0.4.RELEASE\spring-boot-test-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\2.0.4.RELEASE\spring-boot-test-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\jayway\jsonpath\json-path\2.4.0\json-path-2.4.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\minidev\json-smart\2.3\json-smart-2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\minidev\accessors-smart\1.2\accessors-smart-1.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;C:\Users\Liyakath.Shareeb\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\assertj\assertj-core\3.9.1\assertj-core-3.9.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\mockito\mockito-core\2.15.0\mockito-core-2.15.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\bytebuddy\byte-buddy\1.7.11\byte-buddy-1.7.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\bytebuddy\byte-buddy-agent\1.7.11\byte-buddy-agent-1.7.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\skyscreamer\jsonassert\1.5.0\jsonassert-1.5.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-core\5.0.8.RELEASE\spring-core-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-jcl\5.0.8.RELEASE\spring-jcl-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-test\5.0.8.RELEASE\spring-test-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\xmlunit\xmlunit-core\2.5.1\xmlunit-core-2.5.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\h2database\h2\1.4.197\h2-1.4.197.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\projectlombok\lombok\1.16.22\lombok-1.16.22.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger2\2.8.0\springfox-swagger2-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\swagger\swagger-annotations\1.5.14\swagger-annotations-1.5.14.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\swagger\swagger-models\1.5.14\swagger-models-1.5.14.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-spi\2.8.0\springfox-spi-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-core\2.8.0\springfox-core-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-schema\2.8.0\springfox-schema-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger-common\2.8.0\springfox-swagger-common-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-spring-web\2.8.0\springfox-spring-web-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\reflections\reflections\0.9.11\reflections-0.9.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\google\guava\guava\20.0\guava-20.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\mapstruct\mapstruct\1.2.0.Final\mapstruct-1.2.0.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger-ui\2.8.0\springfox-swagger-ui-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-configuration-processor\2.0.4.RELEASE\spring-boot-configuration-processor-2.0.4.RELEASE.jar;"/>[m[41m[m
+     <property name="java.vm.vendor" value="Oracle Corporation"/>[m
+[31m-    <property name="sun.arch.data.model" value="64"/>[m
+[32m+[m[32m    <property name="sun.arch.data.model" value="32"/>[m[41m[m
+     <property name="user.variant" value=""/>[m
+     <property name="java.vendor.url" value="http://java.oracle.com/"/>[m
+     <property name="user.timezone" value=""/>[m
+[36m@@ -17,48 +17,48 @@[m
+     <property name="os.name" value="Windows Server 2012 R2"/>[m
+     <property name="user.country" value="US"/>[m
+     <property name="sun.java.launcher" value="SUN_STANDARD"/>[m
+[31m-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>[m
+[31m-    <property name="sun.java.command" value="C:\Users\SANDEE~1.KUM\AppData\Local\Temp\7\surefire634617691562990868\surefirebooter691376875472587021.jar C:\Users\Sandeep.Kumar\AppData\Local\Temp\7\surefire634617691562990868 2018-09-15T01-39-28_365-jvmRun1 surefire4313823698418837561tmp surefire_03876735583169906577tmp"/>[m
+[31m-    <property name="surefire.test.class.path" value="C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\test-classes;C:\Users\Sandeep.Kumar\git\MyProject\claim-service\target\classes;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-hateoas\2.0.4.RELEASE\spring-boot-starter-hateoas-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\hateoas\spring-hateoas\0.25.0.RELEASE\spring-hateoas-0.25.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-aop\5.0.8.RELEASE\spring-aop-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-beans\5.0.8.RELEASE\spring-beans-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-context\5.0.8.RELEASE\spring-context-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\2.0.4.RELEASE\spring-boot-starter-actuator-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter\2.0.4.RELEASE\spring-boot-starter-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.0.4.RELEASE\spring-boot-starter-logging-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.10.0\log4j-to-slf4j-2.10.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\logging\log4j\log4j-api\2.10.0\log4j-api-2.10.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\yaml\snakeyaml\1.19\snakeyaml-1.19.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\2.0.4.RELEASE\spring-boot-actuator-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-actuator\2.0.4.RELEASE\spring-boot-actuator-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.6\jackson-databind-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.6\jackson-core-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.6\jackson-datatype-jsr310-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\micrometer\micrometer-core\1.0.6\micrometer-core-1.0.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hdrhistogram\HdrHistogram\2.1.10\HdrHistogram-2.1.10.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\2.0.4.RELEASE\spring-boot-starter-data-jpa-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-aop\2.0.4.RELEASE\spring-boot-starter-aop-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\aspectj\aspectjweaver\1.8.13\aspectjweaver-1.8.13.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.0.4.RELEASE\spring-boot-starter-jdbc-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\zaxxer\HikariCP\2.7.9\HikariCP-2.7.9.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-jdbc\5.0.8.RELEASE\spring-jdbc-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\hibernate-core\5.2.17.Final\hibernate-core-5.2.17.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.2.Final\hibernate-jpa-2.1-api-1.0.2.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\javassist\javassist\3.22.0-GA\javassist-3.22.0-GA.jar;C:\Users\Sandeep.Kumar\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\jboss\jandex\2.0.3.Final\jandex-2.0.3.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\data\spring-data-jpa\2.0.9.RELEASE\spring-data-jpa-2.0.9.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\data\spring-data-commons\2.0.9.RELEASE\spring-data-commons-2.0.9.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-orm\5.0.8.RELEASE\spring-orm-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-tx\5.0.8.RELEASE\spring-tx-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-aspects\5.0.8.RELEASE\spring-aspects-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-web\2.0.4.RELEASE\spring-boot-starter-web-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-json\2.0.4.RELEASE\spring-boot-starter-json-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.9.6\jackson-datatype-jdk8-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.9.6\jackson-module-parameter-names-2.9.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\2.0.4.RELEASE\spring-boot-starter-tomcat-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.32\tomcat-embed-core-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.32\tomcat-embed-el-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.32\tomcat-embed-websocket-8.5.32.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hibernate\validator\hibernate-validator\6.0.11.Final\hibernate-validator-6.0.11.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-web\5.0.8.RELEASE\spring-web-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-webmvc\5.0.8.RELEASE\spring-webmvc-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-expression\5.0.8.RELEASE\spring-expression-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-web-services\2.0.4.RELEASE\spring-boot-starter-web-services-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-oxm\5.0.8.RELEASE\spring-oxm-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\ws\spring-ws-core\3.0.3.RELEASE\spring-ws-core-3.0.3.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\ws\spring-xml\3.0.3.RELEASE\spring-xml-3.0.3.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\commons-io\commons-io\2.5\commons-io-2.5.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-devtools\2.0.4.RELEASE\spring-boot-devtools-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot\2.0.4.RELEASE\spring-boot-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.0.4.RELEASE\spring-boot-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-starter-test\2.0.4.RELEASE\spring-boot-starter-test-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-test\2.0.4.RELEASE\spring-boot-test-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\2.0.4.RELEASE\spring-boot-test-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\jayway\jsonpath\json-path\2.4.0\json-path-2.4.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\minidev\json-smart\2.3\json-smart-2.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\minidev\accessors-smart\1.2\accessors-smart-1.2.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;C:\Users\Sandeep.Kumar\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\assertj\assertj-core\3.9.1\assertj-core-3.9.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\mockito\mockito-core\2.15.0\mockito-core-2.15.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\bytebuddy\byte-buddy\1.7.11\byte-buddy-1.7.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\net\bytebuddy\byte-buddy-agent\1.7.11\byte-buddy-agent-1.7.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\skyscreamer\jsonassert\1.5.0\jsonassert-1.5.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-core\5.0.8.RELEASE\spring-core-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-jcl\5.0.8.RELEASE\spring-jcl-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\spring-test\5.0.8.RELEASE\spring-test-5.0.8.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\xmlunit\xmlunit-core\2.5.1\xmlunit-core-2.5.1.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\h2database\h2\1.4.197\h2-1.4.197.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\projectlombok\lombok\1.16.22\lombok-1.16.22.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger2\2.8.0\springfox-swagger2-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\swagger\swagger-annotations\1.5.14\swagger-annotations-1.5.14.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\swagger\swagger-models\1.5.14\swagger-models-1.5.14.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-spi\2.8.0\springfox-spi-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-core\2.8.0\springfox-core-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-schema\2.8.0\springfox-schema-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger-common\2.8.0\springfox-swagger-common-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-spring-web\2.8.0\springfox-spring-web-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\reflections\reflections\0.9.11\reflections-0.9.11.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\google\guava\guava\20.0\guava-20.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\mapstruct\mapstruct\1.2.0.Final\mapstruct-1.2.0.Final.jar;C:\Users\Sandeep.Kumar\.m2\repository\io\springfox\springfox-swagger-ui\2.8.0\springfox-swagger-ui-2.8.0.jar;C:\Users\Sandeep.Kumar\.m2\repository\org\springframework\boot\spring-boot-configuration-processor\2.0.4.RELEASE\spring-boot-configuration-processor-2.0.4.RELEASE.jar;"/>[m
+[32m+[m[32m    <property name="sun.boot.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre\bin"/>[m[41m[m
+[32m+[m[32m    <property name="sun.java.command" value="C:\Users\LIYAKA~1.SHA\AppData\Local\Temp\6\surefire6396460846897939376\surefirebooter3472952594216305651.jar C:\Users\Liyakath.Shareeb\AppData\Local\Temp\6\surefire6396460846897939376 2018-09-18T06-32-15_015-jvmRun1 surefire326984394529440864tmp surefire_09132313421888010915tmp"/>[m[41m[m
+[32m+[m[32m    <property name="surefire.test.class.path" value="C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\test-classes;C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service\target\classes;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-hateoas\2.0.4.RELEASE\spring-boot-starter-hateoas-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\hateoas\spring-hateoas\0.25.0.RELEASE\spring-hateoas-0.25.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-aop\5.0.8.RELEASE\spring-aop-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-beans\5.0.8.RELEASE\spring-beans-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-context\5.0.8.RELEASE\spring-context-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\plugin\spring-plugin-core\1.2.0.RELEASE\spring-plugin-core-1.2.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-actuator\2.0.4.RELEASE\spring-boot-starter-actuator-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter\2.0.4.RELEASE\spring-boot-starter-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-logging\2.0.4.RELEASE\spring-boot-starter-logging-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.10.0\log4j-to-slf4j-2.10.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\logging\log4j\log4j-api\2.10.0\log4j-api-2.10.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\slf4j\jul-to-slf4j\1.7.25\jul-to-slf4j-1.7.25.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\annotation\javax.annotation-api\1.3.2\javax.annotation-api-1.3.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\yaml\snakeyaml\1.19\snakeyaml-1.19.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-actuator-autoconfigure\2.0.4.RELEASE\spring-boot-actuator-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-actuator\2.0.4.RELEASE\spring-boot-actuator-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.6\jackson-databind-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.6\jackson-core-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.9.6\jackson-datatype-jsr310-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\micrometer\micrometer-core\1.0.6\micrometer-core-1.0.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hdrhistogram\HdrHistogram\2.1.10\HdrHistogram-2.1.10.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\latencyutils\LatencyUtils\2.0.3\LatencyUtils-2.0.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\2.0.4.RELEASE\spring-boot-starter-data-jpa-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-aop\2.0.4.RELEASE\spring-boot-starter-aop-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\aspectj\aspectjweaver\1.8.13\aspectjweaver-1.8.13.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\2.0.4.RELEASE\spring-boot-starter-jdbc-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\zaxxer\HikariCP\2.7.9\HikariCP-2.7.9.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-jdbc\5.0.8.RELEASE\spring-jdbc-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\hibernate-core\5.2.17.Final\hibernate-core-5.2.17.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\jboss\logging\jboss-logging\3.3.2.Final\jboss-logging-3.3.2.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\javax\persistence\hibernate-jpa-2.1-api\1.0.2.Final\hibernate-jpa-2.1-api-1.0.2.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\javassist\javassist\3.22.0-GA\javassist-3.22.0-GA.jar;C:\Users\Liyakath.Shareeb\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\jboss\jandex\2.0.3.Final\jandex-2.0.3.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\dom4j\dom4j\1.6.1\dom4j-1.6.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\common\hibernate-commons-annotations\5.0.1.Final\hibernate-commons-annotations-5.0.1.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\transaction\javax.transaction-api\1.2\javax.transaction-api-1.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\data\spring-data-jpa\2.0.9.RELEASE\spring-data-jpa-2.0.9.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\data\spring-data-commons\2.0.9.RELEASE\spring-data-commons-2.0.9.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-orm\5.0.8.RELEASE\spring-orm-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-tx\5.0.8.RELEASE\spring-tx-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-aspects\5.0.8.RELEASE\spring-aspects-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-web\2.0.4.RELEASE\spring-boot-starter-web-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-json\2.0.4.RELEASE\spring-boot-starter-json-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.9.6\jackson-datatype-jdk8-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.9.6\jackson-module-parameter-names-2.9.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\2.0.4.RELEASE\spring-boot-starter-tomcat-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\8.5.32\tomcat-embed-core-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\8.5.32\tomcat-embed-el-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\8.5.32\tomcat-embed-websocket-8.5.32.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hibernate\validator\hibernate-validator\6.0.11.Final\hibernate-validator-6.0.11.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\javax\validation\validation-api\2.0.1.Final\validation-api-2.0.1.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-web\5.0.8.RELEASE\spring-web-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-webmvc\5.0.8.RELEASE\spring-webmvc-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-expression\5.0.8.RELEASE\spring-expression-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-web-services\2.0.4.RELEASE\spring-boot-starter-web-services-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-oxm\5.0.8.RELEASE\spring-oxm-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\ws\spring-ws-core\3.0.3.RELEASE\spring-ws-core-3.0.3.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\ws\spring-xml\3.0.3.RELEASE\spring-xml-3.0.3.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\commons-io\commons-io\2.5\commons-io-2.5.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-devtools\2.0.4.RELEASE\spring-boot-devtools-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot\2.0.4.RELEASE\spring-boot-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\2.0.4.RELEASE\spring-boot-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-starter-test\2.0.4.RELEASE\spring-boot-starter-test-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-test\2.0.4.RELEASE\spring-boot-test-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\2.0.4.RELEASE\spring-boot-test-autoconfigure-2.0.4.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\jayway\jsonpath\json-path\2.4.0\json-path-2.4.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\minidev\json-smart\2.3\json-smart-2.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\minidev\accessors-smart\1.2\accessors-smart-1.2.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\ow2\asm\asm\5.0.4\asm-5.0.4.jar;C:\Users\Liyakath.Shareeb\.m2\repository\junit\junit\4.12\junit-4.12.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\assertj\assertj-core\3.9.1\assertj-core-3.9.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\mockito\mockito-core\2.15.0\mockito-core-2.15.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\bytebuddy\byte-buddy\1.7.11\byte-buddy-1.7.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\net\bytebuddy\byte-buddy-agent\1.7.11\byte-buddy-agent-1.7.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\hamcrest\hamcrest-library\1.3\hamcrest-library-1.3.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\skyscreamer\jsonassert\1.5.0\jsonassert-1.5.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-core\5.0.8.RELEASE\spring-core-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-jcl\5.0.8.RELEASE\spring-jcl-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\spring-test\5.0.8.RELEASE\spring-test-5.0.8.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\xmlunit\xmlunit-core\2.5.1\xmlunit-core-2.5.1.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\h2database\h2\1.4.197\h2-1.4.197.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\projectlombok\lombok\1.16.22\lombok-1.16.22.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger2\2.8.0\springfox-swagger2-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\swagger\swagger-annotations\1.5.14\swagger-annotations-1.5.14.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\swagger\swagger-models\1.5.14\swagger-models-1.5.14.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0\jackson-annotations-2.9.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-spi\2.8.0\springfox-spi-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-core\2.8.0\springfox-core-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-schema\2.8.0\springfox-schema-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger-common\2.8.0\springfox-swagger-common-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-spring-web\2.8.0\springfox-spring-web-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\reflections\reflections\0.9.11\reflections-0.9.11.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\google\guava\guava\20.0\guava-20.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\com\fasterxml\classmate\1.3.4\classmate-1.3.4.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\slf4j\slf4j-api\1.7.25\slf4j-api-1.7.25.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\plugin\spring-plugin-metadata\1.2.0.RELEASE\spring-plugin-metadata-1.2.0.RELEASE.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\mapstruct\mapstruct\1.2.0.Final\mapstruct-1.2.0.Final.jar;C:\Users\Liyakath.Shareeb\.m2\repository\io\springfox\springfox-swagger-ui\2.8.0\springfox-swagger-ui-2.8.0.jar;C:\Users\Liyakath.Shareeb\.m2\repository\org\springframework\boot\spring-boot-configuration-processor\2.0.4.RELEASE\spring-boot-configuration-processor-2.0.4.RELEASE.jar;"/>[m[41m[m
+     <property name="sun.cpu.endian" value="little"/>[m
+[31m-    <property name="user.home" value="C:\Users\Sandeep.Kumar"/>[m
+[32m+[m[32m    <property name="user.home" value="C:\Users\Liyakath.Shareeb"/>[m[41m[m
+     <property name="user.language" value="en"/>[m
+     <property name="java.specification.vendor" value="Oracle Corporation"/>[m
+[31m-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>[m
+[31m-    <property name="basedir" value="C:\Users\Sandeep.Kumar\git\MyProject\claim-service"/>[m
+[32m+[m[32m    <property name="java.home" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre"/>[m[41m[m
+[32m+[m[32m    <property name="basedir" value="C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service"/>[m[41m[m
+     <property name="file.separator" value="\"/>[m
+     <property name="line.separator" value="&#10;"/>[m
+     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>[m
+     <property name="java.specification.name" value="Java Platform API Specification"/>[m
+     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>[m
+[31m-    <property name="surefire.real.class.path" value="C:\Users\SANDEE~1.KUM\AppData\Local\Temp\7\surefire634617691562990868\surefirebooter691376875472587021.jar"/>[m
+[31m-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_181\jre\classes"/>[m
+[32m+[m[32m    <property name="surefire.real.class.path" value="C:\Users\LIYAKA~1.SHA\AppData\Local\Temp\6\surefire6396460846897939376\surefirebooter3472952594216305651.jar"/>[m[41m[m
+[32m+[m[32m    <property name="sun.boot.class.path" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\jfr.jar;C:\Program Files (x86)\Java\jdk1.8.0_181\jre\classes"/>[m[41m[m
+     <property name="user.script" value=""/>[m
+[31m-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>[m
+[32m+[m[32m    <property name="sun.management.compiler" value="HotSpot Client Compiler"/>[m[41m[m
+     <property name="java.runtime.version" value="1.8.0_181-b13"/>[m
+[31m-    <property name="user.name" value="Sandeep.Kumar"/>[m
+[32m+[m[32m    <property name="user.name" value="Liyakath.Shareeb"/>[m[41m[m
+     <property name="path.separator" value=";"/>[m
+     <property name="os.version" value="6.3"/>[m
+[31m-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\endorsed"/>[m
+[32m+[m[32m    <property name="java.endorsed.dirs" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\endorsed"/>[m[41m[m
+     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>[m
+     <property name="file.encoding" value="Cp1252"/>[m
+[31m-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>[m
+[31m-    <property name="localRepository" value="C:\Users\Sandeep.Kumar\.m2\repository"/>[m
+[32m+[m[32m    <property name="java.vm.name" value="Java HotSpot(TM) Client VM"/>[m[41m[m
+[32m+[m[32m    <property name="localRepository" value="C:\Users\Liyakath.Shareeb\.m2\repository"/>[m[41m[m
+     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>[m
+[31m-    <property name="java.io.tmpdir" value="C:\Users\SANDEE~1.KUM\AppData\Local\Temp\7\"/>[m
+[32m+[m[32m    <property name="java.io.tmpdir" value="C:\Users\LIYAKA~1.SHA\AppData\Local\Temp\6\"/>[m[41m[m
+     <property name="java.version" value="1.8.0_181"/>[m
+[31m-    <property name="user.dir" value="C:\Users\Sandeep.Kumar\git\MyProject\claim-service"/>[m
+[31m-    <property name="os.arch" value="amd64"/>[m
+[32m+[m[32m    <property name="user.dir" value="C:\Users\Liyakath.Shareeb\Documents\service-repo\MyProject\claim-service"/>[m[41m[m
+[32m+[m[32m    <property name="os.arch" value="x86"/>[m[41m[m
+     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>[m
+     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>[m
+     <property name="sun.os.patch.level" value=""/>[m
+[31m-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files (x86)/Java/jre1.8.0_181/bin/client;C:/Program Files (x86)/Java/jre1.8.0_181/bin;C:/Program Files (x86)/Java/jre1.8.0_181/lib/i386;C:\dbms\Oracle\12c\product\12.1.0\client_1\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_181\bin;;C:\Users\Sandeep.Kumar\Downloads\spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32\sts-bundle\sts-3.9.5.RELEASE;;."/>[m
+[31m-    <property name="java.vm.info" value="mixed mode"/>[m
+[32m+[m[32m    <property name="java.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files (x86)/Java/jre1.8.0_181/bin/client;C:/Program Files (x86)/Java/jre1.8.0_181/bin;C:/Program Files (x86)/Java/jre1.8.0_181/lib/i386;C:\dbms\Oracle\12c\product\12.1.0\client_1\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_181\bin;;C:\Users\Liyakath.Shareeb\Downloads\spring-tool-suite-3.9.5.RELEASE-e4.8.0-win32\sts-bundle\sts-3.9.5.RELEASE;;."/>[m[41m[m
+[32m+[m[32m    <property name="java.vm.info" value="mixed mode, sharing"/>[m[41m[m
+     <property name="java.vendor" value="Oracle Corporation"/>[m
+     <property name="java.vm.version" value="25.181-b13"/>[m
+[31m-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_181\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>[m
+[32m+[m[32m    <property name="java.ext.dirs" value="C:\Program Files (x86)\Java\jdk1.8.0_181\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>[m[41m[m
+     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>[m
+     <property name="java.class.version" value="52.0"/>[m
+   </properties>[m
+[31m-  <testcase name="contextLoads" classname="com.cts.healthcare.integration.ClaimServiceApplicationTests" time="0.009"/>[m
+[32m+[m[32m  <testcase name="contextLoads" classname="com.cts.healthcare.integration.ClaimServiceApplicationTests" time="0.161"/>[m[41m[m
+ </testsuite>[m
+\ No newline at end of file[m
+[1mdiff --git a/claim-service/target/surefire-reports/com.cts.healthcare.integration.ClaimServiceApplicationTests.txt b/claim-service/target/surefire-reports/com.cts.healthcare.integration.ClaimServiceApplicationTests.txt[m
+[1mindex 373136c..993b431 100644[m
+[1m--- a/claim-service/target/surefire-reports/com.cts.healthcare.integration.ClaimServiceApplicationTests.txt[m
+[1m+++ b/claim-service/target/surefire-reports/com.cts.healthcare.integration.ClaimServiceApplicationTests.txt[m
+[36m@@ -1,4 +1,4 @@[m
+ -------------------------------------------------------------------------------[m
+ Test set: com.cts.healthcare.integration.ClaimServiceApplicationTests[m
+ -------------------------------------------------------------------------------[m
+[31m-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.619 s - in com.cts.healthcare.integration.ClaimServiceApplicationTests[m
+[32m+[m[32mTests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.46 s - in com.cts.healthcare.integration.ClaimServiceApplicationTests[m[41m[m
+[1mdiff --git a/claim-service/target/test-classes/com/cts/healthcare/integration/ClaimServiceApplicationTests.class b/claim-service/target/test-classes/com/cts/healthcare/integration/ClaimServiceApplicationTests.class[m
+[1mindex 5c32bc2..9f01292 100644[m
+Binary files a/claim-service/target/test-classes/com/cts/healthcare/integration/ClaimServiceApplicationTests.class and b/claim-service/target/test-classes/com/cts/healthcare/integration/ClaimServiceApplicationTests.class differ
+[1mdiff --git a/member-client/src/main/java/com/cts/healthcare/integration/controller/MemberClientController.java b/member-client/src/main/java/com/cts/healthcare/integration/controller/MemberClientController.java[m
+[1mindex 53f12db..4d4519c 100644[m
+[1m--- a/member-client/src/main/java/com/cts/healthcare/integration/controller/MemberClientController.java[m
+[1m+++ b/member-client/src/main/java/com/cts/healthcare/integration/controller/MemberClientController.java[m
+[36m@@ -23,17 +23,16 @@[m [mimport com.cts.healthcare.integration.service.MemberService;[m
+ @RequestMapping("/")[m
+ public class MemberClientController {[m
+ [m
+[32m+[m	[32mprivate final static Logger LOGGER = LoggerFactory.getLogger(MemberClientController.class);[m
+[32m+[m
+ 	private RestTemplate restTemplate;[m
+[31m-	[m
+[32m+[m
+ 	private String URL_MEMBERINFO;[m
+ 	private String URL_SUBSCRIBERINFO;[m
+[31m-	[m
+ [m
+ 	@Autowired[m
+ 	MemberService claimService;[m
+[31m-	[m
+[31m-	private final static Logger logger = LoggerFactory.getLogger(MemberClientController.class);[m
+[31m-	[m
+[32m+[m
+ 	MemberClientController(@Value("${member.service.endpoint.memberinfo}") String URL_MEMBERINFO,[m
+ 			@Value("${member.service.endpoint.subscriberinfo}") String URL_SUBSCRIBERINFO) {[m
+ 		this.URL_MEMBERINFO = URL_MEMBERINFO;[m
+[36m@@ -41,21 +40,21 @@[m [mpublic class MemberClientController {[m
+ 		this.restTemplate = new RestTemplate();[m
+ 	}[m
+ [m
+[31m-[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Member Info[m
+[31m-	**/[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Member Info[m
+[32m+[m	[32m **/[m
+ 	@RequestMapping(value = "/members/{memberId}", method = RequestMethod.GET)[m
+ 	public Member getMemberInfo(@PathVariable("memberId") String memberId) {[m
+[31m-		 [m
+[31m-		logger.info("Called Client getMember()");[m
+[32m+[m
+[32m+[m		[32mLOGGER.info("Called Client getMember()");[m
+ 		ParameterizedTypeReference<Resource<Member>> responseType = new ParameterizedTypeReference<Resource<Member>>() {[m
+ 		};[m
+[31m-		[m
+[31m-		ResponseEntity<Resource<Member>> response = restTemplate.exchange([m
+[31m-				this.URL_MEMBERINFO, HttpMethod.GET, null,responseType, memberId);[m
+[31m-				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);[m
+[32m+[m
+[32m+[m		[32mResponseEntity<Resource<Member>> response = restTemplate.exchange(this.URL_MEMBERINFO, HttpMethod.GET, null,[m
+[32m+[m				[32mresponseType, memberId);[m
+[32m+[m		[32m// RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(),[m
+[32m+[m		[32m// inHeader);[m
+ 		assert response != null;[m
+ 		if (response.getStatusCode() == HttpStatus.OK) {[m
+ 			Member outHeader = response.getBody().getContent();[m
+[36m@@ -64,24 +63,25 @@[m [mpublic class MemberClientController {[m
+ 		}[m
+ 		return new Member();[m
+ 	}[m
+[31m-	[m
+[32m+[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Subscriber Info[m
+[31m-	**/[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Subscriber Info[m
+[32m+[m	[32m **/[m
+ 	@RequestMapping(value = "/members/subscriber/{subscriberId}", method = RequestMethod.GET)[m
+ 	public Member getSubscriberInfo(@PathVariable("subscriberId") String subscriberId,[m
+ 			@RequestParam(name = "groupId", required = true) String groupId,[m
+ 			@RequestParam(name = "memberSuffix", required = true) String memberSuffix,[m
+ 			@RequestParam(name = "asOfDate", required = true) String asOfDate) {[m
+[31m-		[m
+[31m-		logger.info("Called Client getSubscriber()");[m
+[32m+[m
+[32m+[m		[32mLOGGER.info("Called Client getSubscriber()");[m
+ 		ParameterizedTypeReference<Resource<Member>> responseType = new ParameterizedTypeReference<Resource<Member>>() {[m
+ 		};[m
+[31m-		[m
+[31m-		ResponseEntity<Resource<Member>> response = restTemplate.exchange([m
+[31m-				this.URL_SUBSCRIBERINFO, HttpMethod.GET, null,responseType, subscriberId, groupId,memberSuffix,asOfDate);[m
+[31m-				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);[m
+[32m+[m
+[32m+[m		[32mResponseEntity<Resource<Member>> response = restTemplate.exchange(this.URL_SUBSCRIBERINFO, HttpMethod.GET, null,[m
+[32m+[m				[32mresponseType, subscriberId, groupId, memberSuffix, asOfDate);[m
+[32m+[m		[32m// RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(),[m
+[32m+[m		[32m// inHeader);[m
+ 		assert response != null;[m
+ 		if (response.getStatusCode() == HttpStatus.OK) {[m
+ 			Member outHeader = response.getBody().getContent();[m
+[1mdiff --git a/member-client/target/classes/com/cts/healthcare/integration/MemberClientApplication.class b/member-client/target/classes/com/cts/healthcare/integration/MemberClientApplication.class[m
+[1mindex 0994965..590674f 100644[m
+Binary files a/member-client/target/classes/com/cts/healthcare/integration/MemberClientApplication.class and b/member-client/target/classes/com/cts/healthcare/integration/MemberClientApplication.class differ
+[1mdiff --git a/member-client/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class b/member-client/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class[m
+[1mindex 76fbbdb..ec270e2 100644[m
+Binary files a/member-client/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class and b/member-client/target/classes/com/cts/healthcare/integration/domain/ClaimHeader.class differ
+[1mdiff --git a/member-client/target/classes/com/cts/healthcare/integration/domain/Member.class b/member-client/target/classes/com/cts/healthcare/integration/domain/Member.class[m
+[1mindex 25d05cc..4441e79 100644[m
+Binary files a/member-client/target/classes/com/cts/healthcare/integration/domain/Member.class and b/member-client/target/classes/com/cts/healthcare/integration/domain/Member.class differ
+[1mdiff --git a/member-client/target/classes/com/cts/healthcare/integration/service/MemberService.class b/member-client/target/classes/com/cts/healthcare/integration/service/MemberService.class[m
+[1mindex 2703028..dd9e878 100644[m
+Binary files a/member-client/target/classes/com/cts/healthcare/integration/service/MemberService.class and b/member-client/target/classes/com/cts/healthcare/integration/service/MemberService.class differ
+[1mdiff --git a/member-service/src/main/java/com/cts/healthcare/integration/controller/MemberServiceController.java b/member-service/src/main/java/com/cts/healthcare/integration/controller/MemberServiceController.java[m
+[1mindex 16aebd9..d259dfd 100644[m
+[1m--- a/member-service/src/main/java/com/cts/healthcare/integration/controller/MemberServiceController.java[m
+[1m+++ b/member-service/src/main/java/com/cts/healthcare/integration/controller/MemberServiceController.java[m
+[36m@@ -25,45 +25,40 @@[m [mimport com.cts.healthcare.integration.service.MemberService;[m
+ @RequestMapping("/")[m
+ public class MemberServiceController {[m
+ [m
+[32m+[m	[32mprivate final static Logger LOGGER = LoggerFactory.getLogger(MemberServiceController.class);[m
+ [m
+ 	@Autowired[m
+ 	private MemberService memberService;[m
+ [m
+[31m-	private final static Logger logger = LoggerFactory.getLogger(MemberServiceController.class);[m
+[31m-[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Member Info[m
+[31m-	**/[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Member Info[m
+[32m+[m	[32m **/[m
+ 	@RequestMapping("/members/{memberId}")[m
+[31m-	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) [m
+[31m-	{[m
+[31m-		logger.info("in Service Controller getMember()");[m
+[31m-		 [m
+[32m+[m	[32mpublic ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) {[m
+[32m+[m		[32mLOGGER.info("in Service Controller getMember()");[m
+ 		return new ResponseEntity<Member>(memberService.getMember(id), HttpStatus.OK);[m
+ 	}[m
+[31m-	[m
+[32m+[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Subscriber Info[m
+[31m-	**/[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Subscriber Info[m
+[32m+[m	[32m **/[m
+ 	@RequestMapping("/members/subscriber/{subscriberId}")[m
+ 	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") String id,[m
+[31m-			@RequestParam(name="groupId", required=true) String groupId,[m
+[31m-			@RequestParam(name="memberSuffix", required=true) String memberSuffix,[m
+[31m-			@RequestParam(name="asOfDate", required=true) String asOfDate) [m
+[31m-	{	[m
+[31m-		logger.info("in Service Controller getSubscriber()");[m
+[31m-		 	[m
+[31m-		return new ResponseEntity<Member>(memberService.getSubscriber(id,groupId,memberSuffix,convertStringToXMLGC(asOfDate)), HttpStatus.OK);[m
+[32m+[m			[32m@RequestParam(name = "groupId", required = true) String groupId,[m
+[32m+[m			[32m@RequestParam(name = "memberSuffix", required = true) String memberSuffix,[m
+[32m+[m			[32m@RequestParam(name = "asOfDate", required = true) String asOfDate) {[m
+[32m+[m		[32mLOGGER.info("in Service Controller getSubscriber()");[m
+[32m+[m		[32mreturn new ResponseEntity<Member>([m
+[32m+[m				[32mmemberService.getSubscriber(id, groupId, memberSuffix, convertStringToXMLGC(asOfDate)), HttpStatus.OK);[m
+ 	}[m
+[31m-	[m
+[32m+[m
+ 	/**[m
+[31m-	*[m
+[31m-	* Utility method to convert from String to XMLGregorianCalendar format[m
+[31m-	**/[m
+[31m-	public XMLGregorianCalendar convertStringToXMLGC(String strDate)[m
+[31m-	{[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * Utility method to convert from String to XMLGregorianCalendar format[m
+[32m+[m	[32m **/[m
+[32m+[m	[32mprivate XMLGregorianCalendar convertStringToXMLGC(String strDate) {[m
+ 		DateFormat format = new SimpleDateFormat("yyyyMMdd");[m
+ 		Date date = new Date();[m
+ 		XMLGregorianCalendar xmlGregCal = null;[m
+[36m@@ -72,7 +67,7 @@[m [mpublic class MemberServiceController {[m
+ 			GregorianCalendar cal = new GregorianCalendar();[m
+ 			cal.setTime(date);[m
+ [m
+[31m-			xmlGregCal =  DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);[m
+[32m+[m			[32mxmlGregCal = DatatypeFactory.newInstance().newXMLGregorianCalendar(cal);[m
+ 		} catch (Exception e) {[m
+ 			// TODO Auto-generated catch block[m
+ 			e.printStackTrace();[m
+[36m@@ -80,5 +75,5 @@[m [mpublic class MemberServiceController {[m
+ [m
+ 		return xmlGregCal;[m
+ 	}[m
+[31m-	[m
+[32m+[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/member-service/src/main/java/com/cts/healthcare/integration/service/MemberServiceImpl.java b/member-service/src/main/java/com/cts/healthcare/integration/service/MemberServiceImpl.java[m
+[1mindex 1fa70de..4f69be7 100644[m
+[1m--- a/member-service/src/main/java/com/cts/healthcare/integration/service/MemberServiceImpl.java[m
+[1m+++ b/member-service/src/main/java/com/cts/healthcare/integration/service/MemberServiceImpl.java[m
+[36m@@ -38,7 +38,7 @@[m [mpublic class MemberServiceImpl implements MemberService[m
+ 	@Autowired[m
+ 	private MemberProperty memberProperty;[m
+ 	[m
+[31m-	private final static Logger logger = LoggerFactory.getLogger(MemberServiceController.class);[m
+[32m+[m	[32mprivate final static Logger LOGGER = LoggerFactory.getLogger(MemberServiceController.class);[m
+ 	[m
+ 	/**[m
+ 	*[m
+[36m@@ -47,7 +47,7 @@[m [mpublic class MemberServiceImpl implements MemberService[m
+ 	@Override[m
+ 	public Member getMember(Long id)[m
+ 	{[m
+[31m-		logger.info("in Service Method getMember()");[m
+[32m+[m		[32mLOGGER.info("in Service Method getMember()");[m
+ 		GetMemberV3MemberKey getMemberV3MemberKeyRequest = new GetMemberV3MemberKey();[m
+ 		Config config = new Config();[m
+ 		Member member = new Member();[m
+[36m@@ -100,7 +100,7 @@[m [mpublic class MemberServiceImpl implements MemberService[m
+ 	@Override[m
+ 	public Member getSubscriber(String id,String groupId,String memberSuffix,XMLGregorianCalendar asOfDate) {[m
+ [m
+[31m-		logger.info("in Service Method getSubscriber()");[m
+[32m+[m		[32mLOGGER.info("in Service Method getSubscriber()");[m
+ 		GetMemberV3SubscriberId getMemberV3SubscriberIdRequest = new GetMemberV3SubscriberId();[m
+ 		Config config = new Config();[m
+ 		Member member = new Member();[m
+[36m@@ -161,7 +161,7 @@[m [mpublic class MemberServiceImpl implements MemberService[m
+ 	*[m
+ 	* Utility method to convert XMLGregorianCalendar date to String type[m
+ 	**/[m
+[31m-	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)[m
+[32m+[m	[32mprivate String convertXMLGCToString(XMLGregorianCalendar xmlDate)[m
+     {[m
+           String dateString =null;[m
+           Date date = null;[m
+[1mdiff --git a/member-service/target/classes/com/cts/healthcare/integration/MemberServiceApplication.class b/member-service/target/classes/com/cts/healthcare/integration/MemberServiceApplication.class[m
+[1mindex 85d63c0..c66a46f 100644[m
+Binary files a/member-service/target/classes/com/cts/healthcare/integration/MemberServiceApplication.class and b/member-service/target/classes/com/cts/healthcare/integration/MemberServiceApplication.class differ
+[1mdiff --git a/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class b/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class[m
+[1mindex fc90c09..ecc8b79 100644[m
+Binary files a/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class and b/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector$1.class differ
+[1mdiff --git a/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class b/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class[m
+[1mindex 2c7916a..a9f3cd6 100644[m
+Binary files a/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class and b/member-service/target/classes/com/cts/healthcare/integration/client/WebServiceConnector.class differ
+[1mdiff --git a/member-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class b/member-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class[m
+[1mindex 9ff29c6..3dcda26 100644[m
+Binary files a/member-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class and b/member-service/target/classes/com/cts/healthcare/integration/config/SpringFoxConfig.class differ
+[1mdiff --git a/member-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class b/member-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class[m
+[1mindex 782a24b..0817b38 100644[m
+Binary files a/member-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class and b/member-service/target/classes/com/cts/healthcare/integration/config/WsConfigClient.class differ
+[1mdiff --git a/provider-client/src/main/java/com/cts/healthcare/integration/controller/ProviderClientController.java b/provider-client/src/main/java/com/cts/healthcare/integration/controller/ProviderClientController.java[m
+[1mindex 6829fc1..400edcd 100644[m
+[1m--- a/provider-client/src/main/java/com/cts/healthcare/integration/controller/ProviderClientController.java[m
+[1m+++ b/provider-client/src/main/java/com/cts/healthcare/integration/controller/ProviderClientController.java[m
+[36m@@ -33,16 +33,17 @@[m [mpublic class ProviderClientController {[m
+ 	private String URL_MULTIPLEPROVIDERINFO;[m
+ 	[m
+ [m
+[31m-	@Autowired[m
+[31m-	ProviderService providerService;[m
+[32m+[m[32m//	@Autowired[m
+[32m+[m	[32mprivate final ProviderService providerService;[m
+ [m
+[31m-	public static final Logger logger = LoggerFactory.getLogger(ProviderClientController.class);[m
+[32m+[m	[32mpublic static final Logger LOGGER = LoggerFactory.getLogger(ProviderClientController.class);[m
+ 	[m
+ 	ProviderClientController(@Value("${provider.service.endpoint.providerinfo}") String URL_PROVIDERINFO,[m
+[31m-			@Value("${provider.service.endpoint.multipleproviderinfo}") String URL_MULTIPLEPROVIDERINFO) {[m
+[32m+[m			[32m@Value("${provider.service.endpoint.multipleproviderinfo}") String URL_MULTIPLEPROVIDERINFO, ProviderService providerService) {[m
+ 		this.URL_PROVIDERINFO = URL_PROVIDERINFO;[m
+ 		this.URL_MULTIPLEPROVIDERINFO = URL_MULTIPLEPROVIDERINFO;[m
+ 		this.restTemplate = new RestTemplate();[m
+[32m+[m		[32mthis.providerService = providerService;[m
+ 	}[m
+ [m
+ [m
+[36m@@ -52,7 +53,7 @@[m [mpublic class ProviderClientController {[m
+ 	**/[m
+ 	@RequestMapping(value = "/providers/{providerId}", method = RequestMethod.GET)[m
+ 	public Provider getProvider(@PathVariable("providerId") String providerId) {[m
+[31m-		logger.info("in Client Controller getProvider(");[m
+[32m+[m		[32mLOGGER.info("in Client Controller getProvider(");[m
+ 		ParameterizedTypeReference<Resource<Provider>> responseType = new ParameterizedTypeReference<Resource<Provider>>() {[m
+ 		};[m
+ 		ResponseEntity<Resource<Provider>> response = restTemplate.exchange([m
+[36m@@ -75,7 +76,7 @@[m [mpublic class ProviderClientController {[m
+ 	public Map<String,Provider> getMultipleProviders([m
+ 			@RequestParam(name = "identifiers", required = false) String[] identifiers) {[m
+ 		 [m
+[31m-		logger.info("in Client Controller getMultipleProvider(");[m
+[32m+[m		[32mLOGGER.info("in Client Controller getMultipleProvider(");[m
+ 		ParameterizedTypeReference<Map<String,Provider>> responseType = new ParameterizedTypeReference<Map<String,Provider>>() {[m
+ 		};[m
+ 		[m
+[36m@@ -84,13 +85,14 @@[m [mpublic class ProviderClientController {[m
+ 			for(String id : identifiers)[m
+ 				providerIdList.add(id);[m
+ 		}[m
+[31m-	    [m
+[32m+[m	[32m    System.out.println("Provider Array " +providerIdList.toArray().toString());[m
+ 		ResponseEntity<Map<String,Provider>> response = restTemplate.exchange([m
+[31m-				this.URL_MULTIPLEPROVIDERINFO, HttpMethod.GET, null,responseType, providerIdList);[m
+[32m+[m				[32mthis.URL_MULTIPLEPROVIDERINFO, HttpMethod.GET, null,responseType, providerIdList.toArray());[m
+ 				//RequestEntity.get(URI.create(this.URL_CLAIMINFO)).accept(MediaTypes.HAL_JSON).build(), inHeader);[m
+ 		assert response != null;[m
+ 		[m
+ 		if (response.getStatusCode() == HttpStatus.OK) {[m
+[32m+[m			[32mSystem.out.println(response);[m
+ 			Map<String,Provider> outHeader = response.getBody();[m
+ 			assert outHeader != null;[m
+ 			return outHeader;[m
+[1mdiff --git a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$1.class b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$1.class[m
+[1mindex 08f3375..883cdc3 100644[m
+Binary files a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$1.class and b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$1.class differ
+[1mdiff --git a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$2.class b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$2.class[m
+[1mindex c8860c0..ff98fa4 100644[m
+Binary files a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$2.class and b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController$2.class differ
+[1mdiff --git a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController.class b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController.class[m
+[1mindex 8eb0153..972755f 100644[m
+Binary files a/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController.class and b/provider-client/target/classes/com/cts/healthcare/integration/controller/ProviderClientController.class differ
+[1mdiff --git a/provider-service/src/main/java/com/cts/healthcare/integration/controller/ProviderRestController.java b/provider-service/src/main/java/com/cts/healthcare/integration/controller/ProviderRestController.java[m
+[1mindex c6bbc56..8989cb1 100644[m
+[1m--- a/provider-service/src/main/java/com/cts/healthcare/integration/controller/ProviderRestController.java[m
+[1m+++ b/provider-service/src/main/java/com/cts/healthcare/integration/controller/ProviderRestController.java[m
+[36m@@ -19,7 +19,7 @@[m [mimport com.cts.healthcare.integration.service.ProviderService;[m
+ @RequestMapping("/")[m
+ public class ProviderRestController {[m
+ [m
+[31m-	public static final Logger logger = LoggerFactory.getLogger(ProviderRestController.class);[m
+[32m+[m	[32mpublic static final Logger LOGGER = LoggerFactory.getLogger(ProviderRestController.class);[m
+ [m
+ 	@Autowired[m
+ 	private ProviderService providerService;[m
+[36m@@ -32,8 +32,7 @@[m [mpublic class ProviderRestController {[m
+ 	@RequestMapping("/providers/{providerId}")[m
+ 	public ResponseEntity<Provider> getProvider(@PathVariable("providerId") String id) [m
+ 	{	[m
+[31m-		logger.info("in Service Controller getProvider()");[m
+[31m-		 	[m
+[32m+[m		[32mLOGGER.info("in Service Controller getProvider()");[m
+ 		return new ResponseEntity<Provider>(providerService.getProvider(id), HttpStatus.OK);[m
+ 	}[m
+ 	[m
+[36m@@ -42,11 +41,12 @@[m [mpublic class ProviderRestController {[m
+ 	* API method to retrieve Multiple provider Info[m
+ 	**/[m
+ 	@RequestMapping("/providers")[m
+[31m-	public ResponseEntity<Map<String,Provider>> getMultipleProviders(@RequestParam("identifiers") String identifiers)[m
+[32m+[m	[32mpublic ResponseEntity<Map<String,Provider>> getMultipleProviders(@RequestParam("identifiers") String[] identifiers)[m
+ 	{		[m
+[31m-		logger.info("in Service Controller getMultipleProviders()");[m
+[31m-		[m
+[31m-		return new ResponseEntity<Map<String,Provider>>(providerService.getMultipleProviders(identifiers), HttpStatus.OK);[m
+[32m+[m		[32mLOGGER.info("in Service Controller getMultipleProviders()");[m
+[32m+[m		[32mResponseEntity<Map<String,Provider>> response = new ResponseEntity<Map<String,Provider>>(providerService.getMultipleProviders(identifiers), HttpStatus.OK);[m
+[32m+[m		[32mSystem.out.println(response);[m
+[32m+[m		[32mreturn response;[m
+ 	}[m
+ 	[m
+ 	[m
+[1mdiff --git a/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderService.java b/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderService.java[m
+[1mindex df1b17b..d4f3d16 100644[m
+[1m--- a/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderService.java[m
+[1m+++ b/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderService.java[m
+[36m@@ -8,7 +8,7 @@[m [mpublic interface ProviderService {[m
+ 	[m
+ 	public Provider getProvider(String id);[m
+ 	[m
+[31m-	public Map<String,Provider> getMultipleProviders(String providerIdList) ;[m
+[32m+[m	[32mpublic Map<String,Provider> getMultipleProviders(String[] providerIdList) ;[m
+ 	[m
+ 	[m
+ [m
+[1mdiff --git a/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderServiceImpl.java b/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderServiceImpl.java[m
+[1mindex 81e8ba7..198325c 100644[m
+[1m--- a/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderServiceImpl.java[m
+[1m+++ b/provider-service/src/main/java/com/cts/healthcare/integration/service/ProviderServiceImpl.java[m
+[36m@@ -26,106 +26,94 @@[m [mimport com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.GetProviderV2ProviderId;[m
+ import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.GetProviderV2ProviderIdResponse;[m
+ import com.trizetto.fxi.isl.fawsvcinpgetprovider_v2.RECPROV;[m
+ [m
+[31m-[m
+ @Service("providerService")[m
+ @EnableConfigurationProperties(ProviderProperty.class)[m
+[31m-public class ProviderServiceImpl implements ProviderService [m
+[31m-{[m
+[31m-	[m
+[32m+[m[32mpublic class ProviderServiceImpl implements ProviderService {[m
+[32m+[m
+[32m+[m	[32mprivate final static Logger LOGGER = LoggerFactory.getLogger(ProviderRestController.class);[m
+[32m+[m
+ 	@Autowired[m
+ 	@Qualifier("WebServiceConnector")[m
+ 	private WebServiceConnector webServiceConnector;[m
+[31m-		[m
+[32m+[m
+ 	@Autowired[m
+[31m-	private ProviderProperty providerProperty; [m
+[31m-	[m
+[31m-	private final static Logger logger = LoggerFactory.getLogger(ProviderRestController.class);[m
+[31m-	[m
+[32m+[m	[32mprivate ProviderProperty providerProperty;[m
+[32m+[m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Provider Info[m
+[31m-	**/[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Provider Info[m
+[32m+[m	[32m **/[m
+ 	public Provider getProvider(String id) {[m
+[31m-		[m
+[31m-		[m
+[31m-		logger.info("in Service Impl getProvider()");[m
+[32m+[m
+[32m+[m		[32mLOGGER.info("in Service Impl getProvider()");[m
+ 		GetProviderV2ProviderId getProviderV2ProviderIdRequest = new GetProviderV2ProviderId();[m
+ 		Config config = new Config();[m
+ 		Provider provider = new Provider();[m
+[31m-		[m
+[32m+[m
+ 		config.setFacetsIdentity(providerProperty.getConfigIdentity());[m
+ 		config.setRegion(providerProperty.getConfigRegion());[m
+ 		getProviderV2ProviderIdRequest.setPPRPRID(id);[m
+ 		getProviderV2ProviderIdRequest.setPConfig(config);[m
+[31m-		[m
+[31m-		GetProviderV2ProviderIdResponse response = (GetProviderV2ProviderIdResponse) webServiceConnector.callWebService(providerProperty.getProviderWsdl(), getProviderV2ProviderIdRequest, providerProperty.getProviderNameSpace());[m
+[31m-	    if(response != null) {[m
+[31m-	    	[m
+[31m-	    	ArrayOfRECPROV recprovArray = response.getGetProviderV2ProviderIdResult().getPROVCOLL();[m
+[31m-	    	if(recprovArray!= null && recprovArray.getRECPROV()!=null) {[m
+[31m-		    	List<RECPROV> recprovList = recprovArray.getRECPROV();[m
+[31m-		    	for (RECPROV recProv : recprovList) {[m
+[31m-		    	[m
+[31m-		    	provider.setProviderId(recProv.getPRPRID());[m
+[31m-		    	provider.setProviderType(recProv.getPRPRMCTRTYPE());[m
+[31m-		    	provider.setSpecialityCode(recProv.getPRCFMCTRSPEC());[m
+[31m-		    	provider.setSpecialityCodeDesc(recProv.getPRCFMCTRSPECDESC());[m
+[31m-		    	provider.setEffectiveToDate(convertXMLGCToString(recProv.getPRPRTERMDT()));[m
+[31m-		    	provider.setPracticeNum(recProv.getPRADPRACTICEIND());[m
+[31m-		    	provider.setNpi(recProv.getPRPRNPI());[m
+[31m-		    	//provider.setFedTaxId(rp.getMCTNID);[m
+[31m-		    	provider.setFirstName(recProv.getPRPRNAME());[m
+[31m-		    	provider.setWorkAdd1(recProv.getPRADADDR1());[m
+[31m-		    	provider.setWorkAdd2(recProv.getPRADADDR2());[m
+[31m-		    	provider.setCity(recProv.getPRADCITY());[m
+[31m-		    	provider.setState(recProv.getPRADSTATE());[m
+[31m-		    	provider.setPostalCode(recProv.getPRADZIP());[m
+[31m-		    	[m
+[31m-		    	}[m
+[31m-	    	}[m
+[31m-	    }[m
+[31m-	    return provider;[m
+[32m+[m
+[32m+[m		[32mGetProviderV2ProviderIdResponse response = (GetProviderV2ProviderIdResponse) webServiceConnector.callWebService([m
+[32m+[m				[32mproviderProperty.getProviderWsdl(), getProviderV2ProviderIdRequest,[m
+[32m+[m				[32mproviderProperty.getProviderNameSpace());[m
+[32m+[m		[32mif (response != null) {[m
+[32m+[m
+[32m+[m			[32mArrayOfRECPROV recprovArray = response.getGetProviderV2ProviderIdResult().getPROVCOLL();[m
+[32m+[m			[32mif (recprovArray != null && recprovArray.getRECPROV() != null) {[m
+[32m+[m				[32mList<RECPROV> recprovList = recprovArray.getRECPROV();[m
+[32m+[m				[32mfor (RECPROV recProv : recprovList) {[m
+[32m+[m
+[32m+[m					[32mprovider.setProviderId(recProv.getPRPRID());[m
+[32m+[m					[32mprovider.setProviderType(recProv.getPRPRMCTRTYPE());[m
+[32m+[m					[32mprovider.setSpecialityCode(recProv.getPRCFMCTRSPEC());[m
+[32m+[m					[32mprovider.setSpecialityCodeDesc(recProv.getPRCFMCTRSPECDESC());[m
+[32m+[m					[32mprovider.setEffectiveToDate(convertXMLGCToString(recProv.getPRPRTERMDT()));[m
+[32m+[m					[32mprovider.setPracticeNum(recProv.getPRADPRACTICEIND());[m
+[32m+[m					[32mprovider.setNpi(recProv.getPRPRNPI());[m
+[32m+[m					[32m// provider.setFedTaxId(rp.getMCTNID);[m
+[32m+[m					[32mprovider.setFirstName(recProv.getPRPRNAME());[m
+[32m+[m					[32mprovider.setWorkAdd1(recProv.getPRADADDR1());[m
+[32m+[m					[32mprovider.setWorkAdd2(recProv.getPRADADDR2());[m
+[32m+[m					[32mprovider.setCity(recProv.getPRADCITY());[m
+[32m+[m					[32mprovider.setState(recProv.getPRADSTATE());[m
+[32m+[m					[32mprovider.setPostalCode(recProv.getPRADZIP());[m
+[32m+[m
+[32m+[m				[32m}[m
+[32m+[m			[32m}[m
+[32m+[m		[32m}[m
+[32m+[m		[32mreturn provider;[m
+ 	}[m
+ [m
+ 	/**[m
+[31m-	*[m
+[31m-	* API method to retrieve Multiple provider Info[m
+[31m-	**/[m
+[31m-	public Map<String,Provider> getMultipleProviders(String idList)[m
+[31m-	{[m
+[31m-		logger.info("in Service Impl getMultipleProvider()");[m
+[31m-		Map<String,Provider> providerMap = new LinkedHashMap<String,Provider>();[m
+[31m-		String[] idArray = idList.split(",");	[m
+[31m-		StringBuffer idString = null;[m
+[31m-		for(String id : idArray) {[m
+[31m-			idString = new StringBuffer(id.trim().replaceAll("[\\[\\]]", ""));[m
+[31m-			Provider provider = getProvider(idString.toString());			[m
+[31m-		    if(provider.getProviderId()!=null)[m
+[31m-		    {[m
+[31m-		    	providerMap.put(idString.toString(), provider);[m
+[31m-		    }[m
+[31m-		    else[m
+[31m-		    {[m
+[31m-		    	providerMap.put(idString.toString(), null);[m
+[31m-		    }[m
+[32m+[m	[32m *[m
+[32m+[m	[32m * API method to retrieve Multiple provider Info[m
+[32m+[m	[32m **/[m
+[32m+[m	[32mpublic Map<String, Provider> getMultipleProviders(String[] idArray) {[m
+[32m+[m		[32mLOGGER.info("in Service Impl getMultipleProvider()");[m
+[32m+[m		[32mMap<String, Provider> providerMap = new LinkedHashMap<String, Provider>();[m
+[32m+[m		[32mfor (String providerId : idArray) {[m
+[32m+[m			[32mProvider provider = getProvider(providerId);[m
+[32m+[m			[32mif (provider.getProviderId() != null) {[m
+[32m+[m				[32mproviderMap.put(providerId, provider);[m
+[32m+[m			[32m} else {[m
+[32m+[m				[32mproviderMap.put(providerId, null);[m
+[32m+[m			[32m}[m
+ 		}[m
+ 		return providerMap;[m
+[31m-	    [m
+[32m+[m
+[32m+[m	[32m}[m
+[32m+[m
+[32m+[m	[32mprivate String convertXMLGCToString(XMLGregorianCalendar xmlDate) {[m
+[32m+[m		[32mString dateString = null;[m
+[32m+[m		[32mDate date = null;[m
+[32m+[m		[32mif (xmlDate != null) {[m
+[32m+[m			[32mDateFormat df = new SimpleDateFormat("yyyyMMdd");[m
+[32m+[m			[32mdate = xmlDate.toGregorianCalendar().getTime();[m
+[32m+[m			[32mdateString = df.format(date);[m
+[32m+[m		[32m}[m
+[32m+[m		[32mreturn dateString;[m
+ 	}[m
+ [m
+[31m-	[m
+[31m-	public String convertXMLGCToString(XMLGregorianCalendar xmlDate)[m
+[31m-	{[m
+[31m-		 String dateString =null;[m
+[31m-         Date date = null;[m
+[31m-         if(xmlDate!= null) {[m
+[31m-                DateFormat df = new SimpleDateFormat("yyyyMMdd");[m
+[31m-              date =  xmlDate.toGregorianCalendar().getTime();[m
+[31m-              dateString = df.format(date);[m
+[31m-         }[m
+[31m-         return dateString;[m
+[31m-	} [m
+[31m-	 [m
+[31m-[m
+[31m-	 [m
+ }[m
+[1mdiff --git a/provider-service/target/classes/com/cts/healthcare/integration/controller/ProviderRestController.class b/provider-service/target/classes/com/cts/healthcare/integration/controller/ProviderRestController.class[m
+[1mindex a957e9b..7e4260a 100644[m
+Binary files a/provider-service/target/classes/com/cts/healthcare/integration/controller/ProviderRestController.class and b/provider-service/target/classes/com/cts/healthcare/integration/controller/ProviderRestController.class differ
+[1mdiff --git a/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderService.class b/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderService.class[m
+[1mindex c62737c..bf05555 100644[m
+Binary files a/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderService.class and b/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderService.class differ
+[1mdiff --git a/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderServiceImpl.class b/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderServiceImpl.class[m
+[1mindex 7450f3c..f429a57 100644[m
+Binary files a/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderServiceImpl.class and b/provider-service/target/classes/com/cts/healthcare/integration/service/ProviderServiceImpl.class differ

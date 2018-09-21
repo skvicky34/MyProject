@@ -9,7 +9,9 @@ public class MemberProperty {
 	
 	private String memberWsdl;	
 	private String memberNameSpace;	
-	private String subscrNameSpace;	
+	private String subscrNameSpace;
+	private String utilizationWsdl;	
+	private String utilizationNameSpace;	
 	private String configIdentity;	
 	private String configRegion;	
 	private int pages;	
@@ -34,6 +36,18 @@ public class MemberProperty {
 	}
 	public void setSubscrNameSpace(String subscrNameSpace) {
 		this.subscrNameSpace = subscrNameSpace;
+	}
+	public String getUtilizationWsdl() {
+		return utilizationWsdl;
+	}
+	public void setUtilizationWsdl(String utilizationWsdl) {
+		this.utilizationWsdl = utilizationWsdl;
+	}
+	public String getUtilizationNameSpace() {
+		return utilizationNameSpace;
+	}
+	public void setUtilizationNameSpace(String utilizationNameSpace) {
+		this.utilizationNameSpace = utilizationNameSpace;
 	}
 	public String getConfigIdentity() {
 		return configIdentity;

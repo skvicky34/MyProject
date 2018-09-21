@@ -12,7 +12,8 @@ public class WsConfigClient {
 	@Bean
 	  public Jaxb2Marshaller marshaller() {
 	    Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-	    marshaller.setContextPath("com.trizetto.fxi.isl.fawsvcinpgetmember_v3");
+	    marshaller.setContextPaths("com.trizetto.fxi.isl.fawsvcinpgetmember_v3",
+	    		"com.trizetto.fxi.isl.fawsvcinpsearchumumsv_v4","com.trizetto.fxi.isl");
 	    return marshaller;
 	  }
 	

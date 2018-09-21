@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cts.healthcare.integration.domain.Authorization;
 import com.cts.healthcare.integration.domain.Member;
 import com.cts.healthcare.integration.service.MemberService;
 
 @Controller
 @RequestMapping("/")
-public class MemberServiceController 
-{
+public class MemberServiceController {
 
 	private final static Logger LOGGER = LoggerFactory.getLogger(MemberServiceController.class);
 
@@ -38,8 +38,7 @@ public class MemberServiceController
 	 * API method to retrieve Member Info
 	 **/
 	@RequestMapping("/members/{memberId}")
-	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) 
-	{
+	public ResponseEntity<Member> getMember(@PathVariable("memberId") Long id) {
 		LOGGER.info("in MemberServiceController getMember()");
 		return new ResponseEntity<Member>(memberService.getMember(id), HttpStatus.OK);
 	}
@@ -52,22 +51,35 @@ public class MemberServiceController
 	public ResponseEntity<Member> getSubscriber(@PathVariable("subscriberId") String id,
 			@RequestParam(name = "groupId", required = true) String groupId,
 			@RequestParam(name = "memberSuffix", required = true) String memberSuffix,
-			@RequestParam(name = "asOfDate", required = true) String asOfDate) 
-	{
+			@RequestParam(name = "asOfDate", required = true) String asOfDate) {
 		LOGGER.info("in MemberServiceController getSubscriber()");
 		return new ResponseEntity<Member>(
-				memberService.getSubscriber(id, groupId, memberSuffix, convertStringToXMLGC(asOfDate)), HttpStatus.OK);
+				memberService.getSubscriber(id, groupId, memberSuffix, convertStringToXMLGC(asOfDate,"yyyyMMdd")), HttpStatus.OK);
+	}
+
+	/**
+	 *
+	 * API method to retrieve Utilization Info
+	 **/
+	@RequestMapping("/members/{memberId}/auth")
+	public ResponseEntity<Authorization> getUtilization(@PathVariable("memberId") String memberId,
+			@RequestParam(name = "fromDate", required = true) String utilFromDate,
+			@RequestParam(name = "toDate", required = true) String utilToDate,
+			@RequestParam(name = "reviewType", required = false) String reviewType) {
+		LOGGER.info("in MemberServiceController getUtilization()");
+
+		return new ResponseEntity<Authorization>(memberService.getUtilization(memberId,
+				convertStringToXMLGC(utilFromDate,"yyyy-MM-dd"), convertStringToXMLGC(utilToDate,"yyyy-MM-dd"), reviewType), HttpStatus.OK);
 	}
 
 	/**
 	 *
 	 * Utility method to convert from String to XMLGregorianCalendar format
 	 **/
-	public XMLGregorianCalendar convertStringToXMLGC(String strDate)
-	{
+	private XMLGregorianCalendar convertStringToXMLGC(String strDate,String dateFormat) {
 		LOGGER.info("in MemberServiceController convertStringToXMLGC()");
 
-		DateFormat format = new SimpleDateFormat("yyyyMMdd");
+		DateFormat format = new SimpleDateFormat(dateFormat);
 		Date date = new Date();
 		XMLGregorianCalendar xmlGregCal = null;
 		try {
